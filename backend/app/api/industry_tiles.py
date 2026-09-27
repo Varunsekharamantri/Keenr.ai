@@ -19,7 +19,8 @@ from ..ai.summarizer import summarize_many
 from ..models.taxonomy import taxonomy_manager
 from .tile_evidence import as_statements, collect_evidence
 
-NEWS_SOURCES = ["exa_news", "news_rss", "ir_press"]
+# The News tile lists news articles and headlines; IR releases are filings.
+NEWS_SOURCES = ["exa_news", "news_rss"]
 
 # An appointment needs a verb that moves someone; a job ad or a passing mention
 # of a CTO is not a leadership move.
@@ -50,103 +51,111 @@ def build_industry_tiles(db, start_dt, end_dt, sector, region, active, tech, bus
         else:
             tiles[key] = _tile({"text": fallback, "source": "computed"}, evidence, stat, extra)
 
-    # ---- Technology trends -------------------------------------------------
-    lead = tech[0] if tech else None
-    second = tech[1] if len(tech) > 1 else None
-    if lead and lead["companies"]:
+    # Every summary below is built from exactly what its graphic shows - the
+    # same measure, filter and order - so the text and the chart can never
+    # disagree. (The Tech summary used to quote "% of companies" under a donut
+    # of the technology mix; the list tiles quoted the size of their example
+    # list as a total.)
+
+    # ---- Technology trends: the donut --------------------------------------
+    # The donut is the mix of technology opportunities: each company pursuing
+    # an initiative counts once, so the slices sum to 100%. Same rounding as the
+    # page (half up), so a slice reading 30% is described as 30%.
+    shown = [t for t in tech if t["companies"]]
+    pairs = sum(t["companies"] for t in shown)
+    mix = lambda t: int(100 * t["companies"] / pairs + 0.5) if pairs else 0
+    if shown:
+        lead = shown[0]
         ev = collect_evidence(db, start_dt, end_dt, sector, region,
                               initiative_id=lead["id"], exclude_sources=["career_pages"])
-        st = [f"{lead['name']} is the most common technology initiative: {lead['companies']} of "
-              f"the {active} companies with activity are pursuing it ({lead['share']}%)."]
-        if second and second["companies"]:
-            st.append(f"{second['name']} is second, pursued by {second['share']}% of those companies.")
+        st = [f"Across {pairs} technology signals - each is one company active on one initiative - "
+              f"{lead['name']} makes up {mix(lead)}%."]
+        if len(shown) > 2:
+            st.append(f"{shown[1]['name']} makes up {mix(shown[1])}% and {shown[2]['name']} {mix(shown[2])}%.")
+        elif len(shown) == 2:
+            st.append(f"{shown[1]['name']} makes up {mix(shown[1])}%.")
         if lead.get("it_offering"):
-            st.append(f"It fits vendors selling {lead['it_offering']}.")
+            st.append(f"{lead['name']} fits vendors selling {lead['it_offering']}.")
         st += as_statements(ev)
         add("tech", "Technology trends", st,
-            f"{lead['name']} leads: {lead['companies']} of {active} companies ({lead['share']}%).",
-            ev, f"{lead['companies']} of {active} companies")
+            f"{lead['name']} makes up {mix(lead)}% of {pairs} technology signals.",
+            ev, f"{pairs} technology signals")
     else:
         add("tech", "Technology trends", [], "No technology activity in this window.", {"items": []})
 
-    # ---- Business trends ---------------------------------------------------
-    biz = sorted([b for b in business if b["companies"]], key=lambda b: -b["companies"])
-    blead = biz[0] if biz else None
-    deals_row = next((b for b in business if b["id"] == "vendor_partnership_rfp"), None)
-    if blead:
+    # ---- Business trends: the four bars ------------------------------------
+    # Same four bars as the page (business moves by share of active companies,
+    # highest first), described with the percentages printed on them.
+    bars = [b for b in sorted(business, key=lambda b: -b["share"])[:4] if b["companies"]]
+    if bars:
+        b1 = bars[0]
         ev = collect_evidence(db, start_dt, end_dt, sector, region,
-                              initiative_id=blead["id"], exclude_sources=["career_pages"])
-        st = [f"{blead['name']} is the most common strategic move, seen at {blead['share']}% of "
-              f"the {active} companies with activity."]
-        if deals_row and deals_row["companies"]:
-            st.append(f"{deals_row['companies']} companies are in a vendor partnership or a major "
-                      f"RFP, the clearest sign of an open buying window.")
+                              initiative_id=b1["id"], exclude_sources=["career_pages"])
+        st = [f"{b1['name']} is the most common strategic move, seen at {b1['share']}% of the "
+              f"{active} active companies."]
+        others = [f"{b['name']} at {b['share']}%" for b in bars[1:3]]
+        if others:
+            st.append("Next come " + " and ".join(others) + ".")
         st += as_statements(ev, "Illustrative case")
         add("business", "Business trends", st,
-            f"{blead['name']} leads at {blead['share']}% of active companies.",
-            ev, f"{blead['companies']} of {active} companies")
+            f"{b1['name']} leads at {b1['share']}% of active companies.",
+            ev, f"{b1['companies']} of {active} companies")
     else:
         add("business", "Business trends", [], "No strategic moves in this window.", {"items": []})
 
-    # ---- Regulatory --------------------------------------------------------
-    ev = collect_evidence(db, start_dt, end_dt, sector, region, category_id="regulatory_compliance")
-    n = len(ev["items"])
-    if n:
-        st = [f"{n} {'company has' if n == 1 else 'companies have'} disclosed a regulatory, privacy "
-              f"or security mandate affecting their technology."] + as_statements(ev, "Case")
-        add("regulatory", "Regulatory and compliance", st,
-            f"{n} regulatory {'signal' if n == 1 else 'signals'} in this window.", ev,
-            f"{n} {'company' if n == 1 else 'companies'}")
-    else:
-        add("regulatory", "Regulatory and compliance", [],
-            "No regulatory mandates reported in this window.", ev, "0 companies")
+    # ---- The four list tiles -----------------------------------------------
+    # Real totals (every matching company, not the example list) and the most
+    # recent documents first - the order of the tile's own list.
+    def list_tile(key, kind, noun_total, statement, ev, empty):
+        n = ev["company_count"]
+        if n:
+            add(key, kind, [statement(n)] + as_statements(ev, "Most recent"),
+                f"{n} {noun_total(n)} in this window.", ev,
+                f"{n} {'company' if n == 1 else 'companies'}")
+        else:
+            add(key, kind, [], empty, ev, "0 companies")
 
-    # ---- Budgets and deals -------------------------------------------------
-    ev = collect_evidence(db, start_dt, end_dt, sector, region,
-                          initiative_ids=["vendor_partnership_rfp", "capex_it_budget", "ma_integration"])
-    n = len(ev["items"])
-    if n:
-        st = [f"{n} {'company is' if n == 1 else 'companies are'} in a vendor partnership, a major "
-              f"RFP, a technology investment or an acquisition."] + as_statements(ev, "Case")
-        add("deals", "Budgets and deals", st,
-            f"{n} budget or deal {'signal' if n == 1 else 'signals'} in this window.", ev,
-            f"{n} {'company' if n == 1 else 'companies'}")
-    else:
-        add("deals", "Budgets and deals", [], "No budgets or vendor deals disclosed in this window.",
-            ev, "0 companies")
+    list_tile("regulatory", "Regulatory and compliance",
+              lambda n: "company disclosed a regulatory mandate" if n == 1 else "companies disclosed regulatory mandates",
+              lambda n: f"{n} {'company has' if n == 1 else 'companies have'} disclosed a regulatory, privacy "
+                        f"or security mandate affecting their technology.",
+              collect_evidence(db, start_dt, end_dt, sector, region,
+                               category_id="regulatory_compliance", order="newest", limit=12),
+              "No regulatory mandates reported in this window.")
 
-    # ---- Leadership --------------------------------------------------------
-    raw = collect_evidence(db, start_dt, end_dt, sector, region,
-                           initiative_id="executive_leadership_change",
-                           exclude_sources=["career_pages"], limit=12)
-    raw["items"] = [i for i in raw["items"] if _MOVE.search(i["headline"])][:6]
-    n = len(raw["items"])
-    if n:
-        st = [f"{n} technology leadership {'move' if n == 1 else 'moves'} - a new CIO, CTO, CDO or "
-              f"CISO - at companies in this window. A new decision-maker often resets vendor "
-              f"relationships."] + as_statements(raw, "Move")
-        add("leadership", "Leadership moves", st,
-            f"{n} leadership {'move' if n == 1 else 'moves'} in this window.", raw,
-            f"{n} {'move' if n == 1 else 'moves'}")
-    else:
-        add("leadership", "Leadership moves", [], "No leadership moves in this window.", raw, "0 moves")
+    # Budgets & Deals, as the tile lists them: spending signals, M&A, or any
+    # document with a stated spend.
+    list_tile("deals", "Budgets and deals",
+              lambda n: "company with a budget or deal" if n == 1 else "companies with budgets or deals",
+              lambda n: f"{n} {'company is' if n == 1 else 'companies are'} in a vendor partnership, a major "
+                        f"RFP, a stated technology budget or an acquisition.",
+              collect_evidence(db, start_dt, end_dt, sector, region, category_id="spending_signals",
+                               initiative_ids=["ma_integration"], or_spend=True, order="newest", limit=12),
+              "No budgets or vendor deals disclosed in this window.")
 
-    # ---- Daily news --------------------------------------------------------
-    ev = collect_evidence(db, start_dt, end_dt, sector, region, source_types=NEWS_SOURCES, limit=8)
-    n = len(ev["items"])
-    if n:
-        themes = []
-        for it in ev["items"]:
-            if it["initiative"] and it["initiative"] not in themes:
-                themes.append(it["initiative"])
-        st = [f"{n} {'company' if n == 1 else 'companies'} appeared in the news in this window."]
-        if themes:
-            st.append("The themes covered were: " + ", ".join(themes[:4]) + ".")
-        st += as_statements(ev, "Story")
-        add("news", "Daily news", st, f"{n} {'story' if n == 1 else 'stories'} in this window.", ev,
-            f"{n} {'story' if n == 1 else 'stories'}")
-    else:
-        add("news", "Daily news", [], "No news in this window.", ev, "0 stories")
+    # Leadership, as the tile lists it: an appointment verb in the headline or
+    # quote; job postings excluded.
+    is_move = lambda ev, doc: _MOVE.search(f"{doc.title if doc else ''} {ev.quote_text or ''}") is not None
+    list_tile("leadership", "Leadership moves",
+              lambda n: "company with a leadership move" if n == 1 else "companies with leadership moves",
+              lambda n: f"{n} {'company has' if n == 1 else 'companies have'} had a technology leadership move - "
+                        f"a new CIO, CTO, CDO or CISO. A new decision-maker often resets vendor relationships.",
+              collect_evidence(db, start_dt, end_dt, sector, region, initiative_id="executive_leadership_change",
+                               exclude_sources=["career_pages"], keep=is_move, order="newest", limit=12),
+              "No leadership moves in this window.")
+
+    # News, as the tile lists it: news articles and headlines only.
+    news_ev = collect_evidence(db, start_dt, end_dt, sector, region, source_types=NEWS_SOURCES,
+                               order="newest", limit=12)
+    themes = []
+    for it in news_ev["items"][:4]:
+        if it["initiative"] and it["initiative"] not in themes:
+            themes.append(it["initiative"])
+    list_tile("news", "Daily news",
+              lambda n: "company in the news" if n == 1 else "companies in the news",
+              lambda n: f"{n} {'company' if n == 1 else 'companies'} appeared in the news in this window"
+                        + (f"; the latest stories cover {', '.join(themes)}." if themes else "."),
+              news_ev, "No news in this window.")
 
     # ---- Recent results ----------------------------------------------------
     results_items = results_items or []

@@ -336,7 +336,7 @@ const Components = {
       const seg = `<circle cx="60" cy="60" r="${R}" class="ins-ring-fill ins-mix-seg" style="stroke:${sl.hue};--i:${k}"
           stroke-dasharray="${Math.max(0.1, len - GAP).toFixed(2)} ${C.toFixed(2)}"
           transform="rotate(${(-90 + (at / C) * 360).toFixed(2)} 60 60)">
-          <title>${escapeHtml(sl.name)}: ${Math.round(100 * sl.n / pairs)}% of technology activity (${sl.n} companies)</title></circle>`;
+          <title>${escapeHtml(sl.name)}: ${Math.round(100 * sl.n / pairs)}% of technology signals (${sl.n} companies)</title></circle>`;
       at += len;
       return seg;
     }).join('');
@@ -346,7 +346,7 @@ const Components = {
         <circle cx="60" cy="60" r="${R}" class="ins-ring-track"/>
         ${segs}
         <text x="60" y="61" class="ins-ring-num">${pairs}</text>
-        <text x="60" y="71" class="ins-ring-lbl">opportunities</text>
+        <text x="60" y="71" class="ins-ring-lbl">signals</text>
       </svg>`;
     const legend = slices.map(sl => `
       <li title="${sl.n} companies"><span class="ins-sw" style="background:${sl.hue}"></span>
@@ -364,7 +364,7 @@ const Components = {
       <div class="ins-tech">
         ${ring}
         <div class="ins-tech-right">
-          <p class="ins-mix-cap">Mix of ${pairs} technology opportunities</p>
+          <p class="ins-mix-cap">Mix of ${pairs} technology signals</p>
           <ul class="ins-legend">${legend}</ul>
           ${this.insTileInsight((ins.tiles || {}).tech, 'tech')}
           ${compare ? `<p class="ins-summary-extra">${escapeHtml(compare.trim())}</p>` : ''}

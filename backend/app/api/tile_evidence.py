@@ -14,6 +14,7 @@ headline with its URL.
 import re
 from typing import List, Optional
 
+from sqlalchemy import func, or_
 from sqlalchemy.orm import Session
 
 from ..models.schema import Company, Event, RawDocument
@@ -64,12 +65,25 @@ def collect_evidence(
     source_types: Optional[List[str]] = None,
     exclude_sources: Optional[List[str]] = None,
     require_spend: bool = False,
+    or_spend: bool = False,
+    keep=None,
+    order: str = "confidence",
     limit: int = 6,
     scan: int = 120,
 ) -> dict:
     """
-    Documents supporting one tile, newest and most confident first, one per
-    company. Returns {"items": [...], "vendors": [...]}.
+    Documents supporting one tile, one per company.
+
+    Returns {"items": [...], "vendors": [...], "company_count": n}. `items` is
+    capped at `limit` - it is the examples - but `company_count` counts every
+    matching company, so a summary never states the size of its example list
+    as a total ("Six companies..." when there were thirty).
+
+    order="newest" lists the most recent documents first, the same order as
+    the tile's own list, so the examples a summary names are the ones at the
+    top of what the reader sees. or_spend=True widens the topic filters to
+    "...or any document with a stated spend" (the Budgets & Deals rule), and
+    `keep(event, doc)` applies a tile's own filter, such as a leadership move.
     """
     q = (db.query(Event, Company, RawDocument)
          .join(Company, Company.id == Event.company_id)
@@ -81,12 +95,18 @@ def collect_evidence(
         q = q.filter(Company.sector == sector)
     if region:
         q = q.filter(Company.region == region)
+    topic = []
     if initiative_id:
-        q = q.filter(Event.initiative_id == initiative_id)
+        topic.append(Event.initiative_id == initiative_id)
     if initiative_ids:
-        q = q.filter(Event.initiative_id.in_(initiative_ids))
+        topic.append(Event.initiative_id.in_(initiative_ids))
     if category_id:
-        q = q.filter(Event.category_id == category_id)
+        topic.append(Event.category_id == category_id)
+    if or_spend:
+        q = q.filter(or_(*topic, Event.spend_amount.isnot(None)))
+    else:
+        for cond in topic:
+            q = q.filter(cond)
     if source_types:
         q = q.filter(Event.source_type.in_(source_types))
     for src in (exclude_sources or []):
@@ -94,8 +114,18 @@ def collect_evidence(
     if require_spend:
         q = q.filter(Event.spend_amount.isnot(None))
 
-    items, vendors, seen = [], {}, set()
-    for ev, co, doc in q.order_by(Event.confidence.desc(), Event.occurred_at.desc()).limit(scan).all():
+    if order == "newest":
+        q = q.order_by(func.coalesce(RawDocument.filing_date, Event.occurred_at).desc(), Event.confidence.desc())
+    else:
+        q = q.order_by(Event.confidence.desc(), Event.occurred_at.desc())
+
+    items, vendors, seen, companies = [], {}, set(), set()
+    for n_row, (ev, co, doc) in enumerate(q.all()):
+        if keep is not None and not keep(ev, doc):
+            continue
+        companies.add(co.id)
+        if n_row >= scan and len(items) >= limit:
+            continue                      # still counting companies, done with examples
         for ent in (ev.key_entities or []):
             if isinstance(ent, str) and ent.strip():
                 vendors[ent.strip()] = vendors.get(ent.strip(), 0) + 1
@@ -117,8 +147,13 @@ def collect_evidence(
             "initiative": init.name if init else ev.initiative_name,
             "initiative_id": ev.initiative_id,
             "spend_amount": ev.spend_amount,
+            # What the tile lists render besides the headline.
+            "quote": " ".join((ev.quote_text or "").split())[:400],
+            "doc_id": ev.raw_doc_id,
+            "image": ((doc.metadata_json or {}).get("image_url") if doc else None),
         })
-    return {"items": items, "vendors": [v for v, _ in sorted(vendors.items(), key=lambda kv: -kv[1])[:4]]}
+    return {"items": items, "vendors": [v for v, _ in sorted(vendors.items(), key=lambda kv: -kv[1])[:4]],
+            "company_count": len(companies)}
 
 
 def as_statements(evidence: dict, label: str = "Example") -> List[str]:

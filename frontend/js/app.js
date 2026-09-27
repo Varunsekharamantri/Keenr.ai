@@ -926,36 +926,29 @@ const App = {
         set('insResults', (Components.insTileInsight((this.state.ovTiles || {}).results, 'results') || '') + Components.insResults(d)); })
       .catch(e => { console.error('results failed', e); fail('insResults', 'results'); });
 
-    // Lists come from the events feed. The API caps a page at 200 newest-first,
-    // so page through the window rather than letting the cap decide what shows.
+    // The four list tiles render the same server query their summary describes
+    // (tiles[key].evidence: every matching company counted, newest first). They
+    // used to filter the newest 800 events client-side, which saw only a slice
+    // of the window - Leadership listed 3 of the 18 companies with a move.
     try {
-      const evts = [];
-      for (let page = 0; page < 4; page++) {
-        const batch = await get(`/events?limit=200&offset=${page * 200}`);
-        if (!Array.isArray(batch) || !batch.length) break;
-        evts.push(...batch);
-        if (batch.length < 200) break;
-      }
-      // The insight payload arrives on its own request; wait for it so the list
-      // tiles can carry the same summary block instead of rendering bare.
-      await insightsReady.catch(() => {});
+      await insightsReady;
+      if (token !== this._ovToken) return;
       const tiles = this.state.ovTiles || {};
+      const asEvents = key => ((tiles[key] || {}).evidence || []).map(x => ({
+        company_id: x.company_id, company_name: x.company,
+        doc_headline: x.publisher ? `[${x.publisher}] ${x.headline}` : x.headline, title: x.headline,
+        quote_text: x.quote || '', source_url: x.url, doc_published_at: x.date, occurred_at: x.date,
+        initiative_id: x.initiative_id, spend_amount: x.spend_amount, source_type: x.source_type,
+        raw_doc_id: x.doc_id, doc_image: x.image,
+        _initiatives: [{ initiative_id: x.initiative_id }], _family: 'news',
+      }));
       const withInsight = (key, html) => (Components.insTileInsight(tiles[key], key) || '') + html;
-      const inCat = id => evts.filter(e => e.category_id === id);
-      set('insRegulatory', withInsight('regulatory', Components.insRegulatory(inCat('regulatory_compliance'))));
-      // The taxonomy files M&A under "Organizational Change" alongside executive
-      // appointments. A stake purchase is a deal, not a leadership move, so split
-      // by initiative: appointments -> Leadership, M&A -> Budgets & Deals.
-      set('insDeals', withInsight('deals', Components.insDeals(evts.filter(e =>
-        e.category_id === 'spending_signals' || e.initiative_id === 'ma_integration' || e.spend_amount))));
-      set('insLeadership', withInsight('leadership', Components.insLeadership(evts.filter(e => Components.insIsLeadershipMove(e)))));
-      const news = groupEventsByDocument(evts)
-        .filter(c => c._family === 'news')
-        .sort((a, b) => String(b.doc_published_at || b.occurred_at || '')
-          .localeCompare(String(a.doc_published_at || a.occurred_at || '')));
-      set('insNews', withInsight('news', Components.insNews(news)));
+      set('insRegulatory', withInsight('regulatory', Components.insRegulatory(asEvents('regulatory'))));
+      set('insDeals', withInsight('deals', Components.insDeals(asEvents('deals'))));
+      set('insLeadership', withInsight('leadership', Components.insLeadership(asEvents('leadership'))));
+      set('insNews', withInsight('news', Components.insNews(asEvents('news'))));
     } catch (e) {
-      console.error('overview events failed', e);
+      console.error('overview lists failed', e);
       ['insRegulatory', 'insDeals', 'insLeadership', 'insNews'].forEach(id => fail(id, 'this tile'));
     }
     await Promise.allSettled([insightsReady, resultsReady]);
