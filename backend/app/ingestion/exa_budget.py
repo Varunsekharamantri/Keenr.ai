@@ -58,19 +58,29 @@ class ExaBudgetTracker:
     def _current_month(self) -> str:
         return datetime.datetime.utcnow().strftime("%Y-%m")
 
+    # The counter lives in the database (app_state), keyed by the old file's
+    # name. A file reset to zero on every GitHub Actions run, so the monthly cap
+    # stopped protecting the free credit there.
+    @property
+    def _state_key(self) -> str:
+        return f"exa_budget:{self.usage_file.stem}"
+
     def _load_usage(self) -> dict:
         try:
-            if self.usage_file.exists():
-                return json.loads(self.usage_file.read_text())
+            from ..db.state import get_state
+            state = get_state(self._state_key)
+            if state:
+                return state
         except Exception:
             pass
         return {"month": self._current_month(), "count": 0}
 
     def _save_usage(self, state: dict):
         try:
-            self.usage_file.write_text(json.dumps(state))
+            from ..db.state import set_state
+            set_state(self._state_key, state)
         except Exception as e:
-            logger.warning(f"Could not persist Exa usage counter ({self.usage_file.name}): {e}")
+            logger.warning(f"Could not persist Exa usage counter ({self._state_key}): {e}")
 
     def record_usage(self):
         state = self._load_usage()

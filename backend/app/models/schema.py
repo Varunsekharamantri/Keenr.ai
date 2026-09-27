@@ -430,6 +430,34 @@ class Alert(Base):
         }
 
 
+class AppState(Base):
+    """
+    Small shared state - API budgets, the last daily run. In the database
+    rather than in files so a GitHub Actions run (whose disk starts empty) and
+    the app read and write the same values. See app/db/state.py.
+    """
+    __tablename__ = "app_state"
+
+    key = Column(String(100), primary_key=True)
+    value = Column(JSON, nullable=False)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+
+
+class AISummary(Base):
+    """
+    Written tile summaries, keyed by a hash of the facts they were written from
+    (so a changed fact is a new key, never a stale text). Stored in the database
+    so summaries written by the morning run reach the app that shows them.
+    """
+    __tablename__ = "ai_summaries"
+
+    key = Column(String(40), primary_key=True)
+    kind = Column(String(120), nullable=True)
+    text = Column(Text, nullable=False)
+    source = Column(String(20), default="ai")
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
 class Leader(Base):
     """
     A named technology or business leader at a tracked company, taken from

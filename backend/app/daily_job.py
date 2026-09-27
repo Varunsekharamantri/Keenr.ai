@@ -52,6 +52,13 @@ def today_local() -> datetime.date:
 
 
 def last_run() -> dict:
+    # In the database (app_state), so the app sees a refresh that ran on GitHub
+    # Actions - the header's "Updated ..." chip reads this.
+    try:
+        from .db.state import get_state
+        return get_state("last_daily_run", {}) or {}
+    except Exception:
+        pass
     try:
         return json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     except Exception:
@@ -59,6 +66,12 @@ def last_run() -> dict:
 
 
 def _write_status(status: dict):
+    try:
+        from .db.state import set_state
+        set_state("last_daily_run", status)
+        return
+    except Exception as ex:
+        logger.warning(f"daily status not saved to the database: {ex}")
     try:
         STATUS_PATH.write_text(json.dumps(status, indent=1, default=str), encoding="utf-8")
     except Exception as ex:

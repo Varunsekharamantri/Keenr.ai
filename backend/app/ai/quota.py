@@ -41,8 +41,11 @@ def _today() -> str:
 
 
 def _read() -> dict:
+    # In the database (app_state), shared with the GitHub Actions run - a file
+    # would start at zero on every run's fresh disk.
     try:
-        data = json.loads(PATH.read_text(encoding="utf-8"))
+        from ..db.state import get_state
+        data = get_state("groq_usage", {}) or {}
     except Exception:
         data = {}
     if data.get("date") != _today():
@@ -52,7 +55,8 @@ def _read() -> dict:
 
 def _write(data: dict):
     try:
-        PATH.write_text(json.dumps(data, indent=1), encoding="utf-8")
+        from ..db.state import set_state
+        set_state("groq_usage", data)
     except Exception as ex:
         logger.debug(f"token usage not written: {ex}")
 

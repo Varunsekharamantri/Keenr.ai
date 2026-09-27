@@ -1,7 +1,8 @@
-name: Nightly ingest
+name: Daily refresh
 
-# Keeps the Neon database refreshing whether or not the dashboard or the
-# laptop is running. Set SCHEDULE_ENABLED=false in the local .env once this is
+# Every morning at 8:00 IST: collect the day's news and filings, rescore, and
+# rewrite the insights - into the shared Neon database, whether or not the
+# laptop or the dashboard is running. Set SCHEDULE_ENABLED=false in the local .env once this is
 # live, otherwise the app's in-process APScheduler will ingest a second time.
 
 on:
@@ -11,11 +12,10 @@ on:
     - cron: "30 2 * * *"
   workflow_dispatch:
     inputs:
-      mode:
-        description: "all = every company; uncovered = only companies with zero events"
-        type: choice
-        options: [all, uncovered]
-        default: all
+      force:
+        description: "Run even if today's refresh already succeeded"
+        type: boolean
+        default: false
       limit_per_company:
         description: "Documents per source per company"
         default: "3"
@@ -75,7 +75,11 @@ jobs:
           # This process IS the schedule; the in-process one must stay off.
           SCHEDULE_ENABLED: "false"
           SCHEDULE_SECTOR_FILTER: BFSI
+        # The same job as the app's own 8 AM refresh (app/daily_job.py):
+        # source-aware ingestion, rescoring, People to Tap refresh, and writing
+        # the AI summaries for every page - all into the shared database, so
+        # the dashboard shows the new data and insights without redeploying.
         run: |
           python run_ingest.py \
-            --mode "${{ inputs.mode || 'all' }}" \
-            --limit-per-company "${{ inputs.limit_per_company || '3' }}"
+            --limit-per-company "${{ inputs.limit_per_company || '3' }}" \
+            ${{ inputs.force && '--force' || '' }}

@@ -60,6 +60,16 @@ def init_db():
     Base.metadata.create_all(bind=engine)
     ensure_columns()
 
+    # One-time: carry file-based state (budgets, last run, AI summaries) into
+    # the database, where every process - including GitHub Actions - shares it.
+    try:
+        from .state import import_legacy_files
+        from ..config import settings as _settings
+        import_legacy_files(_settings.DATA_DIR)
+    except Exception as ex:
+        logger.warning(f"file state not imported: {ex}")
+
+
 def get_db():
     db = SessionLocal()
     try:

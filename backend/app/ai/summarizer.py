@@ -63,21 +63,61 @@ SYSTEM = (
 _NUM = re.compile(r"\d+(?:[.,]\d+)*")
 
 
+# Summaries live in the database (ai_summaries), so the ones the morning
+# GitHub Actions run writes reach the app. Held in memory once read; a key not
+# in memory is looked up in the database, because another process (that run)
+# may have written it since. Keys are hashes of the facts, so a remembered
+# summary can never be stale - a changed fact is a different key.
 def _load_cache() -> dict:
     global _CACHE
     if _CACHE is None:
+        _CACHE = {}
         try:
-            _CACHE = json.loads(CACHE_PATH.read_text(encoding="utf-8"))
-        except Exception:
-            _CACHE = {}
+            from ..db.database import SessionLocal
+            from ..models.schema import AISummary
+            db = SessionLocal()
+            try:
+                for row in db.query(AISummary).all():
+                    _CACHE[row.key] = {"text": row.text, "source": row.source, "kind": row.kind}
+            finally:
+                db.close()
+        except Exception as ex:
+            logger.debug(f"summary cache not loaded: {ex}")
     return _CACHE
 
 
-def _save_cache():
+def _lookup(key: str) -> Optional[dict]:
+    cache = _load_cache()
+    if key in cache:
+        return cache[key]
     try:
-        CACHE_PATH.write_text(json.dumps(_CACHE, indent=1), encoding="utf-8")
+        from ..db.database import SessionLocal
+        from ..models.schema import AISummary
+        db = SessionLocal()
+        try:
+            row = db.get(AISummary, key)
+            if row is not None:
+                cache[key] = {"text": row.text, "source": row.source, "kind": row.kind}
+                return cache[key]
+        finally:
+            db.close()
+    except Exception:
+        pass
+    return None
+
+
+def _store(key: str, entry: dict):
+    try:
+        from ..db.database import SessionLocal
+        from ..models.schema import AISummary
+        db = SessionLocal()
+        try:
+            db.merge(AISummary(key=key, kind=entry.get("kind"), text=entry["text"], source=entry.get("source", "ai")))
+            db.commit()
+        finally:
+            db.close()
     except Exception as ex:
-        logger.debug(f"summary cache not written: {ex}")
+        logger.debug(f"summary not stored: {ex}")
 
 
 def _key(kind: str, facts: dict) -> str:
@@ -207,7 +247,7 @@ def summarize(kind: str, facts: dict, fallback: str, force: bool = False,
 
     key = _key(kind, facts)
     with _LOCK:
-        hit = _load_cache().get(key)
+        hit = _lookup(key)
     if hit and not force:
         return {"text": hit["text"], "source": hit.get("source", "ai")}
 
@@ -287,17 +327,17 @@ def summarize(kind: str, facts: dict, fallback: str, force: bool = False,
     with _LOCK:
         cache = _load_cache()
         cache[key] = {"text": clean, "source": "ai", "kind": kind}
+        _store(key, cache[key])
         if len(cache) > 400:                       # keep the file small
             for k in list(cache)[:100]:
                 cache.pop(k, None)
-        _save_cache()
     return {"text": clean, "source": "ai"}
 
 
 def cached_only(kind: str, facts: dict) -> Optional[dict]:
     """The stored summary for these exact facts, without calling the API."""
     with _LOCK:
-        hit = _load_cache().get(_key(kind, facts))
+        hit = _lookup(_key(kind, facts))
     return {"text": hit["text"], "source": hit.get("source", "ai")} if hit else None
 
 

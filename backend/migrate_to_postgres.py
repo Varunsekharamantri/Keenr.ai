@@ -36,7 +36,7 @@ from sqlalchemy.orm import sessionmaker
 from app.config import settings
 from app.models.schema import (
     Base, Alert, Company, Event, IngestionJob, RawDocument, Signal, SourceRun,
-    Tender, Watchlist,
+    Tender, Watchlist, Leader, LeaderFetch, AppState, AISummary,
 )
 
 # FK-safe insert order: a row's parents must already exist.
@@ -53,6 +53,11 @@ ORDER = [
     ("signals", Signal),
     ("alerts", Alert),
     ("tenders", Tender),
+    # People to Tap, and the state shared with GitHub Actions
+    ("leaders", Leader),
+    ("leader_fetches", LeaderFetch),
+    ("app_state", AppState),
+    ("ai_summaries", AISummary),
 ]
 
 BATCH = 500
