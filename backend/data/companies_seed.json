@@ -1,0 +1,7553 @@
+[
+  {
+    "name": "JPMorgan Chase & Co.",
+    "ticker": "JPM",
+    "cik": "0000019617",
+    "industry": "Commercial Banking",
+    "sector": "BFSI",
+    "naics": "522110",
+    "aliases": [
+      "JPMorgan",
+      "JPMorgan Chase",
+      "JPM",
+      "Chase Bank",
+      "Morgan Chase"
+    ],
+    "description": "Global financial services firm offering investment banking, asset management, and commercial/consumer banking."
+  },
+  {
+    "name": "Bank of America Corporation",
+    "ticker": "BAC",
+    "cik": "0000070858",
+    "industry": "Commercial Banking",
+    "sector": "BFSI",
+    "naics": "522110",
+    "aliases": [
+      "Bank of America",
+      "BofA",
+      "BAC",
+      "Merrill Lynch"
+    ],
+    "description": "Major multinational investment bank and financial services company."
+  },
+  {
+    "name": "Wells Fargo & Company",
+    "ticker": "WFC",
+    "cik": "0000072971",
+    "industry": "Commercial Banking",
+    "sector": "BFSI",
+    "naics": "522110",
+    "aliases": [
+      "Wells Fargo",
+      "WFC"
+    ],
+    "description": "Diversified community-based financial services company."
+  },
+  {
+    "name": "The Goldman Sachs Group, Inc.",
+    "ticker": "GS",
+    "cik": "0000886982",
+    "industry": "Investment Banking & Capital Markets",
+    "sector": "BFSI",
+    "naics": "523110",
+    "aliases": [
+      "Goldman Sachs",
+      "Goldman",
+      "GS"
+    ],
+    "description": "Leading global financial institution delivering securities, investment banking, and investment management."
+  },
+  {
+    "name": "Morgan Stanley",
+    "ticker": "MS",
+    "cik": "0000895421",
+    "industry": "Investment Banking & Wealth Management",
+    "sector": "BFSI",
+    "naics": "523110",
+    "aliases": [
+      "Morgan Stanley",
+      "MS",
+      "E*TRADE"
+    ],
+    "description": "Multinational investment bank and wealth management leader."
+  },
+  {
+    "name": "Citigroup Inc.",
+    "ticker": "C",
+    "cik": "0000831001",
+    "industry": "Diversified Financial Services",
+    "sector": "BFSI",
+    "naics": "522110",
+    "aliases": [
+      "Citigroup",
+      "Citi",
+      "Citibank"
+    ],
+    "description": "Global financial services enterprise with presence in over 160 countries."
+  },
+  {
+    "name": "BlackRock, Inc.",
+    "ticker": "BLK",
+    "cik": "0001364742",
+    "industry": "Asset Management & FinTech",
+    "sector": "BFSI",
+    "naics": "523920",
+    "aliases": [
+      "BlackRock",
+      "BLK",
+      "Aladdin"
+    ],
+    "description": "World's largest asset manager and technology provider with Aladdin investment platform."
+  },
+  {
+    "name": "The Progressive Corporation",
+    "ticker": "PGR",
+    "cik": "0000080424",
+    "industry": "Property & Casualty Insurance",
+    "sector": "BFSI",
+    "naics": "524126",
+    "aliases": [
+      "Progressive",
+      "Progressive Insurance",
+      "PGR"
+    ],
+    "description": "Major commercial and personal insurance carrier known for telematics and digital claims."
+  },
+  {
+    "name": "The Travelers Companies, Inc.",
+    "ticker": "TRV",
+    "cik": "0000086312",
+    "industry": "Commercial & Personal Insurance",
+    "sector": "BFSI",
+    "naics": "524126",
+    "aliases": [
+      "Travelers",
+      "Travelers Insurance",
+      "TRV"
+    ],
+    "description": "Leading provider of property and casualty insurance for auto, home, and business."
+  },
+  {
+    "name": "American Express Company",
+    "ticker": "AXP",
+    "cik": "0000004962",
+    "industry": "Consumer & Commercial Payments",
+    "sector": "BFSI",
+    "naics": "522210",
+    "aliases": [
+      "American Express",
+      "Amex",
+      "AXP"
+    ],
+    "description": "Globally integrated payments company providing credit, charge cards, and travel services."
+  },
+  {
+    "name": "UnitedHealth Group Incorporated",
+    "ticker": "UNH",
+    "cik": "0000731766",
+    "industry": "Managed Healthcare & HealthTech",
+    "sector": "Healthcare",
+    "naics": "524114",
+    "aliases": [
+      "UnitedHealth",
+      "UnitedHealthcare",
+      "Optum",
+      "UNH"
+    ],
+    "description": "Diversified healthcare enterprise offering health benefits (UnitedHealthcare) and health services/tech (Optum)."
+  },
+  {
+    "name": "Pfizer Inc.",
+    "ticker": "PFE",
+    "cik": "0000078003",
+    "industry": "Pharmaceuticals & Biotechnology",
+    "sector": "Healthcare",
+    "naics": "325412",
+    "aliases": [
+      "Pfizer",
+      "PFE"
+    ],
+    "description": "Global biopharmaceutical giant discovering, developing, and manufacturing innovative medicines."
+  },
+  {
+    "name": "Johnson & Johnson",
+    "ticker": "JNJ",
+    "cik": "0000200406",
+    "industry": "MedTech & Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": "325412",
+    "aliases": [
+      "Johnson & Johnson",
+      "J&J",
+      "JNJ",
+      "Janssen"
+    ],
+    "description": "Broadly based healthcare company in innovative medicine and MedTech devices."
+  },
+  {
+    "name": "Eli Lilly and Company",
+    "ticker": "LLY",
+    "cik": "0000059478",
+    "industry": "Pharmaceuticals & Biotechnology",
+    "sector": "Healthcare",
+    "naics": "325412",
+    "aliases": [
+      "Eli Lilly",
+      "Lilly",
+      "LLY"
+    ],
+    "description": "Global pharmaceutical company creating medicines in diabetes, oncology, and neuroscience."
+  },
+  {
+    "name": "CVS Health Corporation",
+    "ticker": "CVS",
+    "cik": "0000064803",
+    "industry": "Healthcare Services & Pharmacy",
+    "sector": "Healthcare",
+    "naics": "446110",
+    "aliases": [
+      "CVS Health",
+      "CVS",
+      "Aetna",
+      "Caremark"
+    ],
+    "description": "Integrated healthcare solutions company operating retail clinics, Aetna health insurance, and pharmacy benefits."
+  },
+  {
+    "name": "AbbVie Inc.",
+    "ticker": "ABBV",
+    "cik": "0001551152",
+    "industry": "Biopharmaceuticals",
+    "sector": "Healthcare",
+    "naics": "325412",
+    "aliases": [
+      "AbbVie",
+      "ABBV"
+    ],
+    "description": "Research-based biopharmaceutical company specializing in immunology and oncology."
+  },
+  {
+    "name": "Medtronic plc",
+    "ticker": "MDT",
+    "cik": "0001613103",
+    "industry": "Medical Devices & HealthTech",
+    "sector": "Healthcare",
+    "naics": "339112",
+    "aliases": [
+      "Medtronic",
+      "MDT"
+    ],
+    "description": "Global medical technology and therapy healthcare leader."
+  },
+  {
+    "name": "Merck & Co., Inc.",
+    "ticker": "MRK",
+    "cik": "0000310158",
+    "industry": "Pharmaceuticals & Vaccines",
+    "sector": "Healthcare",
+    "naics": "325412",
+    "aliases": [
+      "Merck",
+      "MRK",
+      "MSD"
+    ],
+    "description": "Global health care company delivering health solutions through prescription medicines, vaccines, and animal health."
+  },
+  {
+    "name": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "industry": "Cloud Computing & Enterprise Software",
+    "sector": "Technology",
+    "naics": "511210",
+    "aliases": [
+      "Microsoft",
+      "MSFT",
+      "Azure"
+    ],
+    "description": "Leader in cloud infrastructure (Azure), enterprise software (Office 365), AI, and developer tools."
+  },
+  {
+    "name": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "industry": "Cloud Infrastructure & E-Commerce",
+    "sector": "Technology",
+    "naics": "454110",
+    "aliases": [
+      "Amazon",
+      "AWS",
+      "AMZN"
+    ],
+    "description": "Cloud computing market leader (AWS), e-commerce platform, and logistics pioneer."
+  },
+  {
+    "name": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "industry": "Internet & Cloud Platforms",
+    "sector": "Technology",
+    "naics": "518210",
+    "aliases": [
+      "Google",
+      "Alphabet",
+      "Google Cloud",
+      "GCP",
+      "GOOGL",
+      "GOOG"
+    ],
+    "description": "Global tech leader in search, Google Cloud platform, AI (Gemini), and workspace tools."
+  },
+  {
+    "name": "Walmart Inc.",
+    "ticker": "WMT",
+    "cik": "0000104169",
+    "industry": "Retail & Supply Chain",
+    "sector": "Retail & Packaging",
+    "naics": "452311",
+    "aliases": [
+      "Walmart",
+      "WMT",
+      "Sam's Club"
+    ],
+    "description": "World's largest retail enterprise investing heavily in automated supply chain and cloud retail tech."
+  },
+  {
+    "name": "BERKSHIRE HATHAWAY INC",
+    "ticker": "BRK-B",
+    "cik": "0001067983",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Berkshire Hathaway"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Fannie Mae",
+    "ticker": null,
+    "cik": null,
+    "industry": "Mortgage Finance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Mortgage Finance company in the BFSI sector."
+  },
+  {
+    "name": "Freddie Mac",
+    "ticker": null,
+    "cik": null,
+    "industry": "Mortgage Finance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Mortgage Finance company in the BFSI sector."
+  },
+  {
+    "name": "Chubb Ltd",
+    "ticker": "CB",
+    "cik": "0000896159",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Chubb"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "METLIFE INC",
+    "ticker": "MET",
+    "cik": "0001099219",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "MetLife"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "PRUDENTIAL FINANCIAL INC",
+    "ticker": "PRU",
+    "cik": "0001137774",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Prudential Financial"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "CAPITAL ONE FINANCIAL CORP",
+    "ticker": "COF",
+    "cik": "0000927628",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Capital One Financial"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "TORONTO DOMINION BANK",
+    "ticker": "TD",
+    "cik": "0000947263",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Toronto-Dominion Bank (TD)"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "ROYAL BANK OF CANADA",
+    "ticker": "RY",
+    "cik": "0001000275",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Royal Bank of Canada"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "BANK OF NOVA SCOTIA",
+    "ticker": "BNS",
+    "cik": "0000009631",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Bank of Nova Scotia (Scotiabank)"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Bank of Montreal",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "U.S. Bancorp",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "PNC FINANCIAL SERVICES GROUP, INC.",
+    "ticker": "PNC",
+    "cik": "0000713676",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "PNC Financial Services"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "TRUIST FINANCIAL CORP",
+    "ticker": "TFC",
+    "cik": "0000092230",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Truist Financial"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "AMERICAN INTERNATIONAL GROUP, INC.",
+    "ticker": "AIG",
+    "cik": "0000005272",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "American International Group (AIG)"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "ALLSTATE CORP",
+    "ticker": "ALL",
+    "cik": "0000899051",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Allstate"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "AFLAC INC",
+    "ticker": "AFL",
+    "cik": "0000004977",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Aflac"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Nationwide",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Liberty Mutual",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "State Farm",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "USAA",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "TIAA",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "The Charles Schwab Corporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "Marsh McLennan",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Aon plc",
+    "ticker": "AON",
+    "cik": "0000315293",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Aon"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Cigna Group",
+    "ticker": "CI",
+    "cik": "0001739940",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Cigna"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "HUMANA INC",
+    "ticker": "HUM",
+    "cik": "0000049071",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Humana"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "CENTENE CORP",
+    "ticker": "CNC",
+    "cik": "0001071739",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Centene"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Elevance Health, Inc.",
+    "ticker": "ELV",
+    "cik": "0001156039",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Elevance Health"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "MANULIFE FINANCIAL CORP",
+    "ticker": "MFC",
+    "cik": "0001086888",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Manulife Financial"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "SUN LIFE FINANCIAL INC",
+    "ticker": "SLF",
+    "cik": "0001097362",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Sun Life Financial"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "GREAT-WEST LIFECO INC.",
+    "ticker": "GWLIF",
+    "cik": "0000850918",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Great-West Lifeco"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Power Corporation of Canada",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Canadian Imperial Bank of Commerce (CIBC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "FIFTH THIRD BANCORP",
+    "ticker": "FITB",
+    "cik": "0000035527",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Fifth Third Bancorp"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "KeyCorp",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "REGIONS FINANCIAL CORP",
+    "ticker": "RF",
+    "cik": "0001281761",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Regions Financial"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Citizens Financial Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "M&T BANK CORP",
+    "ticker": "MTB",
+    "cik": "0000036270",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "M&T Bank"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Huntington Bancshares",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Ally Financial Inc.",
+    "ticker": "ALLY",
+    "cik": "0000040729",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Ally Financial"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Discover Financial Services",
+    "ticker": null,
+    "cik": null,
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "Synchrony Financial",
+    "ticker": "SYF",
+    "cik": "0001601712",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "FISERV INC",
+    "ticker": "FISV",
+    "cik": "0000798354",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Fiserv"
+    ],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "Fidelity National Information Services, Inc.",
+    "ticker": "FIS",
+    "cik": "0001136893",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Fidelity National Information Services (FIS)"
+    ],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "GLOBAL PAYMENTS INC",
+    "ticker": "GPN",
+    "cik": "0001123360",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Global Payments"
+    ],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "VISA INC.",
+    "ticker": "V",
+    "cik": "0001403161",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Visa"
+    ],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "Mastercard Inc",
+    "ticker": "MA",
+    "cik": "0001141391",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Mastercard"
+    ],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "PayPal Holdings, Inc.",
+    "ticker": "PYPL",
+    "cik": "0001633917",
+    "industry": "Payments & Fintech",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "PayPal Holdings"
+    ],
+    "description": "Payments & Fintech company in the BFSI sector."
+  },
+  {
+    "name": "Fidelity Investments",
+    "ticker": null,
+    "cik": null,
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "STATE STREET CORP",
+    "ticker": "STT",
+    "cik": "0000093751",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "State Street"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "Bank of New York Mellon Corp",
+    "ticker": "BNY",
+    "cik": "0001390777",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "The Bank of New York Mellon"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "NORTHERN TRUST CORP",
+    "ticker": "NTRS",
+    "cik": "0000073124",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Northern Trust"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "RAYMOND JAMES FINANCIAL INC",
+    "ticker": "RJF",
+    "cik": "0000720005",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Raymond James Financial"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "LINCOLN NATIONAL CORP",
+    "ticker": "LNC",
+    "cik": "0000059558",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Lincoln National"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "PRINCIPAL FINANCIAL GROUP INC",
+    "ticker": "PFG",
+    "cik": "0001126328",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Principal Financial Group"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "AMERIPRISE FINANCIAL INC",
+    "ticker": "AMP",
+    "cik": "0000820027",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Ameriprise Financial"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "Voya Financial, Inc.",
+    "ticker": "VOYA",
+    "cik": "0001535929",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Voya Financial"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "The Hartford",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "MARKEL GROUP INC.",
+    "ticker": "MKL",
+    "cik": "0001096343",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Markel"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "W. R. Berkley",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "CINCINNATI FINANCIAL CORP",
+    "ticker": "CINF",
+    "cik": "0000020286",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Cincinnati Financial"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "ASSURANT, INC.",
+    "ticker": "AIZ",
+    "cik": "0001267238",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Assurant"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "LOEWS CORP",
+    "ticker": "L",
+    "cik": "0000060086",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Loews Corporation"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "ARCH CAPITAL GROUP LTD.",
+    "ticker": "ACGL",
+    "cik": "0000947484",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Arch Capital Group"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "EVEREST GROUP, LTD.",
+    "ticker": "EG",
+    "cik": "0001095073",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Everest Group"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "REINSURANCE GROUP OF AMERICA INC",
+    "ticker": "RGA",
+    "cik": "0000898174",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Reinsurance Group of America"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Unum Group",
+    "ticker": "UNM",
+    "cik": "0000005513",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "GLOBE LIFE INC.",
+    "ticker": "GL",
+    "cik": "0000320335",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Globe Life"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "AMERICAN FINANCIAL GROUP INC",
+    "ticker": "AFG",
+    "cik": "0001042046",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "American Financial Group"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "ERIE INDEMNITY CO",
+    "ticker": "ERIE",
+    "cik": "0000922621",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Erie Indemnity"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "First American Financial Corp",
+    "ticker": "FAF",
+    "cik": "0001472787",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "First American Financial"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Fidelity National Financial, Inc.",
+    "ticker": "FNF",
+    "cik": "0001331875",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Fidelity National Financial"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "OLD REPUBLIC INTERNATIONAL CORP",
+    "ticker": "ORI",
+    "cik": "0000074260",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Old Republic International"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Comerica",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Zions Bancorporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "FIRST HORIZON CORP",
+    "ticker": "FHN",
+    "cik": "0000036966",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "First Horizon"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "WESTERN ALLIANCE BANCORPORATION",
+    "ticker": "WAL",
+    "cik": "0001212545",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Western Alliance Bancorporation"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "EAST WEST BANCORP INC",
+    "ticker": "EWBC",
+    "cik": "0001069157",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "East West Bancorp"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "POPULAR, INC.",
+    "ticker": "BPOP",
+    "cik": "0000763901",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Popular, Inc."
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Itau Unibanco Holding S.A.",
+    "ticker": "ITUB",
+    "cik": "0001132597",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Itau Unibanco"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Banco Bradesco",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Banco do Brasil",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Banco Santander (Brasil) S.A.",
+    "ticker": "BSBR",
+    "cik": "0001471055",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Banco Santander Brasil"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Grupo Financiero Banorte",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "BTG Pactual",
+    "ticker": null,
+    "cik": null,
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "Bancolombia",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "CREDICORP LTD",
+    "ticker": "BAP",
+    "cik": "0001001290",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Credicorp"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Grupo Aval",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Ping An Insurance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Industrial & Commercial Bank of China (ICBC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "China Construction Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Agricultural Bank of China",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Bank of China",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "CHINA LIFE INSURANCE CO LTD",
+    "ticker": "CILJF",
+    "cik": "0001268896",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "China Life Insurance"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "HSBC HOLDINGS PLC",
+    "ticker": "HSBC",
+    "cik": "0001089113",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "HSBC Holdings"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "BNP Paribas",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Allianz",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "AXA",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Credit Agricole",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Banco Santander, S.A.",
+    "ticker": "SAN",
+    "cik": "0000891478",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Banco Santander"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Assicurazioni Generali",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Munich Re",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Deutsche Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Zurich Insurance Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "UBS Group AG",
+    "ticker": "UBS",
+    "cik": "0001610520",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "UBS Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "BARCLAYS PLC",
+    "ticker": "BCS",
+    "cik": "0000312069",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Barclays"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Lloyds Banking Group plc",
+    "ticker": "LYG",
+    "cik": "0001160106",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Lloyds Banking Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "NatWest Group plc",
+    "ticker": "NWG",
+    "cik": "0000844150",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "NatWest Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Societe Generale",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "BANCO BILBAO VIZCAYA ARGENTARIA, S.A.",
+    "ticker": "BBVA",
+    "cik": "0000842180",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Banco Bilbao Vizcaya Argentaria (BBVA)"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "ING Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Intesa Sanpaolo",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "UniCredit",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Aviva",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "PRUDENTIAL PLC",
+    "ticker": "PUK",
+    "cik": "0001116578",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Prudential plc"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Legal & General",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Standard Chartered",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Nordea",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "AEGON LTD.",
+    "ticker": "AEG",
+    "cik": "0000769218",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Aegon"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "NN INC",
+    "ticker": "NNBR",
+    "cik": "0000918541",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "NN Group"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Swiss Re",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Talanx",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "CaixaBank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Credit Mutuel",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Groupe BPCE",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Commerzbank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Danske Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "DNB",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Svenska Handelsbanken",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Skandinaviska Enskilda Banken (SEB)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Swedbank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "KBC Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Mapfre",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Poste Italiane",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "MITSUBISHI UFJ FINANCIAL GROUP INC",
+    "ticker": "MUFG",
+    "cik": "0000067088",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Mitsubishi UFJ Financial Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "SUMITOMO MITSUI FINANCIAL GROUP, INC.",
+    "ticker": "SMFG",
+    "cik": "0001022837",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Sumitomo Mitsui Financial Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "MIZUHO FINANCIAL GROUP INC",
+    "ticker": "MFG",
+    "cik": "0001335730",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Mizuho Financial Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Japan Post Bank Co., Ltd.",
+    "ticker": "JPSTF",
+    "cik": "0001659576",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Japan Post Bank"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Japan Post Insurance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Nippon Life Insurance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Dai-ichi Life Holdings",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "TOKIO MARINE HOLDINGS, INC.",
+    "ticker": "TKOMY",
+    "cik": "0001169486",
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Tokio Marine Holdings"
+    ],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Sompo Holdings",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "MS&AD Insurance Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "NOMURA HOLDINGS INC",
+    "ticker": "NMR",
+    "cik": "0001163653",
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Nomura Holdings"
+    ],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "Bank of Communications",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Postal Savings Bank of China",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "China Merchants Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Industrial Bank Co.",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Shanghai Pudong Development Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "China CITIC Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "China Minsheng Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "People's Insurance Company of China (PICC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "China Pacific Insurance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "New China Life Insurance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "HDFC BANK LTD",
+    "ticker": "HDB",
+    "cik": "0001144967",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "HDFC Bank"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "State Bank of India",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "ICICI BANK LTD",
+    "ticker": "IBN",
+    "cik": "0001103838",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "ICICI Bank"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Axis Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Kotak Mahindra Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Life Insurance Corporation of India (LIC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Bajaj Finserv",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Bank of Baroda",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Punjab National Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "DBS Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Oversea-Chinese Banking Corporation (OCBC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "United Overseas Bank (UOB)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Commonwealth Bank of Australia",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "WESTPAC BANKING CORP",
+    "ticker": "WEBNF",
+    "cik": "0000719245",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Westpac Banking Corporation"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "National Australia Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "ANZ Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Macquarie Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Capital Markets",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Capital Markets company in the BFSI sector."
+  },
+  {
+    "name": "AIA Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Bank of East Asia",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Hang Seng Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "KB Financial Group Inc.",
+    "ticker": "KB",
+    "cik": "0001445930",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "KB Financial Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "SHINHAN FINANCIAL GROUP CO LTD",
+    "ticker": "SHG",
+    "cik": "0001263043",
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [
+      "Shinhan Financial Group"
+    ],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Hana Financial Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Samsung Life Insurance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Insurance",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Insurance company in the BFSI sector."
+  },
+  {
+    "name": "Kasikornbank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Bangkok Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Maybank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Bank Central Asia",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Bank Mandiri",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Standard Bank Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "FirstRand",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Qatar National Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Al Rajhi Bank",
+    "ticker": null,
+    "cik": null,
+    "industry": "Bank",
+    "sector": "BFSI",
+    "naics": null,
+    "aliases": [],
+    "description": "Bank company in the BFSI sector."
+  },
+  {
+    "name": "Amazon",
+    "ticker": null,
+    "cik": null,
+    "industry": "E-commerce",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "E-commerce company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Costco Wholesale",
+    "ticker": null,
+    "cik": null,
+    "industry": "Mass Merchandise & Discount",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Mass Merchandise & Discount company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Schwarz Group (Lidl/Kaufland)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "HOME DEPOT, INC.",
+    "ticker": "HD",
+    "cik": "0000354950",
+    "industry": "Home Improvement",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "The Home Depot"
+    ],
+    "description": "Home Improvement company in the Retail & Packaging sector."
+  },
+  {
+    "name": "KROGER CO",
+    "ticker": "KR",
+    "cik": "0000056873",
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "The Kroger Co."
+    ],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "JD.com, Inc.",
+    "ticker": "JD",
+    "cik": "0001549802",
+    "industry": "E-commerce",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "JD.com"
+    ],
+    "description": "E-commerce company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Alibaba Group Holding Ltd",
+    "ticker": "BABA",
+    "cik": "0001577552",
+    "industry": "E-commerce",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Alibaba Group"
+    ],
+    "description": "E-commerce company in the Retail & Packaging sector."
+  },
+  {
+    "name": "TARGET CORP",
+    "ticker": "TGT",
+    "cik": "0000027419",
+    "industry": "Mass Merchandise & Discount",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Target"
+    ],
+    "description": "Mass Merchandise & Discount company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Aldi",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Walgreens Boots Alliance",
+    "ticker": null,
+    "cik": null,
+    "industry": "Drug & Pharmacy Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Drug & Pharmacy Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Lowe's",
+    "ticker": null,
+    "cik": null,
+    "industry": "Home Improvement",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Home Improvement company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Tesco",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Carrefour",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Ahold Delhaize",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "AEON",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "SEVEN & I HOLDINGS CO LTD",
+    "ticker": "SVNDF",
+    "cik": "0001359519",
+    "industry": "Convenience & Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Seven & i Holdings"
+    ],
+    "description": "Convenience & Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "TJX Companies",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "BEST BUY CO INC",
+    "ticker": "BBY",
+    "cik": "0000764478",
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Best Buy"
+    ],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Publix Super Markets",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Albertsons Companies, Inc.",
+    "ticker": "ACI",
+    "cik": "0001646972",
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Albertsons"
+    ],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "REWE Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "EDEKA Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Auchan",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Woolworths Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Coles Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Loblaw Companies",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Metro AG",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "J Sainsbury",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "DOLLAR GENERAL CORP",
+    "ticker": "DG",
+    "cik": "0000029534",
+    "industry": "Mass Merchandise & Discount",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Dollar General"
+    ],
+    "description": "Mass Merchandise & Discount company in the Retail & Packaging sector."
+  },
+  {
+    "name": "DOLLAR TREE, INC.",
+    "ticker": "DLTR",
+    "cik": "0000935703",
+    "industry": "Mass Merchandise & Discount",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Dollar Tree"
+    ],
+    "description": "Mass Merchandise & Discount company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Macy's, Inc.",
+    "ticker": "M",
+    "cik": "0000794367",
+    "industry": "Apparel & Department Store",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Macy's"
+    ],
+    "description": "Apparel & Department Store company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Nordstrom",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Department Store",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Department Store company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Kohl's",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Department Store",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Department Store company in the Retail & Packaging sector."
+  },
+  {
+    "name": "ROSS STORES, INC.",
+    "ticker": "ROST",
+    "cik": "0000745732",
+    "industry": "Apparel & Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Ross Stores"
+    ],
+    "description": "Apparel & Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "GAP INC",
+    "ticker": "GAP",
+    "cik": "0000039911",
+    "industry": "Apparel & Fashion",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Gap Inc."
+    ],
+    "description": "Apparel & Fashion company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Inditex (Zara)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Fashion",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Fashion company in the Retail & Packaging sector."
+  },
+  {
+    "name": "H&M Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Fashion",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Fashion company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Fast Retailing (Uniqlo)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Fashion",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Fashion company in the Retail & Packaging sector."
+  },
+  {
+    "name": "IKEA (Ingka Group)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "LVMH",
+    "ticker": null,
+    "cik": null,
+    "industry": "Luxury",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Luxury company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Kering",
+    "ticker": null,
+    "cik": null,
+    "industry": "Luxury",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Luxury company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Wesfarmers",
+    "ticker": null,
+    "cik": null,
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Reliance Retail",
+    "ticker": null,
+    "cik": null,
+    "industry": "Mass Merchandise & Discount",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Mass Merchandise & Discount company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Avenue Supermarts (DMart)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Grocery",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Grocery company in the Retail & Packaging sector."
+  },
+  {
+    "name": "lululemon athletica inc.",
+    "ticker": "LULU",
+    "cik": "0001397187",
+    "industry": "Apparel & Fashion",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Lululemon Athletica"
+    ],
+    "description": "Apparel & Fashion company in the Retail & Packaging sector."
+  },
+  {
+    "name": "DICK'S SPORTING GOODS, INC.",
+    "ticker": "DKS",
+    "cik": "0001089063",
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Dick's Sporting Goods"
+    ],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "AUTOZONE INC",
+    "ticker": "AZO",
+    "cik": "0000866787",
+    "industry": "Automotive Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "AutoZone"
+    ],
+    "description": "Automotive Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "O REILLY AUTOMOTIVE INC",
+    "ticker": "ORLY",
+    "cik": "0000898173",
+    "industry": "Automotive Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "O'Reilly Automotive"
+    ],
+    "description": "Automotive Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "ADVANCE AUTO PARTS INC",
+    "ticker": "AAP",
+    "cik": "0001158449",
+    "industry": "Automotive Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Advance Auto Parts"
+    ],
+    "description": "Automotive Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Tractor Supply Company",
+    "ticker": null,
+    "cik": null,
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Ulta Beauty, Inc.",
+    "ticker": "ULTA",
+    "cik": "0001403568",
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Ulta Beauty"
+    ],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Burlington Stores, Inc.",
+    "ticker": "BURL",
+    "cik": "0001579298",
+    "industry": "Apparel & Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Burlington Stores"
+    ],
+    "description": "Apparel & Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Foot Locker",
+    "ticker": null,
+    "cik": null,
+    "industry": "Apparel & Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Apparel & Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "WILLIAMS SONOMA INC",
+    "ticker": "WSM",
+    "cik": "0000719955",
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Williams-Sonoma"
+    ],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Bath & Body Works, Inc.",
+    "ticker": "BBWI",
+    "cik": "0000701985",
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Bath & Body Works"
+    ],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Petco Health & Wellness Company, Inc.",
+    "ticker": "WOOF",
+    "cik": "0001826470",
+    "industry": "Specialty Retail",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Petco Health and Wellness"
+    ],
+    "description": "Specialty Retail company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Chewy, Inc.",
+    "ticker": "CHWY",
+    "cik": "0001766502",
+    "industry": "E-commerce",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Chewy"
+    ],
+    "description": "E-commerce company in the Retail & Packaging sector."
+  },
+  {
+    "name": "NIKE, Inc.",
+    "ticker": "NKE",
+    "cik": "0000320187",
+    "industry": "Apparel & Fashion",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Nike"
+    ],
+    "description": "Apparel & Fashion company in the Retail & Packaging sector."
+  },
+  {
+    "name": "International Paper",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Smurfit Westrock plc",
+    "ticker": "SW",
+    "cik": "0002005951",
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Smurfit WestRock"
+    ],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Amcor plc",
+    "ticker": "AMCR",
+    "cik": "0001748790",
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Amcor"
+    ],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "BALL Corp",
+    "ticker": "BALL",
+    "cik": "0000009389",
+    "industry": "Metal Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Ball Corporation"
+    ],
+    "description": "Metal Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "CROWN HOLDINGS, INC.",
+    "ticker": "CCK",
+    "cik": "0001219601",
+    "industry": "Metal Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Crown Holdings"
+    ],
+    "description": "Metal Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Sealed Air",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Packaging Corporation of America",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "GRAPHIC PACKAGING HOLDING CO",
+    "ticker": "GPK",
+    "cik": "0001408075",
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Graphic Packaging Holding"
+    ],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Berry Global",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "SONOCO PRODUCTS CO",
+    "ticker": "SON",
+    "cik": "0000091767",
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Sonoco Products"
+    ],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "O-I Glass (Owens-Illinois)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Glass Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Glass Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "APTARGROUP, INC.",
+    "ticker": "ATR",
+    "cik": "0000896622",
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "AptarGroup"
+    ],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "SILGAN HOLDINGS INC",
+    "ticker": "SLGN",
+    "cik": "0000849869",
+    "industry": "Metal Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Silgan Holdings"
+    ],
+    "description": "Metal Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Mondi",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "DS Smith",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Stora Enso",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "UPM-Kymmene",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Oji Holdings",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Nippon Paper",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Tetra Pak",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "SIG Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Huhtamaki",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Sappi",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Nine Dragons Paper",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Rengo",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Klabin",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Suzano S.A.",
+    "ticker": "SUZ",
+    "cik": "0000909327",
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Suzano"
+    ],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Pactiv Evergreen",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "GREIF, INC",
+    "ticker": "GEF",
+    "cik": "0000043920",
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Greif"
+    ],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "TRIMAS CORP",
+    "ticker": "TRS",
+    "cik": "0000842633",
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "TriMas"
+    ],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "CCL Industries",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Winpak",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Constantia Flexibles",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Coveris",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "ProAmpac",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Ardagh Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Glass Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Glass Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Elopak",
+    "ticker": null,
+    "cik": null,
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Ranpak Holdings Corp.",
+    "ticker": "PACK",
+    "cik": "0001712463",
+    "industry": "Paper & Board Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [
+      "Ranpak"
+    ],
+    "description": "Paper & Board Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Genpak",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "Mauser Packaging Solutions",
+    "ticker": null,
+    "cik": null,
+    "industry": "Plastic & Flexible Packaging",
+    "sector": "Retail & Packaging",
+    "naics": null,
+    "aliases": [],
+    "description": "Plastic & Flexible Packaging company in the Retail & Packaging sector."
+  },
+  {
+    "name": "TOYOTA MOTOR CORP/",
+    "ticker": "TM",
+    "cik": "0001094517",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Toyota Motor"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Volkswagen Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Stellantis N.V.",
+    "ticker": "STLA",
+    "cik": "0001605484",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Stellantis"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "FORD MOTOR CO",
+    "ticker": "F",
+    "cik": "0000037996",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Ford Motor"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "General Motors Co",
+    "ticker": "GM",
+    "cik": "0001467858",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "General Motors"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Mercedes-Benz Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "BMW Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "HONDA MOTOR CO LTD",
+    "ticker": "HMC",
+    "cik": "0000715153",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Honda Motor"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Nissan Motor",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Hyundai Motor",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "SAIC Motor",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "BYD CO LTD",
+    "ticker": "BYDDF",
+    "cik": "0001445162",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "BYD"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Hon Hai Precision (Foxconn)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Contract Mfg",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Contract Mfg company in the Manufacturing sector."
+  },
+  {
+    "name": "GENERAL ELECTRIC CO",
+    "ticker": "GE",
+    "cik": "0000040545",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "General Electric"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "Siemens",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "Honeywell",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "3M CO",
+    "ticker": "MMM",
+    "cik": "0000066740",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "3M"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "CATERPILLAR INC",
+    "ticker": "CAT",
+    "cik": "0000018230",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Caterpillar"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "DEERE & CO",
+    "ticker": "DE",
+    "cik": "0000315189",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Deere & Company"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "CUMMINS INC",
+    "ticker": "CMI",
+    "cik": "0000026172",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Cummins"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "BOEING CO",
+    "ticker": "BA",
+    "cik": "0000012927",
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Boeing"
+    ],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "Airbus",
+    "ticker": null,
+    "cik": null,
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "LOCKHEED MARTIN CORP",
+    "ticker": "LMT",
+    "cik": "0000936468",
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Lockheed Martin"
+    ],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "RTX Corp",
+    "ticker": "RTX",
+    "cik": "0000101829",
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "RTX"
+    ],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "Northrop Grumman",
+    "ticker": null,
+    "cik": null,
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "GENERAL DYNAMICS CORP",
+    "ticker": "GD",
+    "cik": "0000040533",
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "General Dynamics"
+    ],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "EMERSON ELECTRIC CO",
+    "ticker": "EMR",
+    "cik": "0000032604",
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Emerson Electric"
+    ],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "Parker-Hannifin Corp",
+    "ticker": "PH",
+    "cik": "0000076334",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Parker Hannifin"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "ILLINOIS TOOL WORKS INC",
+    "ticker": "ITW",
+    "cik": "0000049826",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Illinois Tool Works"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "Eaton Corp plc",
+    "ticker": "ETN",
+    "cik": "0001551182",
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Eaton"
+    ],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "ROCKWELL AUTOMATION, INC",
+    "ticker": "ROK",
+    "cik": "0001024478",
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Rockwell Automation"
+    ],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "Schneider Electric",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "ABB LTD",
+    "ticker": "ABBNY",
+    "cik": "0001091587",
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "ABB"
+    ],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "Robert Bosch",
+    "ticker": null,
+    "cik": null,
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "Continental",
+    "ticker": null,
+    "cik": null,
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "Denso",
+    "ticker": null,
+    "cik": null,
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "Aisin",
+    "ticker": null,
+    "cik": null,
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "MAGNA INTERNATIONAL INC",
+    "ticker": "MGA",
+    "cik": "0000749098",
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Magna International"
+    ],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "ZF Friedrichshafen",
+    "ticker": null,
+    "cik": null,
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "BASF",
+    "ticker": null,
+    "cik": null,
+    "industry": "Chemicals",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Chemicals company in the Manufacturing sector."
+  },
+  {
+    "name": "DOW INC.",
+    "ticker": "DOW",
+    "cik": "0001751788",
+    "industry": "Chemicals",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Dow"
+    ],
+    "description": "Chemicals company in the Manufacturing sector."
+  },
+  {
+    "name": "DuPont",
+    "ticker": null,
+    "cik": null,
+    "industry": "Chemicals",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Chemicals company in the Manufacturing sector."
+  },
+  {
+    "name": "LyondellBasell",
+    "ticker": null,
+    "cik": null,
+    "industry": "Chemicals",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Chemicals company in the Manufacturing sector."
+  },
+  {
+    "name": "Mitsubishi Heavy Industries",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "HITACHI LTD",
+    "ticker": "HTHIY",
+    "cik": "0000047710",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Hitachi"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "Panasonic",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Appliances",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Appliances company in the Manufacturing sector."
+  },
+  {
+    "name": "Sony Group Corp",
+    "ticker": "SONY",
+    "cik": "0000313838",
+    "industry": "Electronics & Appliances",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Sony"
+    ],
+    "description": "Electronics & Appliances company in the Manufacturing sector."
+  },
+  {
+    "name": "Samsung Electronics",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Appliances",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Appliances company in the Manufacturing sector."
+  },
+  {
+    "name": "LG Electronics",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Appliances",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Appliances company in the Manufacturing sector."
+  },
+  {
+    "name": "Whirlpool",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Appliances",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Appliances company in the Manufacturing sector."
+  },
+  {
+    "name": "Electrolux",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Appliances",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Appliances company in the Manufacturing sector."
+  },
+  {
+    "name": "Komatsu",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "Kubota",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "Volvo Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "PACCAR INC",
+    "ticker": "PCAR",
+    "cik": "0000075362",
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "PACCAR"
+    ],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "Daimler Truck",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "TRATON",
+    "ticker": null,
+    "cik": null,
+    "industry": "Automotive",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Automotive company in the Manufacturing sector."
+  },
+  {
+    "name": "CNH Industrial N.V.",
+    "ticker": "CNH",
+    "cik": "0001567094",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "CNH Industrial"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "AGCO",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "TEXTRON INC",
+    "ticker": "TXT",
+    "cik": "0000217346",
+    "industry": "Aerospace & Defense",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Textron"
+    ],
+    "description": "Aerospace & Defense company in the Manufacturing sector."
+  },
+  {
+    "name": "STANLEY BLACK & DECKER, INC.",
+    "ticker": "SWK",
+    "cik": "0000093556",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Stanley Black & Decker"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "DOVER Corp",
+    "ticker": "DOV",
+    "cik": "0000029905",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Dover"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "Ingersoll Rand Inc.",
+    "ticker": "IR",
+    "cik": "0001699150",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Ingersoll Rand"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "Fortive Corp",
+    "ticker": "FTV",
+    "cik": "0001659166",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Fortive"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "ROPER TECHNOLOGIES INC",
+    "ticker": "ROP",
+    "cik": "0000882835",
+    "industry": "Diversified Industrials",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Roper Technologies"
+    ],
+    "description": "Diversified Industrials company in the Manufacturing sector."
+  },
+  {
+    "name": "Otis Worldwide Corp",
+    "ticker": "OTIS",
+    "cik": "0001781335",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Otis Worldwide"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "CARRIER GLOBAL Corp",
+    "ticker": "CARR",
+    "cik": "0001783180",
+    "industry": "Building & HVAC",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Carrier Global"
+    ],
+    "description": "Building & HVAC company in the Manufacturing sector."
+  },
+  {
+    "name": "Johnson Controls",
+    "ticker": null,
+    "cik": null,
+    "industry": "Building & HVAC",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Building & HVAC company in the Manufacturing sector."
+  },
+  {
+    "name": "Trane Technologies plc",
+    "ticker": "TT",
+    "cik": "0001466258",
+    "industry": "Building & HVAC",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Trane Technologies"
+    ],
+    "description": "Building & HVAC company in the Manufacturing sector."
+  },
+  {
+    "name": "LENNOX INTERNATIONAL INC",
+    "ticker": "LII",
+    "cik": "0001069202",
+    "industry": "Building & HVAC",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Lennox International"
+    ],
+    "description": "Building & HVAC company in the Manufacturing sector."
+  },
+  {
+    "name": "NUCOR CORP",
+    "ticker": "NUE",
+    "cik": "0000073309",
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Nucor"
+    ],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "STEEL DYNAMICS INC",
+    "ticker": "STLD",
+    "cik": "0001022671",
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Steel Dynamics"
+    ],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "CLEVELAND-CLIFFS INC.",
+    "ticker": "CLF",
+    "cik": "0000764065",
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Cleveland-Cliffs"
+    ],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "ArcelorMittal",
+    "ticker": "MT",
+    "cik": "0001243429",
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "Nippon Steel",
+    "ticker": null,
+    "cik": null,
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "POSCO HOLDINGS INC.",
+    "ticker": "PKX",
+    "cik": "0000889132",
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "POSCO"
+    ],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "Alcoa Corp",
+    "ticker": "AA",
+    "cik": "0001675149",
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Alcoa"
+    ],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "Reliance Steel & Aluminum",
+    "ticker": null,
+    "cik": null,
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "Thyssenkrupp",
+    "ticker": null,
+    "cik": null,
+    "industry": "Metals & Steel",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Metals & Steel company in the Manufacturing sector."
+  },
+  {
+    "name": "Kawasaki Heavy Industries",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "IHI Corporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "FANUC",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "Yaskawa Electric",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "Keyence",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electrical Equipment",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electrical Equipment company in the Manufacturing sector."
+  },
+  {
+    "name": "TE Connectivity plc",
+    "ticker": "TEL",
+    "cik": "0001385157",
+    "industry": "Electronics & Components",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "TE Connectivity"
+    ],
+    "description": "Electronics & Components company in the Manufacturing sector."
+  },
+  {
+    "name": "Amphenol",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Components",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Components company in the Manufacturing sector."
+  },
+  {
+    "name": "Corning",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electronics & Components",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Electronics & Components company in the Manufacturing sector."
+  },
+  {
+    "name": "Applied Materials",
+    "ticker": null,
+    "cik": null,
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "LAM RESEARCH CORP",
+    "ticker": "LRCX",
+    "cik": "0000707549",
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Lam Research"
+    ],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "ASML HOLDING NV",
+    "ticker": "ASML",
+    "cik": "0000937966",
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "ASML Holding"
+    ],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "TEXAS INSTRUMENTS INC",
+    "ticker": "TXN",
+    "cik": "0000097476",
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Texas Instruments"
+    ],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "INTEL CORP",
+    "ticker": "INTC",
+    "cik": "0000050863",
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Intel"
+    ],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "TSMC",
+    "ticker": null,
+    "cik": null,
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "MICRON TECHNOLOGY INC",
+    "ticker": "MU",
+    "cik": "0000723125",
+    "industry": "Semiconductors",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Micron Technology"
+    ],
+    "description": "Semiconductors company in the Manufacturing sector."
+  },
+  {
+    "name": "Sandvik",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "Atlas Copco",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "TEREX CORP",
+    "ticker": "TEX",
+    "cik": "0000097216",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Terex"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "OSHKOSH CORP",
+    "ticker": "OSK",
+    "cik": "0000775158",
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Oshkosh"
+    ],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "DANA Inc",
+    "ticker": "DAN",
+    "cik": "0000026780",
+    "industry": "Auto Parts & Suppliers",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [
+      "Dana Incorporated"
+    ],
+    "description": "Auto Parts & Suppliers company in the Manufacturing sector."
+  },
+  {
+    "name": "Hitachi Construction Machinery",
+    "ticker": null,
+    "cik": null,
+    "industry": "Industrial Machinery",
+    "sector": "Manufacturing",
+    "naics": null,
+    "aliases": [],
+    "description": "Industrial Machinery company in the Manufacturing sector."
+  },
+  {
+    "name": "Roche",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "NOVARTIS AG",
+    "ticker": "NVS",
+    "cik": "0001114448",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Novartis"
+    ],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "BRISTOL MYERS SQUIBB CO",
+    "ticker": "BMY",
+    "cik": "0000014272",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Bristol Myers Squibb"
+    ],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Sanofi",
+    "ticker": "SNY",
+    "cik": "0001121404",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "ASTRAZENECA PLC",
+    "ticker": "AZN",
+    "cik": "0000901832",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "AstraZeneca"
+    ],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "GSK plc",
+    "ticker": "GSK",
+    "cik": "0001131399",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "GSK"
+    ],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Novo Nordisk",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "TAKEDA PHARMACEUTICAL CO LTD",
+    "ticker": "TAK",
+    "cik": "0001395064",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Takeda Pharmaceutical"
+    ],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Bayer",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "AMGEN INC",
+    "ticker": "AMGN",
+    "cik": "0000318154",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Amgen"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "GILEAD SCIENCES, INC.",
+    "ticker": "GILD",
+    "cik": "0000882095",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Gilead Sciences"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Boehringer Ingelheim",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Moderna, Inc.",
+    "ticker": "MRNA",
+    "cik": "0001682852",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Moderna"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "BIOGEN INC.",
+    "ticker": "BIIB",
+    "cik": "0000875045",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Biogen"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "REGENERON PHARMACEUTICALS, INC.",
+    "ticker": "REGN",
+    "cik": "0000872589",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Regeneron Pharmaceuticals"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Vertex Pharmaceuticals",
+    "ticker": null,
+    "cik": null,
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Teva Pharmaceutical",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Viatris Inc",
+    "ticker": "VTRS",
+    "cik": "0001792044",
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Viatris"
+    ],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "CSL LTD",
+    "ticker": "CSLLY",
+    "cik": "0001274152",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "CSL"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Astellas Pharma",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Daiichi Sankyo",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Otsuka Holdings",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Eisai",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Chugai Pharmaceutical",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Sumitomo Pharma",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "UCB",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Novonesis",
+    "ticker": null,
+    "cik": null,
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Lonza Group",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "Bachem",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "Grifols SA",
+    "ticker": "GRFS",
+    "cik": "0001438569",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Grifols"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Ipsen",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Servier",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Sun Pharmaceutical Industries",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Dr. Reddy's Laboratories",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Cipla",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Aurobindo Pharma",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Lupin",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Divi's Laboratories",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "Zydus Lifesciences",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "ABBOTT LABORATORIES",
+    "ticker": "ABT",
+    "cik": "0000001800",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Abbott Laboratories"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "THERMO FISHER SCIENTIFIC INC.",
+    "ticker": "TMO",
+    "cik": "0000097745",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Thermo Fisher Scientific"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Danaher",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "STRYKER CORP",
+    "ticker": "SYK",
+    "cik": "0000310764",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Stryker"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "BECTON DICKINSON & CO",
+    "ticker": "BDX",
+    "cik": "0000010795",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Becton Dickinson"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "BOSTON SCIENTIFIC CORP",
+    "ticker": "BSX",
+    "cik": "0000885725",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Boston Scientific"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "BAXTER INTERNATIONAL INC",
+    "ticker": "BAX",
+    "cik": "0000010456",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Baxter International"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "INTUITIVE SURGICAL INC",
+    "ticker": "ISRG",
+    "cik": "0001035267",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Intuitive Surgical"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Edwards Lifesciences Corp",
+    "ticker": "EW",
+    "cik": "0001099800",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Edwards Lifesciences"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "ZIMMER BIOMET HOLDINGS, INC.",
+    "ticker": "ZBH",
+    "cik": "0001136869",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Zimmer Biomet"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "GE HealthCare",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Siemens Healthineers",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Philips",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Olympus",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Terumo",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "SMITH & NEPHEW PLC",
+    "ticker": "SNN",
+    "cik": "0000845982",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Smith & Nephew"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Getinge",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Hologic",
+    "ticker": null,
+    "cik": null,
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "RESMED INC",
+    "ticker": "RMD",
+    "cik": "0000943819",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "ResMed"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "DEXCOM INC",
+    "ticker": "DXCM",
+    "cik": "0001093557",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Dexcom"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "ALIGN TECHNOLOGY INC",
+    "ticker": "ALGN",
+    "cik": "0001097149",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Align Technology"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "IDEXX Laboratories",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Waters Corporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "AGILENT TECHNOLOGIES, INC.",
+    "ticker": "A",
+    "cik": "0001090872",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Agilent Technologies"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "BIO-RAD LABORATORIES, INC.",
+    "ticker": "BIO",
+    "cik": "0000012208",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Bio-Rad Laboratories"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "BRUKER CORP",
+    "ticker": "BRKR",
+    "cik": "0001109354",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Bruker"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Mettler-Toledo",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "ILLUMINA, INC.",
+    "ticker": "ILMN",
+    "cik": "0001110803",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Illumina"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "QIAGEN N.V.",
+    "ticker": "QGEN",
+    "cik": "0001015820",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "QIAGEN"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "BIO-TECHNE Corp",
+    "ticker": "TECH",
+    "cik": "0000842023",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Bio-Techne"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "REVVITY, INC.",
+    "ticker": "RVTY",
+    "cik": "0000031791",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Revvity"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Charles River Laboratories",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "IQVIA HOLDINGS INC.",
+    "ticker": "IQV",
+    "cik": "0001478242",
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "IQVIA"
+    ],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "ICON PLC",
+    "ticker": "ICLR",
+    "cik": "0001060955",
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "ICON plc"
+    ],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "LABCORP HOLDINGS INC.",
+    "ticker": "LH",
+    "cik": "0000920148",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Labcorp"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "QUEST DIAGNOSTICS INC",
+    "ticker": "DGX",
+    "cik": "0001022079",
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Quest Diagnostics"
+    ],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Catalent",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "WEST PHARMACEUTICAL SERVICES INC",
+    "ticker": "WST",
+    "cik": "0000105770",
+    "industry": "Medical Devices",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "West Pharmaceutical Services"
+    ],
+    "description": "Medical Devices company in the Healthcare sector."
+  },
+  {
+    "name": "Sartorius",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Eurofins Scientific",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "WuXi AppTec",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "WuXi Biologics",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "Samsung Biologics",
+    "ticker": null,
+    "cik": null,
+    "industry": "CRO/CDMO",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "CRO/CDMO company in the Healthcare sector."
+  },
+  {
+    "name": "Hikma Pharmaceuticals",
+    "ticker": null,
+    "cik": null,
+    "industry": "Pharmaceuticals",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Pharmaceuticals company in the Healthcare sector."
+  },
+  {
+    "name": "Jazz Pharmaceuticals plc",
+    "ticker": "JAZZ",
+    "cik": "0001232524",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Jazz Pharmaceuticals"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "ALNYLAM PHARMACEUTICALS, INC.",
+    "ticker": "ALNY",
+    "cik": "0001178670",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Alnylam Pharmaceuticals"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "BIOMARIN PHARMACEUTICAL INC",
+    "ticker": "BMRN",
+    "cik": "0001048477",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "BioMarin Pharmaceutical"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "INCYTE CORP",
+    "ticker": "INCY",
+    "cik": "0000879169",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Incyte"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "NEUROCRINE BIOSCIENCES INC",
+    "ticker": "NBIX",
+    "cik": "0000914475",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "Neurocrine Biosciences"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "UNITED THERAPEUTICS Corp",
+    "ticker": "UTHR",
+    "cik": "0001082554",
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [
+      "United Therapeutics"
+    ],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Exact Sciences",
+    "ticker": null,
+    "cik": null,
+    "industry": "Diagnostics & Life Science Tools",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Diagnostics & Life Science Tools company in the Healthcare sector."
+  },
+  {
+    "name": "Genmab",
+    "ticker": null,
+    "cik": null,
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Galapagos",
+    "ticker": null,
+    "cik": null,
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "BeiGene",
+    "ticker": null,
+    "cik": null,
+    "industry": "Biotechnology",
+    "sector": "Healthcare",
+    "naics": null,
+    "aliases": [],
+    "description": "Biotechnology company in the Healthcare sector."
+  },
+  {
+    "name": "Saudi Aramco",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "ExxonMobil Holdings Corp",
+    "ticker": "XOM",
+    "cik": "0002115436",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "ExxonMobil"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Shell plc",
+    "ticker": "SHEL",
+    "cik": "0001306965",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Shell"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "CHEVRON CORP",
+    "ticker": "CVX",
+    "cik": "0000093410",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Chevron"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "TotalEnergies SE",
+    "ticker": "TTE",
+    "cik": "0000879764",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "TotalEnergies"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "BP PLC",
+    "ticker": "BP",
+    "cik": "0000313807",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "BP"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "PETROCHINA CO LTD",
+    "ticker": "PCCYF",
+    "cik": "0001108329",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "PetroChina"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Sinopec",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "China National Petroleum Corporation (CNPC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "CONOCOPHILLIPS",
+    "ticker": "COP",
+    "cik": "0001163165",
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "ConocoPhillips"
+    ],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "ENI SPA",
+    "ticker": "E",
+    "cik": "0001002242",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Eni"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "EQUINOR ASA",
+    "ticker": "EQNR",
+    "cik": "0001140625",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Equinor"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Petrobras",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Gazprom",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Rosneft",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Lukoil",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Pemex",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Petronas",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Reliance Industries",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Indian Oil Corporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Bharat Petroleum",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Hindustan Petroleum",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Oil and Natural Gas Corporation (ONGC)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "Valero Energy",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Marathon Petroleum Corp",
+    "ticker": "MPC",
+    "cik": "0001510295",
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Marathon Petroleum"
+    ],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Phillips 66",
+    "ticker": "PSX",
+    "cik": "0001534701",
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Occidental Petroleum",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "EOG RESOURCES INC",
+    "ticker": "EOG",
+    "cik": "0000821189",
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "EOG Resources"
+    ],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "Devon Energy",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "Coterra Energy",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "Hess Corporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "Diamondback Energy, Inc.",
+    "ticker": "FANG",
+    "cik": "0001539838",
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Diamondback Energy"
+    ],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "WILLIAMS COMPANIES, INC.",
+    "ticker": "WMB",
+    "cik": "0000107263",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "The Williams Companies"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "KINDER MORGAN, INC.",
+    "ticker": "KMI",
+    "cik": "0001506307",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Kinder Morgan"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "ONEOK",
+    "ticker": null,
+    "cik": null,
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "ENTERPRISE PRODUCTS PARTNERS L.P.",
+    "ticker": "EPD",
+    "cik": "0001061219",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Enterprise Products Partners"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "Energy Transfer LP",
+    "ticker": "ET",
+    "cik": "0001276187",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Energy Transfer"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "Cheniere Energy, Inc.",
+    "ticker": "LNG",
+    "cik": "0000003570",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Cheniere Energy"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "ENBRIDGE INC",
+    "ticker": "ENB",
+    "cik": "0000895728",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Enbridge"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "TC ENERGY CORP",
+    "ticker": "TRP",
+    "cik": "0001232384",
+    "industry": "Midstream & Pipelines",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "TC Energy"
+    ],
+    "description": "Midstream & Pipelines company in the Energy sector."
+  },
+  {
+    "name": "SUNCOR ENERGY INC",
+    "ticker": "SU",
+    "cik": "0000311337",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Suncor Energy"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "CANADIAN NATURAL RESOURCES Ltd",
+    "ticker": "CNQ",
+    "cik": "0001017413",
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Canadian Natural Resources"
+    ],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "CENOVUS ENERGY INC.",
+    "ticker": "CVE",
+    "cik": "0001475260",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Cenovus Energy"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "IMPERIAL OIL LTD",
+    "ticker": "IMO",
+    "cik": "0000049938",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Imperial Oil"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Repsol",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "OMV",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Galp Energia",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Neste",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Vitol",
+    "ticker": null,
+    "cik": null,
+    "industry": "Trading & Services",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Trading & Services company in the Energy sector."
+  },
+  {
+    "name": "Glencore",
+    "ticker": null,
+    "cik": null,
+    "industry": "Trading & Services",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Trading & Services company in the Energy sector."
+  },
+  {
+    "name": "ADNOC",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "QatarEnergy",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Kuwait Petroleum Corporation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Sonatrach",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "NNPC",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "ECOPETROL S.A.",
+    "ticker": "EC",
+    "cik": "0001444406",
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Ecopetrol"
+    ],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "YPF",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "WOODSIDE ENERGY GROUP LTD",
+    "ticker": "WDS",
+    "cik": "0000844551",
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Woodside Energy"
+    ],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "Santos",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "INPEX",
+    "ticker": null,
+    "cik": null,
+    "industry": "Exploration & Production",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Exploration & Production company in the Energy sector."
+  },
+  {
+    "name": "ENEOS Holdings",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Idemitsu Kosan",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "SK Innovation",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "S-Oil",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "GS Caltex",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "Formosa Petrochemical",
+    "ticker": null,
+    "cik": null,
+    "industry": "Refining & Marketing",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Refining & Marketing company in the Energy sector."
+  },
+  {
+    "name": "PTT",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "Pertamina",
+    "ticker": null,
+    "cik": null,
+    "industry": "Integrated Oil & Gas",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Integrated Oil & Gas company in the Energy sector."
+  },
+  {
+    "name": "State Grid Corporation of China",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Enel",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Iberdrola",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Electricite de France (EDF)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Engie",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "E.ON SE",
+    "ticker": "EONGY",
+    "cik": "0001136808",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "E.ON"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "RWE",
+    "ticker": null,
+    "cik": null,
+    "industry": "Power Generation",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Power Generation company in the Energy sector."
+  },
+  {
+    "name": "NEXTERA ENERGY INC",
+    "ticker": "NEE",
+    "cik": "0000753308",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "NextEra Energy"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Duke Energy CORP",
+    "ticker": "DUK",
+    "cik": "0001326160",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Duke Energy"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "SOUTHERN CO",
+    "ticker": "SO",
+    "cik": "0000092122",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Southern Company"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "DOMINION ENERGY, INC",
+    "ticker": "D",
+    "cik": "0000715957",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Dominion Energy"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "EXELON CORP",
+    "ticker": "EXC",
+    "cik": "0001109357",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Exelon"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "AMERICAN ELECTRIC POWER CO INC",
+    "ticker": "AEP",
+    "cik": "0000004904",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "American Electric Power"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "SEMPRA",
+    "ticker": "SRE",
+    "cik": "0001032208",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Sempra"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Constellation Energy Corp",
+    "ticker": "CEG",
+    "cik": "0001868275",
+    "industry": "Power Generation",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Constellation Energy"
+    ],
+    "description": "Power Generation company in the Energy sector."
+  },
+  {
+    "name": "PG&E Corp",
+    "ticker": "PCG",
+    "cik": "0001004980",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "PG&E"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "EDISON INTERNATIONAL",
+    "ticker": "EIX",
+    "cik": "0000827052",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Edison International"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "XCEL ENERGY INC",
+    "ticker": "XEL",
+    "cik": "0000072903",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Xcel Energy"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "PUBLIC SERVICE ENTERPRISE GROUP INC",
+    "ticker": "PEG",
+    "cik": "0000788784",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Public Service Enterprise Group"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "CONSOLIDATED EDISON INC",
+    "ticker": "ED",
+    "cik": "0001047862",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Consolidated Edison"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "NATIONAL GRID PLC",
+    "ticker": "NGG",
+    "cik": "0001004315",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "National Grid"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "SSE",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Centrica",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Orsted",
+    "ticker": null,
+    "cik": null,
+    "industry": "Renewables",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Renewables company in the Energy sector."
+  },
+  {
+    "name": "Vestas Wind Systems",
+    "ticker": null,
+    "cik": null,
+    "industry": "Renewables",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Renewables company in the Energy sector."
+  },
+  {
+    "name": "EDP ENERGIAS DE PORTUGAL SA",
+    "ticker": "EDPFY",
+    "cik": "0001039610",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "EDP - Energias de Portugal"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Fortum",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Tokyo Electric Power (TEPCO)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Kansai Electric Power",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "KOREA ELECTRIC POWER CORP",
+    "ticker": "KEP",
+    "cik": "0000887225",
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [
+      "Korea Electric Power (KEPCO)"
+    ],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "NTPC",
+    "ticker": null,
+    "cik": null,
+    "industry": "Power Generation",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Power Generation company in the Energy sector."
+  },
+  {
+    "name": "Power Grid Corporation of India",
+    "ticker": null,
+    "cik": null,
+    "industry": "Electric Utilities",
+    "sector": "Energy",
+    "naics": null,
+    "aliases": [],
+    "description": "Electric Utilities company in the Energy sector."
+  },
+  {
+    "name": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Tesla"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "FIRST SOLAR, INC.",
+    "ticker": "FSLR",
+    "cik": "0001274494",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "First Solar"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Brookfield Renewable Partners L.P.",
+    "ticker": "BEP",
+    "cik": "0001533232",
+    "industry": "Renewable Power",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Brookfield Renewable Partners"
+    ],
+    "description": "Renewable Power company in the ESG sector."
+  },
+  {
+    "name": "EDP Renovaveis",
+    "ticker": null,
+    "cik": null,
+    "industry": "Renewable Power",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Renewable Power company in the ESG sector."
+  },
+  {
+    "name": "Siemens Energy",
+    "ticker": null,
+    "cik": null,
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "GE Vernova Inc.",
+    "ticker": "GEV",
+    "cik": "0001996810",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "GE Vernova"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Enphase Energy, Inc.",
+    "ticker": "ENPH",
+    "cik": "0001463101",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Enphase Energy"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "SOLAREDGE TECHNOLOGIES, INC.",
+    "ticker": "SEDG",
+    "cik": "0001419612",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "SolarEdge Technologies"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Sunrun Inc.",
+    "ticker": "RUN",
+    "cik": "0001469367",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Sunrun"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Canadian Solar Inc.",
+    "ticker": "CSIQ",
+    "cik": "0001375877",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Canadian Solar"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "JinkoSolar Holding Co., Ltd.",
+    "ticker": "JKS",
+    "cik": "0001481513",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "JinkoSolar"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Trina Solar",
+    "ticker": null,
+    "cik": null,
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "LONGi Green Energy",
+    "ticker": null,
+    "cik": null,
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "PLUG POWER INC",
+    "ticker": "PLUG",
+    "cik": "0001093691",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Plug Power"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "Bloom Energy Corp",
+    "ticker": "BE",
+    "cik": "0001664703",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Bloom Energy"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "Ballard Power Systems Inc.",
+    "ticker": "BLDP",
+    "cik": "0001453015",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Ballard Power Systems"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "ITM Power",
+    "ticker": null,
+    "cik": null,
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "Nel ASA",
+    "ticker": null,
+    "cik": null,
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "ECOLAB INC.",
+    "ticker": "ECL",
+    "cik": "0000031462",
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Ecolab"
+    ],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "Veolia",
+    "ticker": null,
+    "cik": null,
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "Suez",
+    "ticker": null,
+    "cik": null,
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "WASTE MANAGEMENT INC",
+    "ticker": "WM",
+    "cik": "0000823768",
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Waste Management"
+    ],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "REPUBLIC SERVICES, INC.",
+    "ticker": "RSG",
+    "cik": "0001060391",
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Republic Services"
+    ],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "Xylem Inc.",
+    "ticker": "XYL",
+    "cik": "0001524472",
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Xylem"
+    ],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "American Water Works Company, Inc.",
+    "ticker": "AWK",
+    "cik": "0001410636",
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "American Water Works"
+    ],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "UNILEVER PLC",
+    "ticker": "UL",
+    "cik": "0000217410",
+    "industry": "Sustainable Consumer Goods",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Unilever"
+    ],
+    "description": "Sustainable Consumer Goods company in the ESG sector."
+  },
+  {
+    "name": "Danone",
+    "ticker": null,
+    "cik": null,
+    "industry": "Sustainable Consumer Goods",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Sustainable Consumer Goods company in the ESG sector."
+  },
+  {
+    "name": "Nestle",
+    "ticker": null,
+    "cik": null,
+    "industry": "Sustainable Consumer Goods",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Sustainable Consumer Goods company in the ESG sector."
+  },
+  {
+    "name": "PROCTER & GAMBLE Co",
+    "ticker": "PG",
+    "cik": "0000080424",
+    "industry": "Sustainable Consumer Goods",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Procter & Gamble"
+    ],
+    "description": "Sustainable Consumer Goods company in the ESG sector."
+  },
+  {
+    "name": "INTERFACE INC",
+    "ticker": "TILE",
+    "cik": "0000715787",
+    "industry": "Sustainable Consumer Goods",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Interface"
+    ],
+    "description": "Sustainable Consumer Goods company in the ESG sector."
+  },
+  {
+    "name": "AES CORP",
+    "ticker": "AES",
+    "cik": "0000874761",
+    "industry": "Renewable Power",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "AES Corporation"
+    ],
+    "description": "Renewable Power company in the ESG sector."
+  },
+  {
+    "name": "MSCI Inc.",
+    "ticker": "MSCI",
+    "cik": "0001408198",
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "MSCI"
+    ],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "S&P Global Inc.",
+    "ticker": "SPGI",
+    "cik": "0000064040",
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "S&P Global"
+    ],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "Moody's",
+    "ticker": null,
+    "cik": null,
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "Morningstar, Inc.",
+    "ticker": "MORN",
+    "cik": "0001289419",
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Morningstar"
+    ],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "London Stock Exchange Group plc",
+    "ticker": "LSEGY",
+    "cik": "0001842726",
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "London Stock Exchange Group"
+    ],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "ISS STOXX",
+    "ticker": null,
+    "cik": null,
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "RepRisk",
+    "ticker": null,
+    "cik": null,
+    "industry": "ESG Data & Ratings",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "ESG Data & Ratings company in the ESG sector."
+  },
+  {
+    "name": "WORKIVA INC",
+    "ticker": "WK",
+    "cik": "0001445305",
+    "industry": "ESG Software & Reporting",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Workiva"
+    ],
+    "description": "ESG Software & Reporting company in the ESG sector."
+  },
+  {
+    "name": "SGS",
+    "ticker": null,
+    "cik": null,
+    "industry": "Testing, Inspection & Certification",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Testing, Inspection & Certification company in the ESG sector."
+  },
+  {
+    "name": "Bureau Veritas",
+    "ticker": null,
+    "cik": null,
+    "industry": "Testing, Inspection & Certification",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Testing, Inspection & Certification company in the ESG sector."
+  },
+  {
+    "name": "Intertek",
+    "ticker": null,
+    "cik": null,
+    "industry": "Testing, Inspection & Certification",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Testing, Inspection & Certification company in the ESG sector."
+  },
+  {
+    "name": "DNV",
+    "ticker": null,
+    "cik": null,
+    "industry": "Testing, Inspection & Certification",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Testing, Inspection & Certification company in the ESG sector."
+  },
+  {
+    "name": "TUV SUD",
+    "ticker": null,
+    "cik": null,
+    "industry": "Testing, Inspection & Certification",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Testing, Inspection & Certification company in the ESG sector."
+  },
+  {
+    "name": "AECOM",
+    "ticker": "ACM",
+    "cik": "0000868857",
+    "industry": "Sustainability Engineering & Consulting",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Sustainability Engineering & Consulting company in the ESG sector."
+  },
+  {
+    "name": "JACOBS SOLUTIONS INC.",
+    "ticker": "J",
+    "cik": "0000052988",
+    "industry": "Sustainability Engineering & Consulting",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Jacobs Solutions"
+    ],
+    "description": "Sustainability Engineering & Consulting company in the ESG sector."
+  },
+  {
+    "name": "TETRA TECH INC",
+    "ticker": "TTEK",
+    "cik": "0000831641",
+    "industry": "Sustainability Engineering & Consulting",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Tetra Tech"
+    ],
+    "description": "Sustainability Engineering & Consulting company in the ESG sector."
+  },
+  {
+    "name": "STANTEC INC",
+    "ticker": "STN",
+    "cik": "0001131383",
+    "industry": "Sustainability Engineering & Consulting",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Stantec"
+    ],
+    "description": "Sustainability Engineering & Consulting company in the ESG sector."
+  },
+  {
+    "name": "WSP Global",
+    "ticker": null,
+    "cik": null,
+    "industry": "Sustainability Engineering & Consulting",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Sustainability Engineering & Consulting company in the ESG sector."
+  },
+  {
+    "name": "Air Products & Chemicals, Inc.",
+    "ticker": "APD",
+    "cik": "0000002969",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Air Products and Chemicals"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "LINDE PLC",
+    "ticker": "LIN",
+    "cik": "0001707925",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Linde"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "ChargePoint Holdings, Inc.",
+    "ticker": "CHPT",
+    "cik": "0001777393",
+    "industry": "EV Charging Infrastructure",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "ChargePoint"
+    ],
+    "description": "EV Charging Infrastructure company in the ESG sector."
+  },
+  {
+    "name": "EVgo Inc.",
+    "ticker": "EVGO",
+    "cik": "0001821159",
+    "industry": "EV Charging Infrastructure",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "EVgo"
+    ],
+    "description": "EV Charging Infrastructure company in the ESG sector."
+  },
+  {
+    "name": "Rivian",
+    "ticker": null,
+    "cik": null,
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "Lucid Group, Inc.",
+    "ticker": "LCID",
+    "cik": "0001811210",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Lucid Group"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "NIO Inc.",
+    "ticker": "NIO",
+    "cik": "0001736541",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "NIO"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "Li Auto Inc.",
+    "ticker": "LI",
+    "cik": "0001791706",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Li Auto"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "XPENG INC.",
+    "ticker": "XPEV",
+    "cik": "0001810997",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "XPeng"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "Wallbox N.V.",
+    "ticker": "WBX",
+    "cik": "0001866501",
+    "industry": "EV Charging Infrastructure",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Wallbox"
+    ],
+    "description": "EV Charging Infrastructure company in the ESG sector."
+  },
+  {
+    "name": "BEYOND MEAT, INC.",
+    "ticker": "BYND",
+    "cik": "0001655210",
+    "industry": "Sustainable Food",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Beyond Meat"
+    ],
+    "description": "Sustainable Food company in the ESG sector."
+  },
+  {
+    "name": "Oatly Group AB",
+    "ticker": "OTLY",
+    "cik": "0001843586",
+    "industry": "Sustainable Food",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Oatly"
+    ],
+    "description": "Sustainable Food company in the ESG sector."
+  },
+  {
+    "name": "DARLING INGREDIENTS INC.",
+    "ticker": "DAR",
+    "cik": "0000916540",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Darling Ingredients"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "AEMETIS, INC",
+    "ticker": "AMTX",
+    "cik": "0000738214",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Aemetis"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "Gevo, Inc.",
+    "ticker": "GEVO",
+    "cik": "0001392380",
+    "industry": "Hydrogen & Clean Fuels",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Gevo"
+    ],
+    "description": "Hydrogen & Clean Fuels company in the ESG sector."
+  },
+  {
+    "name": "Umicore",
+    "ticker": null,
+    "cik": null,
+    "industry": "Battery Materials & Recycling",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Battery Materials & Recycling company in the ESG sector."
+  },
+  {
+    "name": "ALBEMARLE CORP",
+    "ticker": "ALB",
+    "cik": "0000915913",
+    "industry": "Battery Materials & Recycling",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Albemarle"
+    ],
+    "description": "Battery Materials & Recycling company in the ESG sector."
+  },
+  {
+    "name": "Sociedad Quimica y Minera (SQM)",
+    "ticker": null,
+    "cik": null,
+    "industry": "Battery Materials & Recycling",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Battery Materials & Recycling company in the ESG sector."
+  },
+  {
+    "name": "Arcadium Lithium",
+    "ticker": null,
+    "cik": null,
+    "industry": "Battery Materials & Recycling",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Battery Materials & Recycling company in the ESG sector."
+  },
+  {
+    "name": "Ganfeng Lithium",
+    "ticker": null,
+    "cik": null,
+    "industry": "Battery Materials & Recycling",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Battery Materials & Recycling company in the ESG sector."
+  },
+  {
+    "name": "Contemporary Amperex Technology (CATL)",
+    "ticker": null,
+    "cik": null,
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "Panasonic Energy",
+    "ticker": null,
+    "cik": null,
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "QuantumScape Corp",
+    "ticker": "QS",
+    "cik": "0001811414",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "QuantumScape"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "Aptiv PLC",
+    "ticker": "APTV",
+    "cik": "0001521332",
+    "industry": "EV & Batteries",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Aptiv"
+    ],
+    "description": "EV & Batteries company in the ESG sector."
+  },
+  {
+    "name": "Nordex",
+    "ticker": null,
+    "cik": null,
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "SunPower Inc.",
+    "ticker": "SPWR",
+    "cik": "0001838987",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "SunPower"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Array Technologies, Inc.",
+    "ticker": "ARRY",
+    "cik": "0001820721",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Array Technologies"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Shoals Technologies Group, Inc.",
+    "ticker": "SHLS",
+    "cik": "0001831651",
+    "industry": "Solar & Wind",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Shoals Technologies"
+    ],
+    "description": "Solar & Wind company in the ESG sector."
+  },
+  {
+    "name": "Fluence Energy, Inc.",
+    "ticker": "FLNC",
+    "cik": "0001868941",
+    "industry": "Energy Storage",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Fluence Energy"
+    ],
+    "description": "Energy Storage company in the ESG sector."
+  },
+  {
+    "name": "STEM, INC.",
+    "ticker": "STEM",
+    "cik": "0001758766",
+    "industry": "Energy Storage",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Stem"
+    ],
+    "description": "Energy Storage company in the ESG sector."
+  },
+  {
+    "name": "Waste Connections, Inc.",
+    "ticker": "WCN",
+    "cik": "0001318220",
+    "industry": "Water & Waste Management",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Waste Connections"
+    ],
+    "description": "Water & Waste Management company in the ESG sector."
+  },
+  {
+    "name": "Ameresco, Inc.",
+    "ticker": "AMRC",
+    "cik": "0001488139",
+    "industry": "Energy Efficiency & Electrification",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Ameresco"
+    ],
+    "description": "Energy Efficiency & Electrification company in the ESG sector."
+  },
+  {
+    "name": "Clearway Energy, Inc.",
+    "ticker": "CWEN",
+    "cik": "0001567683",
+    "industry": "Renewable Power",
+    "sector": "ESG",
+    "naics": null,
+    "aliases": [
+      "Clearway Energy"
+    ],
+    "description": "Renewable Power company in the ESG sector."
+  }
+]

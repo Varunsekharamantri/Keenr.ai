@@ -1,0 +1,293 @@
+# Signal Platform - IT Vendor Initiative Taxonomy v1
+# Aligned with Market Signals Architecture Section 2
+
+categories:
+  - id: tech_initiatives
+    name: Technology Initiatives
+    description: Direct service and product fit for IT vendors
+    initiatives:
+      - id: cloud_migration
+        name: Cloud Migration & Modernization
+        it_offering: Cloud Architecture, AWS/Azure/GCP Migration, FinOps, Hybrid Cloud
+        keywords:
+          - cloud migration
+          - cloud transformation
+          - aws
+          - amazon web services
+          - azure
+          - microsoft azure
+          - google cloud
+          - gcp
+          - multicloud
+          - hybrid cloud
+          - cloud-native
+          - kubernetes
+          - containerization
+          - microservices
+          - cloud infrastructure
+          - finops
+
+      - id: ai_genai_ml
+        name: AI, Generative AI & Machine Learning
+        it_offering: GenAI Engineering, LLM Deployment, MLOps, Custom AI Models, AI Advisory
+        keywords:
+          - generative ai
+          - genai
+          - large language model
+          - llm
+          - machine learning
+          - artificial intelligence
+          - ai platform
+          - mlops
+          - deep learning
+          - open ai
+          - copilot
+          - neural network
+          - predictive analytics
+          - natural language processing
+          - computer vision
+
+      - id: data_platform_analytics
+        name: Data Platform, Lakehouse & Modern BI
+        it_offering: Snowflake/Databricks Implementation, Data Governance, ETL/ELT, Real-time Streaming
+        keywords:
+          - snowflake
+          - databricks
+          - data lake
+          - data lakehouse
+          - data warehouse
+          - modern data stack
+          - data governance
+          - big data
+          - kafka
+          - data mesh
+          - dbt
+          - data pipeline
+          - master data management
+          - business intelligence
+
+      - id: cybersecurity_zero_trust
+        name: Cybersecurity, Identity & Zero Trust
+        it_offering: SOC Modernization, Zero Trust Architecture, IAM, Cloud Security, SIEM/XDR
+        # NOTE: deliberately no bare "cybersecurity" — since 2023 the SEC
+        # mandates a cybersecurity governance section (Item 1C) in every
+        # 10-K, so that word alone matches boilerplate like "our Board
+        # oversees cybersecurity risk" in nearly every filing regardless of
+        # any real security initiative (verified: 4 of 50 events in a random
+        # precision sample were this exact boilerplate pattern).
+        keywords:
+          - cybersecurity strategy
+          - cybersecurity initiative
+          - cybersecurity investment
+          - cybersecurity budget
+          - cyber insurance
+          - zero trust
+          - identity and access management
+          - iam
+          - soc
+          - security operations center
+          - crowdstrike
+          - palo alto networks
+          - threat detection
+          - ransomware
+          - incident response
+          - siem
+          - xdr
+          - vulnerability management
+          - cyber resilience
+
+      - id: core_system_modernization
+        name: Core Systems & Legacy Modernization
+        it_offering: Mainframe Offloading, Core Banking Replacement, Legacy Refactoring, API Layering
+        # NOTE: "core banking" alone matches generic phrases like "core
+        # banking activities" (a routine business-description phrase meaning
+        # "primary banking business", unrelated to IT systems) — require the
+        # IT-systems sense explicitly.
+        keywords:
+          - core banking system
+          - core banking platform
+          - core banking modernization
+          - core banking replacement
+          - mainframe modernization
+          - legacy system
+          - system overhaul
+          - core platform replacement
+          - legacy modernization
+          - technical debt
+          - architecture modernization
+          - api-led connectivity
+          - core claims system
+          - policy administration system
+
+      - id: erp_crm_enterprise_apps
+        name: ERP, CRM & Enterprise Applications
+        it_offering: SAP S/4HANA Migration, Salesforce Implementation, ServiceNow Workflows, Workday
+        keywords:
+          - sap
+          - s/4hana
+          - salesforce
+          - servicenow
+          - workday
+          - erp implementation
+          - crm migration
+          - enterprise resource planning
+          - digital workflow
+          - oracle erp
+          - dynamics 365
+
+      - id: devsecops_platform_eng
+        name: DevOps, DevSecOps & Platform Engineering
+        it_offering: CI/CD Pipelines, Internal Developer Platforms, Infrastructure as Code, Observability
+        keywords:
+          - devops
+          - devsecops
+          - platform engineering
+          - ci/cd
+          - gitlab
+          - github actions
+          - terraform
+          - datadog
+          - splunk
+          - dynatrace
+          # NOTE: bare "observability" collides with "price/pricing
+          # observability" — standard fair-value-measurement accounting
+          # language in every bank's financial footnotes, unrelated to
+          # DevOps tooling (confirmed via random precision sample).
+          - observability platform
+          - observability tooling
+          - system observability
+          - infrastructure observability
+          - site reliability engineering
+          - sre
+
+  - id: strategic_priorities
+    name: Strategic Priorities
+    description: Budget and timing indicators for enterprise programs
+    initiatives:
+      - id: digital_transformation
+        name: Enterprise Digital Transformation
+        it_offering: Digital Strategy, Customer Journey Digitization, Agile Operating Model
+        keywords:
+          - digital transformation
+          - digitization
+          - technology modernization program
+          - multi-year transformation
+          - digital acceleration
+          - omni-channel
+          - digital-first
+
+      - id: cost_optimization
+        name: IT Cost Optimization & Vendor Consolidation
+        it_offering: Application Rationalization, Managed Services, IT Outsourcing, License Optimization
+        keywords:
+          - cost optimization
+          - vendor consolidation
+          - operational efficiency
+          - streamline operations
+          - it expense reduction
+          - rationalization
+          - productivity improvement
+
+      - id: esg_sustainability_tech
+        name: ESG, Green IT & Sustainability Tracking
+        it_offering: Carbon Accounting Software, Green Cloud Optimization, ESG Reporting Platforms
+        keywords:
+          - esg reporting
+          - sustainability platform
+          - green it
+          - carbon footprint
+          - net-zero technology
+          - emissions tracking
+          - scope 3 emissions
+
+  - id: organizational_change
+    name: Organizational Change & Leadership
+    description: New decision makers and entry points for vendor outreach
+    initiatives:
+      - id: executive_leadership_change
+        name: CIO / CTO / CDO / CISO Appointment
+        it_offering: Executive Briefing, 100-Day Roadmap Advisory, Strategic IT Assessment
+        keywords:
+          - chief information officer
+          - chief technology officer
+          - chief digital officer
+          - chief information security officer
+          - appointed cio
+          - appointed cto
+          - appointed ciso
+          - head of technology
+          - technology leadership
+
+      - id: ma_integration
+        name: M&A, Divestiture & Systems Integration
+        it_offering: Post-Merger IT Integration, Carve-Out IT Services, Due Diligence
+        # NOTE: deliberately no bare "merger"/"acquisition"/"acquired" keywords —
+        # those match routine financial-statement goodwill/accounting footnotes
+        # in nearly every bank filing, which flooded results with false positives
+        # (verified: ~93% false-positive rate on a manual sample). Every keyword
+        # here must itself imply IT/systems relevance, not just M&A activity.
+        keywords:
+          - it integration
+          - carve-out
+          - carve-out it
+          - technology carve-out
+          - post-merger integration
+          - post-merger it
+          - synergistic it
+          - combined it systems
+          - integrate technology platforms
+          - systems integration following
+          - transition services agreement
+
+  - id: spending_signals
+    name: Spending & Procurement Signals
+    description: Active procurement windows and capital allocation
+    initiatives:
+      - id: capex_it_budget
+        name: CapEx & Technology Investment Surge
+        it_offering: Enterprise Tech RFP Response, Large-Scale Delivery, Program Governance
+        keywords:
+          - capital expenditures for technology
+          - technology investment
+          - it budget increase
+          - capital investment in digital
+          - capex program
+          - technology spending
+
+      - id: vendor_partnership_rfp
+        name: Strategic Vendor Partnership / Major RFP
+        it_offering: Co-Innovation, Systems Integration, Ecosystem Partnerships
+        keywords:
+          - selected vendor
+          - strategic partnership
+          - multi-year agreement
+          - request for proposal
+          - rfp
+          - enterprise contract
+          - signed deal
+
+  - id: regulatory_compliance
+    name: Regulatory & Compliance Tech
+    description: Mandatory IT spending driven by regulatory mandates
+    initiatives:
+      - id: regulatory_compliance_tech
+        name: Regulatory, Privacy & Security Mandates
+        it_offering: RegTech, HIPAA/GDPR Compliance, DORA Compliance, Automated Audit
+        # NOTE: deliberately no bare "basel iii" / "regulatory compliance" —
+        # those match routine capital-adequacy/liquidity disclosure tables
+        # that appear in nearly every bank filing every quarter (verified:
+        # 10 of 50 events in a random precision sample were this exact
+        # pattern, with zero connection to compliance software/RegTech).
+        keywords:
+          - regtech
+          - regulatory reporting automation
+          - compliance automation
+          - automated compliance monitoring
+          - compliance technology platform
+          - dora compliance
+          - hipaa compliance
+          - gdpr compliance
+          - pci-dss
+          - financial regulatory reporting
+          - ai governance framework
+          - consent management

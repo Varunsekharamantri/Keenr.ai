@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Signals Platform — Public Disclosures to IT Signals</title>
+  <meta name="description" content="Turn public company disclosures (SEC EDGAR filings, press releases, earnings, news) into actionable market signals for IT products and services vendors.">
+  
+  <!-- Google Fonts: Outfit & Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome / Phosphor Icons & Chart.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="dark-theme">
+  <div class="app-layout">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="brand-section">
+        <div class="logo-icon">
+          <i class="fa-solid fa-satellite-dish pulse-icon"></i>
+        </div>
+        <div class="brand-text">
+          <h1>Market Signals</h1>
+          <span class="sub-brand">Public Disclosure Intelligence for IT Vendors</span>
+        </div>
+      </div>
+
+      <!-- Global search: companies first, signals as an escape hatch -->
+      <div class="global-search" id="globalSearchWrap">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="globalSearchInput" autocomplete="off"
+                 placeholder="Search companies or signals…">
+        </div>
+        <div class="global-search-results hidden" id="globalSearchResults"></div>
+      </div>
+
+      <!-- Data freshness: when this was last refreshed, and when it next will be -->
+      <div class="nav-actions">
+        <div class="freshness" id="freshness" title="">
+          <span class="freshness-dot" id="freshnessDot"></span>
+          <span class="freshness-text" id="freshnessText">Checking data…</span>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="btnRefreshNow">
+          <i class="fa-solid fa-rotate"></i> Refresh now
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+      <!-- Global Date Range — applies to every view below -->
+      <section class="global-range-bar glass-card">
+        <div class="range-left">
+          <span class="range-label"><i class="fa-regular fa-calendar-days text-cyan"></i> Date range</span>
+          <div class="pill-options range-presets" id="rangePresets">
+            <button class="pill-btn" data-preset="7d">7D</button>
+            <button class="pill-btn active" data-preset="30d">30D</button>
+            <button class="pill-btn" data-preset="90d">90D</button>
+            <button class="pill-btn" data-preset="6m">6M</button>
+            <button class="pill-btn" data-preset="12m">12M</button>
+            <button class="pill-btn" data-preset="all">All time</button>
+            <button class="pill-btn" data-preset="custom"><i class="fa-solid fa-sliders"></i> Custom</button>
+          </div>
+          <div class="custom-range hidden" id="customRangeInputs">
+            <input type="date" id="rangeStart" class="custom-select">
+            <span class="text-dim">to</span>
+            <input type="date" id="rangeEnd" class="custom-select">
+            <button class="btn btn-sm btn-primary" id="btnApplyCustomRange">Apply</button>
+          </div>
+        </div>
+        <div class="range-right">
+          <span class="range-summary" id="rangeSummary"><i class="fa-solid fa-filter"></i> Showing last 30 days</span>
+        </div>
+      </section>
+
+      <section class="view-controls">
+        <div class="tab-group">
+          <button class="tab-btn active" data-view="overview" id="tabOverview">
+            <i class="fa-solid fa-industry"></i> Industry
+          </button>
+          <button class="tab-btn" data-view="opportunity" id="tabOpportunity">
+            <i class="fa-solid fa-bullseye"></i> Opportunity
+          </button>
+          <button class="tab-btn" data-view="companies" id="tabCompanies">
+            <i class="fa-solid fa-building-columns"></i> Companies
+          </button>
+        </div>
+
+      </section>
+
+      <!-- VIEW 1: LIVE SIGNAL FEED -->
+      <div id="viewOverview" class="view-panel active">
+
+        <div class="ins-top">
+          <div>
+            <h2 class="ins-title">BFSI Insights</h2>
+            <p class="ins-sub" id="insSub">Market intelligence for IT vendors</p>
+          </div>
+          <div class="ins-seg" id="insRegion" role="group" aria-label="Region">
+            <button type="button" class="ins-seg-btn active" data-region="all">Global View</button>
+            <button type="button" class="ins-seg-btn" data-region="Americas">Americas</button>
+            <button type="button" class="ins-seg-btn" data-region="Rest of World">Rest of World</button>
+          </div>
+        </div>
+
+        <div class="ins-grid">
+
+          <section class="ins-tile ins-w6" id="insTech">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-microchip"></i> Tech Trends <button type="button" class="ins-info" aria-label="About this tile" data-tip="Which technology initiatives BFSI companies are pursuing in the selected date range: the share of active companies with at least one document on each. A company can pursue several, so the shares add up to more than 100%. The summary is AI-written from these figures; View Evidence opens the source documents.">i</button></h3>
+              <div class="ins-head-actions">
+                <span class="ins-chip"><span class="ins-dot"></span>TRENDING</span>
+                <button type="button" class="ins-viewall" data-viewall="tech">View All <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w6" id="insBusiness">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-building-columns"></i> Business Trends <button type="button" class="ins-info" aria-label="About this tile" data-tip="The same view for strategic moves - digital transformation, cost optimisation, M&amp;A, vendor partnerships: the share of active companies pursuing each.">i</button></h3>
+              <div class="ins-head-actions">
+                <button type="button" class="ins-viewall" data-viewall="business">View All <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w4" id="insResults">
+            <header class="ins-head ins-head-sm">
+              <h4><i class="fa-solid fa-landmark"></i> RECENT RESULTS <button type="button" class="ins-info" aria-label="About this tile" data-tip="Companies that published results in the date range - earnings releases, quarterly and annual filings, results coverage - newest first. A percentage appears only when the headline itself states one.">i</button></h4>
+              <div class="ins-head-actions">
+                <button type="button" class="ins-viewall" data-viewall="results">View All <i class="fa-solid fa-arrow-right"></i></button>
+                <button type="button" class="ins-collapse" data-collapse="results"
+                        aria-expanded="true" title="Hide this section">
+                  <i class="fa-solid fa-chevron-up"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w4" id="insRegulatory">
+            <header class="ins-head ins-head-sm">
+              <h4><i class="fa-solid fa-scale-balanced"></i> REGULATORY <button type="button" class="ins-info" aria-label="About this tile" data-tip="Documents in which a company discloses a regulatory, privacy or security mandate that is shaping its technology spend.">i</button></h4>
+              <button type="button" class="ins-viewall" data-viewall="regulatory">View All <i class="fa-solid fa-arrow-right"></i></button>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w4" id="insDeals">
+            <header class="ins-head ins-head-sm">
+              <h4><i class="fa-solid fa-sack-dollar"></i> BUDGETS &amp; DEALS <button type="button" class="ins-info" aria-label="About this tile" data-tip="Stated IT budgets, vendor partnerships, RFPs and technology-related M&amp;A.">i</button></h4>
+              <button type="button" class="ins-viewall" data-viewall="deals">View All <i class="fa-solid fa-arrow-right"></i></button>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w5" id="insLeadership">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-user-tie"></i> Leadership <button type="button" class="ins-info" aria-label="About this tile" data-tip="New CIO, CTO, CDO and CISO appointments and other technology leadership moves. A new decision-maker is an entry point for outreach, not an opportunity in itself.">i</button></h3>
+              <div class="ins-head-actions">
+                <button type="button" class="ins-viewall" data-viewall="leadership">View All <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w7" id="insNews">
+            <header class="ins-head">
+              <h3><i class="fa-regular fa-newspaper"></i> Daily News <button type="button" class="ins-info" aria-label="About this tile" data-tip="The latest stories about tracked companies, one per story, each tagged with the initiative it relates to.">i</button></h3>
+              <div class="ins-head-actions">
+                <button type="button" class="ins-viewall" data-viewall="news">View All <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- "View All" for Recent Results: results are documents, not events, so
+           no existing tab lists them. -->
+      <div class="modal-backdrop" id="insResultsModal">
+        <div class="modal-card modal-large glass-card" role="dialog" aria-modal="true" aria-labelledby="insResultsTitle">
+          <div class="modal-header">
+            <h3 id="insResultsTitle"><i class="fa-solid fa-list"></i> <span id="insDrawerTitle">Details</span></h3>
+            <button type="button" class="modal-close" id="insResultsClose" aria-label="Close">&times;</button>
+          </div>
+          <div class="modal-body ins-modal-body" id="insResultsBody"></div>
+        </div>
+      </div>
+
+      <div id="viewOpportunity" class="view-panel">
+
+        <div class="ins-top">
+          <div class="opp-title">
+            <span class="opp-icon"><i class="fa-solid fa-bullseye"></i></span>
+            <div>
+              <h2 class="ins-title">Opportunity Radar</h2>
+              <p class="ins-sub" id="oppSub">Where the buying is opening up across BFSI</p>
+            </div>
+          </div>
+          <div class="ins-seg" id="oppRegion" role="group" aria-label="Region">
+            <button type="button" class="ins-seg-btn active" data-region="all">Global View</button>
+            <button type="button" class="ins-seg-btn" data-region="Americas">Americas</button>
+            <button type="button" class="ins-seg-btn" data-region="Rest of World">Rest of World</button>
+          </div>
+        </div>
+
+        <div class="opp-kpis" id="oppKpis"><div class="ins-loading">Loading…</div></div>
+
+        <!-- Trial layout (2026-09-26): Themes / Key Market Signals / Radar
+             Insight / Signal Breakdown / Next Steps were dropped after review
+             showed they either duplicated the Industry tab exactly (Themes'
+             company counts matched Tech Trends to the integer) or added no
+             arithmetic beyond restating Featured/Accounts (Insight, Next
+             Steps). Rising Fast and Competitive Pressure replace them,
+             surfacing two things the engine already computes - the
+             window-over-window score change, and same-industry peer standing
+             - that had no tile of their own before. Original markup is saved
+             in .backups/opp-rising-pressure-* for a straight revert if this
+             trial doesn't earn its place either. -->
+        <div class="ins-grid">
+          <section class="ins-tile ins-w8" id="oppFeatured">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-star"></i> Featured Opportunities <button type="button" class="ins-info" aria-label="About this tile" data-tip="The strongest opportunities - one company pursuing one initiative - ranked by Strength. Strength counts the unique documents in the date range: 3 points for each filing, earnings deck or IR release, 2 for a job posting, 1 for a news story. High is 6+, Medium 3-5, Low 1-2. Timing is 0-3 months when the company has both disclosed it and is hiring for it. Click a row to see every document behind it.">i</button></h3>
+              <div class="ins-head-actions">
+                <span class="ins-chip"><span class="ins-dot"></span>RANKED BY EVIDENCE SCORE</span>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w4" id="oppRising">
+            <header class="ins-head ins-head-sm">
+              <h4><i class="fa-solid fa-arrow-trend-up"></i> RISING FAST <button type="button" class="ins-info" aria-label="About this tile" data-tip="Opportunities whose points grew against the previous period of the same length (for example the 30 days before the last 30). &#x27;New&#x27; means there were no documents in the previous period.">i</button></h4>
+              <div class="ins-head-actions">
+                <button type="button" class="ins-collapse" data-collapse="opp-rising"
+                        aria-expanded="true" title="Hide this section">
+                  <i class="fa-solid fa-chevron-up"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w5 ins-span2" id="oppCompetitive">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-ranking-star"></i> Competitive Pressure <button type="button" class="ins-info" aria-label="About this tile" data-tip="For the top initiatives, every company in the same industry that is active on it, ranked by points on one shared scale. The leader is the likeliest to be buying now; the others can be pitched on catching up.">i</button></h3>
+              <div class="ins-head-actions">
+                <button type="button" class="ins-collapse" data-collapse="opp-competitive"
+                        aria-expanded="true" title="Hide this section">
+                  <i class="fa-solid fa-chevron-up"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <!-- People to Tap replaced Top Accounts (2026-09-26): Featured
+               already names the accounts, so the useful next question is who
+               to contact at each. Names come from public LinkedIn headlines
+               via Exa and are kept only when the headline names the company
+               and a senior title - see backend/app/people/leaders.py. -->
+          <section class="ins-tile ins-w7" id="oppPeople">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-user-tie"></i> People to Tap <button type="button" class="ins-info" aria-label="About this tile" data-tip="Named technology leaders at the companies behind the top opportunities, from public LinkedIn profiles. A person is kept only when their own headline names the company and a senior title. &#x27;Title covers ...&#x27; means their role matches the initiative. Companies with nobody on file are looked up in the background and appear once found.">i</button></h3>
+              <div class="ins-head-actions">
+                <span class="ins-chip"><span class="ins-dot"></span>FROM PUBLIC LINKEDIN PROFILES</span>
+                <button type="button" class="ins-collapse" data-collapse="opp-people"
+                        aria-expanded="true" title="Hide this section">
+                  <i class="fa-solid fa-chevron-up"></i></button>
+              </div>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+
+          <section class="ins-tile ins-w7" id="oppRecs">
+            <header class="ins-head">
+              <h3><i class="fa-solid fa-crosshairs"></i> Recommended Targets <button type="button" class="ins-info" aria-label="About this tile" data-tip="Where to focus, assembled from the figures on this page: opportunities to engage now (disclosed and hiring), the theme with the most strong accounts, opportunities that moved up a band, and peer-pressure plays. Nothing here is written by a model.">i</button></h3>
+            </header>
+            <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+          </section>
+        </div>
+      </div>
+
+      <div id="viewSignalFeed" class="view-panel">
+        <div class="feed-layout">
+          <!-- Left Filter Sidebar -->
+          <aside class="filter-sidebar glass-card">
+            <div class="filter-header">
+              <h3><i class="fa-solid fa-filter"></i> Filters</h3>
+              <button class="btn-text" id="btnResetFilters">Reset</button>
+            </div>
+
+            <!-- Search -->
+            <div class="filter-group">
+              <label for="searchInput">Search Signals</label>
+              <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="e.g. cloud, AWS, Basel III...">
+              </div>
+            </div>
+
+            <!-- Sector Filter -->
+            <div class="filter-group">
+              <label>Target Sector</label>
+              <div class="pill-options" id="sectorFilterGroup">
+                <button class="pill-btn active" data-sector="all">All Sectors</button>
+                <button class="pill-btn" data-sector="BFSI">BFSI (Banking)</button>
+                <button class="pill-btn" data-sector="Healthcare">Healthcare</button>
+                <button class="pill-btn" data-sector="Technology">Technology</button>
+                <button class="pill-btn" data-sector="Retail & Packaging">Retail & Packaging</button>
+                <button class="pill-btn" data-sector="Manufacturing">Manufacturing</button>
+                <button class="pill-btn" data-sector="Energy">Energy</button>
+                <button class="pill-btn" data-sector="ESG">ESG</button>
+              </div>
+            </div>
+
+            <!-- Region Filter -->
+            <div class="filter-group">
+              <label>Region (HQ)</label>
+              <div class="pill-options" id="regionFilterGroup">
+                <button class="pill-btn active" data-region="all">All Regions</button>
+                <button class="pill-btn" data-region="Americas"><i class="fa-solid fa-globe-americas"></i> Americas</button>
+                <button class="pill-btn" data-region="Rest of World"><i class="fa-solid fa-earth-europe"></i> Rest of World</button>
+              </div>
+            </div>
+
+            <!-- Initiative Category Filter -->
+            <div class="filter-group">
+              <label>Initiative Category</label>
+              <select id="categorySelect" class="custom-select">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+
+            <!-- Source Type Filter -->
+            <div class="filter-group">
+              <label>Data Source</label>
+              <div class="pill-options" id="sourceFilterGroup">
+                <button class="pill-btn active" data-source="all">All Sources</button>
+                <button class="pill-btn" data-source="sec_edgar"><i class="fa-solid fa-landmark"></i> SEC EDGAR</button>
+                <button class="pill-btn" data-source="news_rss"><i class="fa-solid fa-newspaper"></i> News RSS</button>
+                <button class="pill-btn" data-source="exa_news"><i class="fa-solid fa-magnifying-glass-plus"></i> Exa News</button>
+                <button class="pill-btn" data-source="ir_press"><i class="fa-solid fa-building-columns"></i> IR Press</button>
+                <button class="pill-btn" data-source="earnings_deck"><i class="fa-solid fa-chart-pie"></i> Earnings Deck</button>
+                <button class="pill-btn" data-source="career_pages"><i class="fa-solid fa-briefcase"></i> Career Pages</button>
+                <button class="pill-btn" data-source="patents"><i class="fa-solid fa-lightbulb"></i> Patents</button>
+              </div>
+            </div>
+
+            <!-- Confidence Slider -->
+            <div class="filter-group">
+              <div class="slider-header">
+                <label for="confidenceSlider">Min Confidence</label>
+                <span id="confidenceVal">70%</span>
+              </div>
+              <input type="range" id="confidenceSlider" min="50" max="95" step="5" value="70" class="custom-slider">
+            </div>
+
+            <div class="sidebar-tip">
+              <i class="fa-solid fa-lightbulb text-yellow"></i>
+              <p>Every extracted signal includes direct quotes, source URLs, and matched IT offerings.</p>
+            </div>
+          </aside>
+
+          <!-- Main Feed Stream -->
+          <section class="signals-stream-container">
+            <div class="stream-header">
+              <div class="stream-title">
+                <h2>Events Stream <span class="stream-count" id="feedItemCount">(0 events)</span></h2>
+                <p class="stream-subtitle">One card per story. News, hiring and filings are separate streams — switch below.</p>
+              </div>
+
+              <!-- Sort & Actions -->
+              <div class="stream-actions">
+                <div class="family-tabs" id="familyTabs">
+                  <button class="family-tab active" data-family="all">All</button>
+                  <button class="family-tab" data-family="news"><i class="fa-solid fa-newspaper"></i> News</button>
+                  <button class="family-tab" data-family="hiring"><i class="fa-solid fa-briefcase"></i> Hiring</button>
+                  <button class="family-tab" data-family="filings"><i class="fa-solid fa-landmark"></i> Filings &amp; IR</button>
+                </div>
+                <button class="btn btn-sm btn-outline" id="btnRefreshFeed">
+                  <i class="fa-solid fa-rotate-right"></i> Refresh
+                </button>
+              </div>
+            </div>
+
+            <!-- Signal Cards Feed Container -->
+            <div class="signals-list" id="signalsList">
+              <div class="loading-spinner-state">
+                <div class="spinner"></div>
+                <p>Loading signals stream...</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- VIEW 2: COMPANY MASTER UNIVERSE -->
+      <div id="viewCompanies" class="view-panel">
+        <!-- The Companies page is a solar system (2026-09-27): BFSI verticals are
+             stars, sub-industries planets, companies satellites. Data from
+             /api/galaxy; drawn by Components.galaxy*. -->
+        <section class="ins-tile gx-tile" id="coGalaxy">
+          <header class="ins-head">
+            <h3><i class="fa-solid fa-sun"></i> BFSI Universe <button type="button" class="ins-info" aria-label="About this tile" data-tip="BFSI companies as a solar system. Each star is a vertical, its planets are sub-industries, and a planet&#x27;s satellites are its companies, coloured by their strongest opportunity in the selected date range. Click a star to open its system, a planet to see its companies, and a company to open its profile.">i</button></h3>
+            <div class="ins-head-actions">
+              <nav class="gx-crumbs" id="gxCrumbs" aria-label="Where you are"></nav>
+            </div>
+          </header>
+          <div class="ins-body"><div class="ins-loading">Loading…</div></div>
+        </section>
+      </div>
+
+      <!-- VIEW 3: INGESTION LOG & PIPELINE -->
+      <div id="viewJobs" class="view-panel">
+        <div class="jobs-layout glass-card">
+          <div class="jobs-header">
+            <div>
+              <h2>Ingestion Pipeline Runs & Source Telemetry</h2>
+              <p class="text-dim">Audit trail of SEC EDGAR polling, News feeds, and document extraction</p>
+              <p id="exaUsageBadge" class="text-dim" style="margin-top:6px; font-size:12px;">
+                <i class="fa-solid fa-shield-halved"></i> Exa usage: loading…
+              </p>
+            </div>
+          </div>
+
+          <div id="sourceHealthPanel" class="source-health-panel">
+            <div class="loading-spinner-state"><div class="spinner-small"></div><p style="font-size:12px;">Checking source health...</p></div>
+          </div>
+
+          <div class="jobs-header" style="margin-top:20px;">
+            <div>
+              <h3 style="font-family: var(--font-display); font-size:16px;">Recent Pipeline Runs</h3>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <select id="batchSectorSelect" class="custom-select" title="Phase 1 scope is BFSI (Americas + RoW); widen only if you know the cost/rate-limit tradeoffs">
+                <option value="BFSI" selected>BFSI Only (Phase 1 scope)</option>
+                <option value="all">All Sectors (wider — costs more)</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Technology">Technology</option>
+                <option value="Retail & Packaging">Retail & Packaging</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Energy">Energy</option>
+                <option value="ESG">ESG</option>
+              </select>
+              <button class="btn btn-outline" id="btnBackfillUncovered" title="Ingest only companies that have no data yet">
+                <i class="fa-solid fa-layer-group"></i> Backfill Uncovered
+              </button>
+              <button class="btn btn-primary" id="btnTriggerBatchIngest">
+                <i class="fa-solid fa-play"></i> Run Ingestion on Universe
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Job ID</th>
+                  <th>Type</th>
+                  <th>Target / Sector</th>
+                  <th>Status</th>
+                  <th>Docs Ingested</th>
+                  <th>Events Extracted</th>
+                  <th>Started</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody id="jobsTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 4: RANKED SIGNALS (Phase 3) -->
+      <div id="viewSignals" class="view-panel">
+        <div class="feed-layout">
+          <aside class="filter-sidebar glass-card">
+            <div class="filter-header">
+              <h3><i class="fa-solid fa-filter"></i> Signal Filters</h3>
+              <button class="btn-text" id="btnResetSignalFilters">Reset</button>
+            </div>
+
+            <div class="filter-group">
+              <label for="signalSearchInput">Search Company / Initiative</label>
+              <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="signalSearchInput" placeholder="e.g. JPMorgan, cloud, GenAI...">
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label>Target Sector</label>
+              <div class="pill-options" id="signalSectorFilterGroup">
+                <button class="pill-btn active" data-sector="all">All Sectors</button>
+                <button class="pill-btn" data-sector="BFSI">BFSI (Banking)</button>
+                <button class="pill-btn" data-sector="Healthcare">Healthcare</button>
+                <button class="pill-btn" data-sector="Technology">Technology</button>
+                <button class="pill-btn" data-sector="Retail & Packaging">Retail & Packaging</button>
+                <button class="pill-btn" data-sector="Manufacturing">Manufacturing</button>
+                <button class="pill-btn" data-sector="Energy">Energy</button>
+                <button class="pill-btn" data-sector="ESG">ESG</button>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label>Region (HQ)</label>
+              <div class="pill-options" id="signalRegionFilterGroup">
+                <button class="pill-btn active" data-region="all">All Regions</button>
+                <button class="pill-btn" data-region="Americas"><i class="fa-solid fa-globe-americas"></i> Americas</button>
+                <button class="pill-btn" data-region="Rest of World"><i class="fa-solid fa-earth-europe"></i> Rest of World</button>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label>Initiative Category</label>
+              <select id="signalCategorySelect" class="custom-select">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <div class="slider-header">
+                <label for="scoreSlider">Min Intent Score</label>
+                <span id="scoreVal">40</span>
+              </div>
+              <input type="range" id="scoreSlider" min="0" max="100" step="5" value="40" class="custom-slider">
+            </div>
+
+            <div class="filter-group">
+              <label>Timing Window</label>
+              <div class="pill-options" id="timingFilterGroup">
+                <button class="pill-btn active" data-timing="all">Any timing</button>
+                <button class="pill-btn" data-timing="0-3mo"><i class="fa-solid fa-fire"></i> 0–3 months</button>
+                <button class="pill-btn" data-timing="3-6mo"><i class="fa-regular fa-clock"></i> 3–6 months</button>
+                <button class="pill-btn" data-timing="6-12mo"><i class="fa-regular fa-hourglass"></i> 6–12 months</button>
+              </div>
+            </div>
+
+            <div class="sidebar-tip">
+              <i class="fa-solid fa-lightbulb text-yellow"></i>
+              <p>Intent score = evidence (40) + corroboration (25) + recency (20) + stated spend/timing (15). Scores are computed <strong>over the selected date range</strong> — a shorter range means less accumulated evidence and lower scores. Open "Why this signal?" on any card for the breakdown and cited sources.</p>
+            </div>
+          </aside>
+
+          <section class="signals-stream-container">
+            <div class="stream-header">
+              <div class="stream-title">
+                <h2>Ranked Market Signals <span class="stream-count" id="signalsCount">(0 signals)</span></h2>
+                <p class="stream-subtitle">One scored signal per company × initiative, aggregated across every source</p>
+              </div>
+              <div class="stream-actions">
+                <button class="btn btn-sm btn-outline" id="btnExportSignals" title="Download these signals as CSV">
+                  <i class="fa-solid fa-file-csv"></i> Export CSV
+                </button>
+                <button class="btn btn-sm btn-outline" id="btnRecomputeSignals" title="Re-aggregate all events into signals now">
+                  <i class="fa-solid fa-calculator"></i> Recompute
+                </button>
+              </div>
+            </div>
+            <div class="signals-list" id="rankedSignalsList">
+              <div class="loading-spinner-state">
+                <div class="spinner"></div>
+                <p>Ranking signals...</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- VIEW 6: ANALYTICS (Phase 4) -->
+      <div id="viewAnalytics" class="view-panel">
+        <div class="analytics-grid">
+          <div class="glass-card analytics-card">
+            <div class="stream-header">
+              <div class="stream-title">
+                <h2><i class="fa-solid fa-table-cells text-cyan"></i> Signal Heatmap</h2>
+                <p class="stream-subtitle">Where the activity concentrates — click any cell to jump to those ranked signals</p>
+              </div>
+              <div class="stream-actions">
+                <select id="heatmapRows" class="custom-select" style="width:auto;">
+                  <option value="sector">By Sector</option>
+                  <option value="industry">By Industry (top 15)</option>
+                </select>
+                <select id="heatmapCols" class="custom-select" style="width:auto;">
+                  <option value="category">× Category</option>
+                  <option value="initiative">× Initiative</option>
+                </select>
+              </div>
+            </div>
+            <div id="heatmapContainer" class="heatmap-container">
+              <div class="loading-spinner-state"><div class="spinner"></div><p>Building heatmap...</p></div>
+            </div>
+          </div>
+
+          <div class="glass-card analytics-card">
+            <div class="stream-header">
+              <div class="stream-title">
+                <h2><i class="fa-solid fa-chart-column text-purple"></i> Signal Volume Over Time</h2>
+                <p class="stream-subtitle">Event volume by source across the selected range</p>
+              </div>
+              <div class="stream-actions">
+                <select id="trendBucket" class="custom-select" style="width:auto;">
+                  <option value="auto">Auto</option>
+                  <option value="day">Daily</option>
+                  <option value="week">Weekly</option>
+                  <option value="month">Monthly</option>
+                </select>
+                <button class="btn btn-sm btn-outline" id="btnExportEvents" title="Download underlying events as CSV">
+                  <i class="fa-solid fa-file-csv"></i> Export Events
+                </button>
+              </div>
+            </div>
+            <div class="trend-chart-wrap">
+              <canvas id="trendChart" height="110"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card analytics-card">
+            <div class="stream-header">
+              <div class="stream-title">
+                <h2><i class="fa-solid fa-diagram-project text-emerald"></i> Vendor &amp; Technology Graph</h2>
+                <p class="stream-subtitle">Which companies are adopting which platforms, mined from the entities named in their signals</p>
+              </div>
+              <div class="stream-actions">
+                <select id="vendorRegionSelect" class="custom-select" style="width:auto;">
+                  <option value="all">All regions</option>
+                  <option value="Americas">Americas</option>
+                  <option value="Rest of World">Rest of World</option>
+                </select>
+              </div>
+            </div>
+            <div id="vendorGraphContainer">
+              <div class="loading-spinner-state"><div class="spinner"></div><p>Building vendor graph...</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 8: COMPANY PAGE (Phase 6) — routed at #/company/{id} -->
+      <div id="viewCompanyPage" class="view-panel">
+        <div class="company-page">
+          <div id="companyPageContent">
+            <div class="loading-spinner-state"><div class="spinner"></div><p>Loading company…</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 7: TENDERS / RFPs (Phase 5) -->
+      <div id="viewTenders" class="view-panel">
+        <div class="glass-card watch-card">
+          <div class="stream-header">
+            <div class="stream-title">
+              <h2><i class="fa-solid fa-gavel text-yellow"></i> Procurement Tenders <span class="stream-count" id="tendersCount"></span></h2>
+              <p class="stream-subtitle">
+                Live IT tenders — real RFPs with deadlines, from the EU's TED portal.
+                <strong>These are public-sector buyers</strong> (ministries, hospitals, city governments), so this is a
+                separate stream from the private-company intent signals.
+              </p>
+            </div>
+            <div class="stream-actions">
+              <input type="text" id="tenderSearchInput" class="custom-select" style="width:auto;" placeholder="Search title or buyer...">
+              <select id="tenderCountrySelect" class="custom-select" style="width:auto;">
+                <option value="all">All countries</option>
+              </select>
+              <button class="btn btn-sm btn-outline" id="btnRefreshTenders" title="Fetch the latest notices from TED">
+                <i class="fa-solid fa-rotate"></i> Refresh
+              </button>
+            </div>
+          </div>
+          <p id="tenderSourceNote" class="text-dim" style="font-size:12px; margin-bottom:10px;"></p>
+          <div id="tendersList">
+            <div class="loading-spinner-state"><div class="spinner"></div><p>Loading tenders...</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 5: WATCHLISTS & ALERTS (Phase 3) -->
+      <div id="viewWatchlists" class="view-panel">
+        <div class="watch-layout">
+          <div class="watch-main">
+            <!-- ICP quick lead list -->
+            <div class="glass-card watch-card">
+              <div class="stream-header">
+                <div class="stream-title">
+                  <h2><i class="fa-solid fa-crosshairs text-cyan"></i> ICP Lead List</h2>
+                  <p class="stream-subtitle">Define your ideal customer profile — sectors × initiative types — and get a ranked lead list with citations</p>
+                </div>
+                <div class="stream-actions">
+                  <button class="btn btn-sm btn-outline hidden" id="btnExportLeads" title="Download this lead list as CSV">
+                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                  </button>
+                  <button class="btn btn-sm btn-outline hidden" id="btnPushCrm" title="Push these leads to your CRM webhook">
+                    <i class="fa-solid fa-paper-plane"></i> Push to CRM
+                  </button>
+                  <button class="btn btn-primary glow-btn" id="btnRunIcpLeads"><i class="fa-solid fa-bolt"></i> Generate Leads</button>
+                </div>
+              </div>
+              <div class="icp-form">
+                <div class="form-group">
+                  <label>Sectors</label>
+                  <div class="checkbox-grid" id="icpSectorOptions"></div>
+                </div>
+                <div class="form-group">
+                  <label>Initiative Types</label>
+                  <div class="checkbox-grid" id="icpInitiativeOptions"></div>
+                </div>
+                <div class="form-group" style="max-width: 220px;">
+                  <label for="icpMinScore">Min Intent Score</label>
+                  <input type="number" id="icpMinScore" class="custom-select" min="0" max="100" value="60">
+                </div>
+              </div>
+              <div id="icpLeadResults" class="lead-results"></div>
+            </div>
+
+            <!-- Saved watchlists -->
+            <div class="glass-card watch-card">
+              <div class="stream-header">
+                <div class="stream-title">
+                  <h2><i class="fa-solid fa-list-ul text-purple"></i> Watchlists</h2>
+                  <p class="stream-subtitle">Track target accounts and get alerted when a signal crosses your threshold</p>
+                </div>
+                <div class="stream-actions">
+                  <button class="btn btn-sm btn-primary" id="btnNewWatchlist"><i class="fa-solid fa-plus"></i> New Watchlist</button>
+                </div>
+              </div>
+              <div id="watchlistsList" class="watchlists-list"></div>
+              <div id="watchlistLeadResults" class="lead-results"></div>
+            </div>
+          </div>
+
+          <aside class="glass-card watch-card alerts-panel">
+            <div class="stream-header">
+              <div class="stream-title">
+                <h2><i class="fa-solid fa-bell text-yellow"></i> Alerts <span class="stream-count" id="alertsCount"></span></h2>
+              </div>
+              <div class="stream-actions">
+                <button class="btn btn-sm btn-outline" id="btnReadAllAlerts"><i class="fa-solid fa-check-double"></i> Mark all read</button>
+              </div>
+            </div>
+            <div id="alertsList" class="alerts-list"></div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal: Run Ingestion -->
+    <div class="modal-backdrop" id="ingestModal">
+      <div class="modal-card glass-card">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-cloud-arrow-down text-cyan"></i> Trigger Live Data Ingestion</h3>
+          <button class="modal-close" id="btnCloseIngestModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="text-dim modal-desc">
+            Choose a target company to query SEC EDGAR API and News RSS feeds in real-time, extract IT initiatives, and update the signal feed.
+          </p>
+
+          <div class="form-group">
+            <label for="ingestCompanySelect">Target Company</label>
+            <select id="ingestCompanySelect" class="custom-select">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Data Sources</label>
+            <div class="radio-options">
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="all" checked>
+                <span><strong>All Sources</strong> (SEC EDGAR + Earnings Decks + News RSS + Exa News + IR Press + Career Pages)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="sec_edgar">
+                <span><strong>SEC EDGAR Only</strong> (10-K, 10-Q, 8-K)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="news_rss">
+                <span><strong>News RSS Only</strong> (Free headlines & snippets)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="exa_news">
+                <span><strong>Exa News Only</strong> (Full-text neural search)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="ir_press">
+                <span><strong>IR Press Only</strong> (Investor-relations announcements)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="earnings_deck">
+                <span><strong>Earnings Deck Only</strong> (Investor presentation exhibits on 8-Ks)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="career_pages">
+                <span><strong>Career Pages Only</strong> (Hiring-intent job postings)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="ingestSourceType" value="patents" disabled>
+                <span><strong>Patents</strong> — Future scope (deferred, requires a PatentsView/USPTO API key)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ingestDocLimit">Document Limit per Source</label>
+            <select id="ingestDocLimit" class="custom-select">
+              <option value="3" selected>3 Recent Documents</option>
+              <option value="5">5 Recent Documents</option>
+              <option value="10">10 Recent Documents</option>
+            </select>
+          </div>
+
+          <div id="ingestProgressBox" class="ingest-progress-box hidden">
+            <div class="spinner-small"></div>
+            <div class="progress-info">
+              <strong id="ingestStatusText">Querying SEC EDGAR & News Feeds...</strong>
+              <span id="ingestSubStatus" class="text-dim">Parsing filings and running NLP extraction...</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" id="btnCancelIngest">Cancel</button>
+          <button class="btn btn-primary glow-btn" id="btnSubmitIngest">
+            <i class="fa-solid fa-bolt"></i> Start Ingestion
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Taxonomy Matrix -->
+    <div class="modal-backdrop" id="taxonomyModal">
+      <div class="modal-card modal-large glass-card">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-sitemap text-purple"></i> IT Vendor Initiative Taxonomy Matrix (v1)</h3>
+          <button class="modal-close" id="btnCloseTaxonomyModal">&times;</button>
+        </div>
+        <div class="modal-body taxonomy-tree-container" id="taxonomyTreeContent">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Company Signal Detail -->
+    <div class="modal-backdrop" id="companyDetailModal">
+      <div class="modal-card modal-large glass-card">
+        <div class="modal-header">
+          <div class="company-modal-title">
+            <h3 id="modalCompanyName">Company Name</h3>
+            <span class="ticker-pill" id="modalCompanyTicker">TICKER</span>
+            <span class="sector-pill" id="modalCompanySector">Sector</span>
+          </div>
+          <button class="modal-close" id="btnCloseCompanyModal">&times;</button>
+        </div>
+        <div class="modal-body" id="companyModalBody">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Create / Edit Watchlist -->
+    <div class="modal-backdrop" id="watchlistModal">
+      <div class="modal-card modal-large glass-card">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-list-ul text-purple"></i> <span id="watchlistModalTitle">New Watchlist</span></h3>
+          <button class="modal-close" id="btnCloseWatchlistModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="text-dim modal-desc">
+            Track specific target accounts, or leave accounts empty to match every company in your ICP sectors.
+            You'll be alerted whenever a matching signal's intent score crosses the threshold.
+          </p>
+
+          <div class="form-group">
+            <label for="wlName">Watchlist Name</label>
+            <input type="text" id="wlName" class="custom-select" placeholder="e.g. BFSI cloud migration targets">
+          </div>
+
+          <div class="form-group">
+            <label for="wlDescription">Description (optional)</label>
+            <input type="text" id="wlDescription" class="custom-select" placeholder="What this list is for">
+          </div>
+
+          <div class="form-group">
+            <label for="wlCompanySearch">Target Accounts</label>
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="wlCompanySearch" placeholder="Search companies by name or ticker...">
+            </div>
+            <div class="wl-company-results" id="wlCompanyResults"></div>
+            <div id="wlSelectedCompanies" style="margin-top: 10px;"></div>
+          </div>
+
+          <div class="form-group">
+            <label>ICP Sectors</label>
+            <div class="checkbox-grid" id="wlSectorOptions"></div>
+          </div>
+
+          <div class="form-group">
+            <label>ICP Initiative Types <span class="text-dim" style="font-weight:400; font-size:12px;">(none selected = all initiatives)</span></label>
+            <div class="checkbox-grid" id="wlInitiativeOptions"></div>
+          </div>
+
+          <div class="form-group" style="max-width: 320px;">
+            <label for="wlThreshold">Alert Threshold (intent score)</label>
+            <input type="number" id="wlThreshold" class="custom-select" min="0" max="100" value="70">
+            <p class="text-dim" style="font-size: 11px; margin-top: 6px;">
+              <i class="fa-solid fa-circle-info"></i> Alerts always evaluate the full 180-day signal, independent of the date range you're viewing.
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" id="btnCancelWatchlist">Cancel</button>
+          <button class="btn btn-primary glow-btn" id="btnSaveWatchlist">
+            <i class="fa-solid fa-floppy-disk"></i> Save Watchlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/components.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

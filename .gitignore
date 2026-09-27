@@ -1,0 +1,52 @@
+# ---------------------------------------------------------------------------
+# SECRETS — never commit. .env holds live EXA_API_KEY and GROQ_API_KEY.
+# These belong in GitHub Secrets, not in the repository.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# Databases and backups
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.db.backup-*
+
+# Ingestion artifacts: raw text archive, API budget counters, run state/logs
+backend/data/raw_store/
+backend/data/*_usage.json
+backend/data/backfill_progress.json
+backend/data/*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Database copies made during rebuilds (signals.db.bak, .bak2 ...) - full
+# copies of the data, never source.
+*.db.bak*
+backend/data/*.bak
+
+# Generated state and caches, rebuilt by the app
+backend/data/ai_summaries.json
+backend/data/last_daily_run.json
+backend/data/sec_facts/
+*.log
+
+# Local working copies and tool settings
+.backups/
+.claude/
