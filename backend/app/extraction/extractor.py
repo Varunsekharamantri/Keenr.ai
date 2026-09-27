@@ -112,10 +112,11 @@ class SignalExtractor:
         #     of catching a missed initiative is highest.
         # Job postings never qualify: they are short, formulaic, and the keyword
         # matcher handles them well.
-        from ..ai.quota import can_spend
+        # is_available asks the provider chain (Groq, then the OpenRouter and
+        # Gemini fallbacks) whether any of them has budget left for extraction.
         high_value = source_type in ("sec_edgar", "earnings_deck", "ir_press")
         worth_llm = (not events or high_value) and source_type != "career_pages"
-        if self.llm_client.is_available and worth_llm and can_spend("extraction", 1800):
+        if worth_llm and self.llm_client.is_available:
             llm_events = self._extract_with_llm(
                 company=company,
                 raw_doc_id=raw_doc_id,

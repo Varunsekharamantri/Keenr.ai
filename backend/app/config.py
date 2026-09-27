@@ -47,7 +47,6 @@ class Settings:
     # LLM Settings (Optional)
     OPENAI_API_KEY: str | None = os.getenv("OPENAI_API_KEY")
     OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-    GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY")
     OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     # Accept both casings since .env files in the wild use either
     GROQ_API_KEY: str | None = os.getenv("GROQ_API_KEY") or os.getenv("Groq_API_KEY")
@@ -76,6 +75,27 @@ class Settings:
     # RAG work will need embeddings from somewhere other than Groq.
     GROQ_MODEL: str = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
     GROQ_SUMMARY_MODEL: str = os.getenv("GROQ_SUMMARY_MODEL", "openai/gpt-oss-120b")
+
+    # Fallbacks when Groq cannot answer (its 200k tokens/day spent, rate
+    # limited, down, or a draft the guardrails reject) - see app/ai/providers.py.
+    # Both are optional; with neither key set, Groq is the only provider.
+    # Free tiers are small, so each has a daily request cap, and the last
+    # `*_SUMMARY_RESERVE` requests are kept for the dashboard's summaries
+    # rather than spent on bulk extraction.
+    OPENROUTER_API_KEY: str | None = os.getenv("OPENROUTER_API_KEY") or os.getenv("Open_router_API")
+    # Tried in order; an unavailable model falls through to the next.
+    # Nemotron measured best: a clean, valid tile summary in 2s. The others
+    # were rate-limited upstream when tested and are kept as backups.
+    OPENROUTER_MODELS: str = os.getenv(
+        "OPENROUTER_MODELS",
+        "nvidia/nemotron-3-super-120b-a12b:free,google/gemma-4-31b-it:free,qwen/qwen3.8-27b:free")
+    OPENROUTER_DAILY_MAX: int = int(os.getenv("OPENROUTER_DAILY_MAX", "45"))
+    OPENROUTER_SUMMARY_RESERVE: int = int(os.getenv("OPENROUTER_SUMMARY_RESERVE", "15"))
+    GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY") or os.getenv("Gemini_API_Key")
+    # Tried in order. 2.5-flash and 2.0-flash are closed to new keys (404).
+    GEMINI_MODELS: str = os.getenv("GEMINI_MODELS", "gemini-3.8-flash,gemini-flash-latest,gemini-3.5-flash-lite")
+    GEMINI_DAILY_MAX: int = int(os.getenv("GEMINI_DAILY_MAX", "200"))
+    GEMINI_SUMMARY_RESERVE: int = int(os.getenv("GEMINI_SUMMARY_RESERVE", "40"))
 
     # Exa (neural search) — richer full-text news alternative to the free RSS adapter
     EXA_API_KEY: str | None = os.getenv("EXA_API_KEY") or os.getenv("Exa_API_key")

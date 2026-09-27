@@ -1,28 +1,23 @@
 import json
 import re
-import time
 import logging
-import httpx
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 from ..config import settings
 
 logger = logging.getLogger(__name__)
 
+_SYSTEM = "You are a precise corporate intelligence extractor. Return pure JSON only, no markdown fences, no commentary."
+
 class LLMExtractorClient:
     """
     Optional LLM client for enriching signal extractions.
-    Uses Groq, OpenAI, or Gemini if configured, otherwise falls back gracefully
-    to rule-based-only extraction.
+    Uses Groq, with OpenRouter and Gemini as fallbacks, if configured;
+    otherwise extraction falls back gracefully to rules alone.
     """
-    def __init__(self):
-        self.groq_key = settings.GROQ_API_KEY
-        self.openai_key = settings.OPENAI_API_KEY
-        self.gemini_key = settings.GEMINI_API_KEY
-        self.ollama_url = settings.OLLAMA_BASE_URL
-
     @property
     def is_available(self) -> bool:
-        return bool(self.groq_key or self.openai_key or self.gemini_key)
+        from ..ai import providers
+        return providers.can_serve("extraction")
 
     def extract_initiatives_llm(
         self,
@@ -67,84 +62,16 @@ Return a JSON object with a single key "initiatives", whose value is a list of o
 }}
 Only return valid JSON. If no relevant initiative is mentioned, return {{"initiatives": []}}."""
 
-        if self.groq_key:
+        # Groq, then OpenRouter, then Gemini (app/ai/providers.py). A reply
+        # that is not parseable JSON counts as a failure and goes to the next.
+        from ..ai import providers
+        for reply in providers.answers(_SYSTEM, prompt, purpose="extraction", max_tokens=3000,
+                                       temperature=0.1, json_mode=True):
             try:
-                return self._call_groq(prompt)
-            except Exception as e:
-                logger.warning(f"Groq extraction failed, falling back: {e}")
-
-        if self.openai_key:
-            try:
-                return self._call_openai(prompt)
-            except Exception as e:
-                logger.warning(f"OpenAI extraction failed, falling back: {e}")
-
+                return self._parse_initiatives(reply["text"])
+            except (json.JSONDecodeError, ValueError):
+                logger.info(f"{reply['provider']} returned unparseable JSON; trying the next provider")
         return []
-
-    def _call_groq(self, prompt: str, _retries_left: int = 2) -> List[Dict[str, Any]]:
-        with httpx.Client(timeout=30.0) as client:
-            response = client.post(
-                "https://api.groq.com/openai/v1/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {self.groq_key}",
-                    "Content-Type": "application/json"
-                },
-                json={
-                    "model": settings.GROQ_MODEL,
-                    "messages": [
-                        {"role": "system", "content": "You are a precise corporate intelligence extractor. Return pure JSON only, no markdown fences, no commentary."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    "temperature": 0.1,
-                    "response_format": {"type": "json_object"}
-                }
-            )
-            if response.status_code == 429:
-                if "per day" in (response.text or "").lower():
-                    try:
-                        from ..ai.quota import mark_exhausted
-                        mark_exhausted(response.text[:200])
-                    except Exception:
-                        pass
-                    return []
-                if _retries_left <= 0:
-                    logger.warning("Groq rate limit still hit after retries — skipping LLM enrichment for this document.")
-                    return []
-                wait_s = self._parse_retry_wait(response.text) or 6.0
-                wait_s = min(wait_s, 15.0)
-                logger.info(f"Groq rate-limited (429) — backing off {wait_s:.1f}s and retrying ({_retries_left} left).")
-                time.sleep(wait_s)
-                return self._call_groq(prompt, _retries_left=_retries_left - 1)
-            if response.status_code != 200:
-                logger.warning(f"Groq API returned {response.status_code}: {response.text[:300]}")
-                return []
-            body = response.json()
-            try:
-                from ..ai.quota import record
-                record((body.get("usage") or {}).get("total_tokens", 0), "extraction")
-            except Exception:
-                pass
-            raw_out = body["choices"][0]["message"]["content"] or ""
-            return self._parse_initiatives(raw_out)
-
-    def _parse_retry_wait(self, error_text: str) -> Optional[float]:
-        match = re.search(r"try again in ([\d.]+)\s*s", error_text)
-        return float(match.group(1)) if match else None
-
-    def _call_openai(self, prompt: str) -> List[Dict[str, Any]]:
-        from openai import OpenAI
-        client = OpenAI(api_key=self.openai_key)
-        response = client.chat.completions.create(
-            model=settings.OPENAI_MODEL,
-            messages=[
-                {"role": "system", "content": "You are a precise corporate intelligence extractor. Return pure JSON only."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.1,
-            response_format={"type": "json_object"} if "gpt-4o" in settings.OPENAI_MODEL else None
-        )
-        raw_out = response.choices[0].message.content or ""
-        return self._parse_initiatives(raw_out)
 
     def _parse_initiatives(self, raw_out: str) -> List[Dict[str, Any]]:
         cleaned = raw_out.strip()
@@ -156,7 +83,9 @@ Only return valid JSON. If no relevant initiative is mentioned, return {{"initia
         except json.JSONDecodeError:
             match = re.search(r"[\[{].*[\]}]", cleaned, re.DOTALL)
             if not match:
-                return []
+                # Not "no initiatives" - no answer at all. Raise so the next
+                # provider in the chain is asked.
+                raise ValueError("reply contains no JSON")
             parsed = json.loads(match.group(0))
 
         if isinstance(parsed, dict) and "initiatives" in parsed:

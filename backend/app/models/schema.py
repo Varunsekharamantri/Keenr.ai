@@ -78,9 +78,12 @@ class RawDocument(Base):
     company_id = Column(String(36), ForeignKey("companies.id", ondelete="CASCADE"), nullable=False, index=True)
     source_type = Column(String(50), nullable=False, index=True) # "sec_edgar", "news_rss"
     doc_type = Column(String(50), nullable=False) # "10-K", "10-Q", "8-K", "news_article"
-    title = Column(String(500), nullable=False)
-    url = Column(String(1000), nullable=False)
-    local_path = Column(String(500), nullable=True)
+    # Text, not String(n): SQLite never enforced the lengths, so a 1,549-character
+    # scraped title sat here unnoticed until Postgres refused it. Anything taken
+    # from the web or written by the model is unbounded.
+    title = Column(Text, nullable=False)
+    url = Column(Text, nullable=False)
+    local_path = Column(Text, nullable=True)
     filing_date = Column(DateTime, nullable=True, index=True)
     metadata_json = Column(JSON, default=dict)
     raw_text_snippet = Column(Text, nullable=True)
@@ -113,17 +116,17 @@ class Event(Base):
     raw_doc_id = Column(String(36), ForeignKey("raw_documents.id", ondelete="SET NULL"), nullable=True, index=True)
     
     initiative_id = Column(String(100), nullable=False, index=True) # e.g. "cloud_migration"
-    initiative_name = Column(String(200), nullable=False)
+    initiative_name = Column(Text, nullable=False)
     category_id = Column(String(100), nullable=False, index=True) # e.g. "tech_initiatives"
-    category_name = Column(String(200), nullable=False)
+    category_name = Column(Text, nullable=False)
     it_offering = Column(String(300), nullable=True) # IT vendor match
 
-    title = Column(String(500), nullable=False)
+    title = Column(Text, nullable=False)
     quote_text = Column(Text, nullable=False) # exact sentence/paragraph citation
     context_text = Column(Text, nullable=True) # section context
     occurred_at = Column(DateTime, nullable=False, index=True)
     source_type = Column(String(50), nullable=False) # "sec_edgar", "news_rss"
-    source_url = Column(String(1000), nullable=False)
+    source_url = Column(Text, nullable=False)
     
     confidence = Column(Float, default=0.85) # 0.0 - 1.0
     spend_amount = Column(String(100), nullable=True) # e.g. "$200M"
@@ -264,7 +267,7 @@ class Tender(Base):
     deadline_at = Column(DateTime, nullable=True)
     value_amount = Column(String(60), nullable=True)
     currency = Column(String(10), nullable=True)
-    url = Column(String(1000), nullable=True)
+    url = Column(Text, nullable=True)
     description = Column(Text, nullable=True)
     matched_company_id = Column(String(36), ForeignKey("companies.id", ondelete="SET NULL"), nullable=True, index=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
@@ -302,9 +305,9 @@ class Signal(Base):
     company_id = Column(String(36), ForeignKey("companies.id", ondelete="CASCADE"), nullable=False, index=True)
 
     initiative_id = Column(String(100), nullable=False, index=True)
-    initiative_name = Column(String(200), nullable=False)
+    initiative_name = Column(Text, nullable=False)
     category_id = Column(String(100), nullable=False, index=True)
-    category_name = Column(String(200), nullable=False)
+    category_name = Column(Text, nullable=False)
     it_offering = Column(String(300), nullable=True)
 
     intent_score = Column(Integer, nullable=False, default=0, index=True)
@@ -477,10 +480,10 @@ class Leader(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     company_id = Column(String(36), ForeignKey("companies.id", ondelete="CASCADE"), nullable=False, index=True)
     name = Column(String(200), nullable=False)
-    headline = Column(String(500), nullable=False)       # the profile's own words, verbatim
+    headline = Column(Text, nullable=False)       # the profile's own words, verbatim
     functions = Column(JSON, default=list)               # e.g. ["data_ai", "technology"]
     seniority = Column(Integer, default=1)               # 3 C-level, 2 head/EVP/SVP, 1 VP/director
-    linkedin_url = Column(String(500), nullable=False)
+    linkedin_url = Column(Text, nullable=False)
     profile_key = Column(String(300), nullable=False)    # normalised URL, for de-duplication
     location = Column(String(200), nullable=True)
     source = Column(String(40), default="exa_linkedin")
@@ -524,7 +527,7 @@ class LeaderFetch(Base):
     status = Column(String(20), nullable=False)          # ok | none_verified | error
     results_seen = Column(Integer, default=0)
     verified = Column(Integer, default=0)
-    error = Column(String(300), nullable=True)
+    error = Column(Text, nullable=True)
     # Every profile the search returned, verified or not - so a rule change can
     # be replayed without spending another search, and any rejection audited.
     candidates = Column(JSON, default=list)

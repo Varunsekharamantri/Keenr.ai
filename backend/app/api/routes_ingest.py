@@ -145,3 +145,10 @@ def get_career_usage():
     """Self-imposed monthly Exa request budget for the career-page/hiring
     adapter — tracked separately from news-Exa and IR-Exa's budgets."""
     return pipeline.career_adapter.get_usage_status()
+
+@router.get("/llm-usage")
+def get_llm_usage():
+    """Today's use of each language-model provider - Groq, and the OpenRouter
+    and Gemini fallbacks - and which of them have a key configured."""
+    from ..ai import providers
+    return providers.status()

@@ -68,6 +68,9 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Optional fallbacks when Groq's daily budget runs out; empty is fine.
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
           # The runner's disk is discarded, and local_path is never read back,
           # so writing the raw text archive would be pure waste.

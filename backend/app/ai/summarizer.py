@@ -1,5 +1,6 @@
 """
-One- or two-sentence narration for dashboard tiles, written by Groq.
+One- or two-sentence narration for dashboard tiles, written by Groq (or, when
+Groq cannot answer, OpenRouter or Gemini - see providers.py).
 
 The division of labour is the point: **we compute every number and own every
 meaning; the model only writes the sentence.** It receives finished, already-true
@@ -32,8 +33,6 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
-import httpx
-
 from ..config import settings
 
 logger = logging.getLogger("market_signals.summarizer")
@@ -41,7 +40,6 @@ logger = logging.getLogger("market_signals.summarizer")
 CACHE_PATH = settings.DATA_DIR / "ai_summaries.json"
 _LOCK = threading.Lock()
 _CACHE: Optional[dict] = None
-_TIMEOUT = 20.0
 _MAX_WORDS = 90
 
 SYSTEM = (
@@ -235,14 +233,14 @@ def _build_prompt(kind: str, facts: dict) -> str:
             "meaning exactly. Use only the numbers above.")
 
 
-def summarize(kind: str, facts: dict, fallback: str, force: bool = False,
-              _retried: bool = False) -> dict:
+def summarize(kind: str, facts: dict, fallback: str, force: bool = False) -> dict:
     """
     Narrate `facts`. Always returns {"text", "source"}; source is "ai" when the
     model wrote it, "computed" when the caller's own sentence was used.
     """
     fallback = " ".join((fallback or "").split())
-    if not settings.GROQ_API_KEY:
+    from . import providers
+    if not providers.can_serve("summary"):
         return {"text": fallback, "source": "computed"}
 
     key = _key(kind, facts)
@@ -251,78 +249,26 @@ def summarize(kind: str, facts: dict, fallback: str, force: bool = False,
     if hit and not force:
         return {"text": hit["text"], "source": hit.get("source", "ai")}
 
-    from .quota import can_spend, record
-    if not can_spend("summary", 2500):
-        return {"text": fallback, "source": "computed"}
-
-    # How much output room to ask for depends on the model, and getting this
-    # wrong fails the call outright rather than degrading it.
+    # Groq first, then OpenRouter, then Gemini (app/ai/providers.py). A reply
+    # that fails the guardrails - an invented number, a list, too long - is
+    # thrown away and the next provider is asked, so one model's bad draft does
+    # not cost the tile its summary. The next call happens only if needed.
     #
-    # gpt-oss is a reasoning model: it thinks (returned separately in
-    # `reasoning`) before writing `content`, and how long it thinks grows with the
-    # prompt - measured 500-900 tokens on a simple tile, and past 1,200 on the
-    # three-account comparison, which then came back empty with
-    # finish_reason=length. It needs generous headroom plus one larger retry.
-    #
-    # qwen does not reason at all, so a tile's 45-70 words is all it ever emits -
-    # but it enforces a 1,000 output-tokens-per-minute ceiling, and asking for
-    # 1,200 was rejected before the model even ran ("Requested 1200, Limit
-    # 1000"), which silently turned every tile back to its computed sentence.
-    # 700 is ample for the longest summary we ask for and stays under the cap.
-    raw = ""
-    budgets = (700,) if "qwen" in settings.GROQ_SUMMARY_MODEL.lower() else (1200, 2600)
-    for budget in budgets:
-        try:
-            r = httpx.post(
-                "https://api.groq.com/openai/v1/chat/completions",
-                headers={"Authorization": f"Bearer {settings.GROQ_API_KEY}",
-                         "Content-Type": "application/json"},
-                json={"model": settings.GROQ_SUMMARY_MODEL, "temperature": 0.3,
-                      "max_tokens": budget, "reasoning_effort": "low",
-                      "messages": [{"role": "system", "content": SYSTEM},
-                                   {"role": "user", "content": _build_prompt(kind, facts)}]},
-                timeout=_TIMEOUT + 10,
-            )
-        except Exception as ex:
-            logger.warning(f"summary call failed: {ex}")
-            return {"text": fallback, "source": "computed"}
-        if r.status_code == 429:
-            if "per day" in (r.text or "").lower() or "tpd" in (r.text or "").lower():
-                from .quota import mark_exhausted
-                mark_exhausted(r.text[:200])
-                return {"text": fallback, "source": "computed"}
-            # Groq caps free use by tokens per minute and tells us how long to
-            # wait. A short wait is worth taking: the alternative is a tile stuck
-            # on plain text until the next refresh.
-            wait = 0.0
-            try:
-                wait = float(r.headers.get("retry-after", "") or 0)
-            except ValueError:
-                wait = 0.0
-            if 0 < wait <= 15 and not _retried:
-                logger.info(f"Groq rate limited; retrying in {wait:.0f}s")
-                time.sleep(wait + 0.5)
-                return summarize(kind, facts, fallback, force=True, _retried=True)
-            logger.info("Groq rate limited; using the computed sentence")
-            return {"text": fallback, "source": "computed"}
-        if r.status_code != 200:
-            logger.warning(f"Groq {r.status_code}: {r.text[:140]}")
-            return {"text": fallback, "source": "computed"}
-        body = r.json()
-        record((body.get("usage") or {}).get("total_tokens", 0), "summary")
-        choice = body["choices"][0]
-        raw = (choice["message"].get("content") or "").strip()
-        if raw:
+    # 1,200 tokens of room: gpt-oss reasons before it writes (500-900 tokens
+    # on a simple tile, past 1,200 on the three-account comparison), and the
+    # provider retries once larger if the reasoning used it all.
+    clean, used = None, None
+    for reply in providers.answers(SYSTEM, _build_prompt(kind, facts), purpose="summary",
+                                   max_tokens=1200, temperature=0.3):
+        clean = _validate(reply["text"], facts)
+        if clean:
+            used = reply
             break
-        if choice.get("finish_reason") != "length":
-            break
-        logger.info(f"reasoning used the whole {budget}-token budget; retrying larger")
-    if not raw:
-        return {"text": fallback, "source": "computed"}
-
-    clean = _validate(raw, facts)
+        logger.info(f"{reply['provider']} draft for {kind} failed the checks; trying the next provider")
     if not clean:
         return {"text": fallback, "source": "computed"}
+    if used["provider"] != "groq":
+        logger.info(f"summary for {kind} written by {used['provider']} ({used['model']})")
 
     with _LOCK:
         cache = _load_cache()
