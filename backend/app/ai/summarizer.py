@@ -322,6 +322,10 @@ def _write_in_background(job):
 
 def queue_summaries(jobs: list) -> int:
     """Hand summaries to the background worker; returns how many were queued."""
+    # The public copy never spends model calls on a visitor's behalf: it shows
+    # the summaries the daily refresh wrote, and the computed sentence otherwise.
+    if settings.PUBLIC_MODE:
+        return 0
     queued, now = 0, time.time()
     with _BG_LOCK:
         for job in jobs:

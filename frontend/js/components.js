@@ -1,5 +1,5 @@
 /**
- * Market Signals Platform - UI Component Renderers
+ * Keenr.ai - UI Component Renderers
  */
 
 const SOURCE_LABELS = {

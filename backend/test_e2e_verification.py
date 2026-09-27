@@ -4,14 +4,14 @@ def test_full_platform():
     client = httpx.Client(base_url="http://127.0.0.1:8000", timeout=15.0)
 
     print("=" * 60)
-    print("Market Signals Platform - Phase 1 End-to-End Test Suite")
+    print("Keenr.ai - Phase 1 End-to-End Test Suite")
     print("=" * 60)
 
     # 1. Test Static Files & Index
     print("\n[1] Verifying Frontend Static Delivery:")
     res_index = client.get("/")
     assert res_index.status_code == 200, f"Index failed: {res_index.status_code}"
-    assert "Market Signals" in res_index.text
+    assert "Keenr" in res_index.text
     print("  [OK] Index HTML served successfully (200 OK)")
 
     res_css = client.get("/static/css/styles.css")
@@ -21,7 +21,7 @@ def test_full_platform():
 
     res_js = client.get("/static/js/app.js")
     assert res_js.status_code == 200
-    assert "Market Signals Platform" in res_js.text
+    assert "Keenr.ai" in res_js.text
     print("  [OK] App JS and Components served successfully (200 OK)")
 
     # 2. Test Taxonomy Endpoint

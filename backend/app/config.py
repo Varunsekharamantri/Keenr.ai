@@ -14,7 +14,7 @@ load_dotenv(PROJECT_DIR / ".env")
 load_dotenv(BACKEND_DIR / ".env")
 
 class Settings:
-    PROJECT_NAME: str = "Market Signals Platform"
+    PROJECT_NAME: str = "Keenr.ai"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api"
     
@@ -36,7 +36,15 @@ class Settings:
     RAW_STORE_DIR: Path = RAW_STORE_DIR
     
     # Scheduler Settings (automated daily ingestion refresh)
-    SCHEDULE_ENABLED: bool = os.getenv("SCHEDULE_ENABLED", "true").lower() == "true"
+    # Public mode: the deployed, shareable copy. Read-only - nothing a visitor
+    # does can fetch, write, or spend an API budget: every POST/PUT/DELETE under
+    # /api is refused, missing AI summaries are not written on demand, People to
+    # Tap does not search in the background, and the in-process scheduler is
+    # off. The GitHub Actions daily refresh does all of that instead, into the
+    # same database. Off by default, so the local copy keeps working as before.
+    PUBLIC_MODE: bool = os.getenv("PUBLIC_MODE", "false").lower() == "true"
+    SCHEDULE_ENABLED: bool = (os.getenv("SCHEDULE_ENABLED", "true").lower() == "true"
+                              and os.getenv("PUBLIC_MODE", "false").lower() != "true")
     SCHEDULE_INTERVAL_HOURS: float = float(os.getenv("SCHEDULE_INTERVAL_HOURS", "24"))
     SCHEDULE_LIMIT_PER_COMPANY: int = int(os.getenv("SCHEDULE_LIMIT_PER_COMPANY", "2"))
     SCHEDULE_RUN_ON_STARTUP: bool = os.getenv("SCHEDULE_RUN_ON_STARTUP", "false").lower() == "true"

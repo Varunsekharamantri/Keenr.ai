@@ -244,7 +244,7 @@ def push_leads_to_crm(
 
     result = _build_lead_list(db, signals, company_ids, sector_list, initiative_list, min_score, limit)
     payload = {
-        "source": "Market Signals Platform",
+        "source": "Keenr.ai",
         "generated_at": datetime.datetime.utcnow().isoformat(),
         "window": {"start": start_dt.isoformat() if start_dt else None, "end": end_dt.isoformat()},
         "criteria": {"sectors": sector_list, "initiative_ids": initiative_list, "min_score": min_score},

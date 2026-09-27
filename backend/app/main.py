@@ -1,9 +1,9 @@
 import logging
 from pathlib import Path
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 from .config import settings, PROJECT_DIR
 from .db.database import init_db, SessionLocal
@@ -36,8 +36,26 @@ logger = logging.getLogger("market_signals")
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description="Automated public disclosure ingestion & IT market signal intelligence platform."
+    description="BFSI market intelligence for IT-services sales teams, built from public disclosures and news."
 )
+
+
+# Public mode is read-only. Refusing every write method at the door, rather
+# than guarding each route, means an endpoint added later cannot be forgotten.
+_READ_METHODS = {"GET", "HEAD", "OPTIONS"}
+
+
+@app.middleware("http")
+async def public_read_only(request: Request, call_next):
+    if settings.PUBLIC_MODE and request.method not in _READ_METHODS and request.url.path.startswith("/api"):
+        return JSONResponse({"detail": "This is a read-only public copy of Keenr.ai."}, status_code=403)
+    return await call_next(request)
+
+
+@app.get("/api/app-config")
+def app_config():
+    """What the frontend needs to know about this deployment."""
+    return {"name": settings.PROJECT_NAME, "public_mode": settings.PUBLIC_MODE}
 
 # CORS configuration
 app.add_middleware(
@@ -111,6 +129,10 @@ def on_startup():
     logger.info("Initializing database...")
     init_db()
     
+    if settings.PUBLIC_MODE:
+        logger.info(f"{settings.PROJECT_NAME} v{settings.VERSION} ready (public, read-only).")
+        return
+
     logger.info("Seeding initial company master universe...")
     db = SessionLocal()
     try:
@@ -119,7 +141,7 @@ def on_startup():
 
         # First deploy after Phase 3: build signals from the existing events so
         # the Ranked Signals tab isn't empty until the next scheduled run.
-        if settings.SIGNAL_RECOMPUTE_ON_STARTUP and db.query(Signal).count() == 0:
+        if not settings.PUBLIC_MODE and settings.SIGNAL_RECOMPUTE_ON_STARTUP and db.query(Signal).count() == 0:
             logger.info("No signals yet — running initial signal recompute...")
             signal_engine.recompute(db, sector_filter=settings.SCHEDULE_SECTOR_FILTER)
     finally:

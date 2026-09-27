@@ -1,5 +1,5 @@
 /* =========================================================
-   Market Signals Platform - Modern Premium Dark Design System
+   Keenr.ai - Modern Premium Dark Design System
    ========================================================= */
 
 :root {
@@ -2750,3 +2750,9 @@ body {
 .cp-contact:hover { color: var(--accent-cyan-light); }
 .cp-contact i { color: #0a66c2; margin-left: 3px; }
 .cp-contact-role { font-size: 12.5px; color: var(--text-secondary); min-width: 0; }
+
+/* ---- Keenr.ai brand + public (read-only) mode ---------------------------- */
+.brand-text h1 { gap: 0; }
+.brand-text h1 .brand-tld { color: var(--accent-cyan-light); font-weight: 600; }
+/* The deployed copy is read-only: the daily refresh runs on GitHub Actions. */
+body.public-mode #btnRefreshNow { display: none; }

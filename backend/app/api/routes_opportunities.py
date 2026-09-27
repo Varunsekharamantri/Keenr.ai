@@ -23,6 +23,7 @@ from typing import Optional
 from fastapi import APIRouter, BackgroundTasks, Depends, Query
 from sqlalchemy.orm import Session, joinedload
 
+from ..config import settings
 from ..db.database import get_db
 from ..models.schema import Company, Event
 from ..models.taxonomy import taxonomy_manager
@@ -366,7 +367,7 @@ def opportunities(
                     key=lambda r: (r["rank"], r["match"] != "specific", -(r.get("seniority") or 1)))[:30]
 
     pending = missing_ids(db, pool_ids)
-    if pending and background_tasks is not None:
+    if pending and background_tasks is not None and not settings.PUBLIC_MODE:
         background_tasks.add_task(search_missing, pending)
 
     # ---- Recommended targets -----------------------------------------------

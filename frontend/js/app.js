@@ -1,5 +1,5 @@
 /**
- * Market Signals Platform - Main Application Logic
+ * Keenr.ai - Main Application Logic
  */
 
 const API_BASE = '/api';
@@ -44,7 +44,8 @@ const App = {
   RANGE_LABELS: { '7d': 'last 7 days', '30d': 'last 30 days', '90d': 'last 90 days', '6m': 'last 6 months', '12m': 'last 12 months', 'all': 'all time' },
 
   async init() {
-    console.log("Initializing Market Signals Platform...");
+    console.log("Initializing Keenr.ai...");
+    this.loadAppConfig();
     this.restoreDateRange();
     this.setupEventListeners();
     window.addEventListener('hashchange', () => this.router());
@@ -1338,6 +1339,19 @@ const App = {
   /** The header stat cards were removed; each page carries its own figures now. */
   async loadStats() {},
 
+  /**
+   * The deployed copy runs in public mode: read-only, refreshed by the daily
+   * GitHub Actions run. Hide the controls a visitor cannot use - the server
+   * refuses those requests regardless.
+   */
+  async loadAppConfig() {
+    try {
+      const cfg = await (await fetch(`${API_BASE}/app-config`)).json();
+      this.state.publicMode = !!cfg.public_mode;
+      document.body.classList.toggle('public-mode', this.state.publicMode);
+    } catch (e) { /* older server: behave as the local copy */ }
+  },
+
   /** Header freshness: last successful refresh and the next scheduled one. */
   async loadFreshness() {
     const dot = document.getElementById('freshnessDot');
@@ -1362,7 +1376,9 @@ const App = {
       }
       if (text) text.textContent = label;
       if (dot) dot.className = `freshness-dot ${cls}`;
+      if (s.public_mode) document.body.classList.add('public-mode');
       if (box) box.title = [s.next_run ? `Next refresh ${fmt(s.next_run)} (${s.schedule})` : '',
+                            s.public_mode ? 'Refreshed automatically every morning.' : '',
                             last.error ? `Error: ${last.error}` : ''].filter(Boolean).join('\n');
       if (btn) btn.disabled = !!s.running;
       return s;
