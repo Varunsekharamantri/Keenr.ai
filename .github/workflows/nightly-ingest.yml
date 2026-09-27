@@ -32,18 +32,36 @@ jobs:
     timeout-minutes: 240
 
     steps:
+      # Until the Neon database and API keys are added as repository Secrets,
+      # skip cleanly instead of failing (and emailing) every morning.
+      - name: Check configuration
+        id: config
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipped: repository secrets are not set yet. Add DATABASE_URL, EXA_API_KEY, GROQ_API_KEY and SEC_USER_AGENT under Settings > Secrets and variables > Actions."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.config.outputs.configured == 'true'
 
       - uses: actions/setup-python@v5
+        if: steps.config.outputs.configured == 'true'
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: backend/requirements.txt
 
       - name: Install dependencies
+        if: steps.config.outputs.configured == 'true'
         run: pip install -r backend/requirements.txt
 
       - name: Run ingest
+        if: steps.config.outputs.configured == 'true'
         working-directory: backend
         env:
           # Supplied as repository Secrets — never hardcode these.
