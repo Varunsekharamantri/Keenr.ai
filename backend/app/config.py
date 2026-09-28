@@ -13,13 +13,28 @@ RAW_STORE_DIR.mkdir(parents=True, exist_ok=True)
 load_dotenv(PROJECT_DIR / ".env")
 load_dotenv(BACKEND_DIR / ".env")
 
+def _database_url(url: str) -> str:
+    """
+    Name the Postgres driver explicitly. SQLAlchemy 2.1 changed the default for
+    a bare postgresql:// URL from psycopg2 to psycopg (v3), so a fresh install
+    - Render, the GitHub Actions runner - failed with "No module named
+    'psycopg'" while an older local install kept working. psycopg2-binary is
+    the driver in requirements.txt. Also accepts Heroku-style postgres://.
+    """
+    url = (url or "").strip()
+    for bare in ("postgres://", "postgresql://"):
+        if url.startswith(bare):
+            return "postgresql+psycopg2://" + url[len(bare):]
+    return url
+
+
 class Settings:
     PROJECT_NAME: str = "Keenr.ai"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api"
     
     # SQLite Database URL
-    DATABASE_URL: str = os.getenv("DATABASE_URL", f"sqlite:///{DATA_DIR / 'signals.db'}")
+    DATABASE_URL: str = _database_url(os.getenv("DATABASE_URL", f"sqlite:///{DATA_DIR / 'signals.db'}"))
     
     # SEC EDGAR Requirements
     # SEC requires User-Agent in format: <App Name> <Contact Email>
