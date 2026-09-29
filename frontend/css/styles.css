@@ -2756,3 +2756,127 @@ body {
 .brand-text h1 .brand-tld { color: var(--accent-cyan-light); font-weight: 600; }
 /* The deployed copy is read-only: the daily refresh runs on GitHub Actions. */
 body.public-mode #btnRefreshNow { display: none; }
+
+/* ---- First-load radar ----------------------------------------------------
+   Covers the dashboard while its first view loads. The page behind is blurred
+   rather than hidden, so the layout is already there when the radar lifts.
+   Colours, fonts and glow come from the same tokens as the rest of the app. */
+.boot-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: rgba(9, 13, 22, 0.55);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  backdrop-filter: blur(12px) saturate(120%);
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+.boot-loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.boot-card { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+
+.radar {
+  --sweep: 2.4s;
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.04) 55%, rgba(9, 13, 22, 0.6) 72%);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  box-shadow: var(--shadow-glow), inset 0 0 36px rgba(6, 182, 212, 0.14);
+  overflow: hidden;
+}
+/* An outward ping, like a pulse leaving the dish. */
+.radar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--accent-cyan-light);
+  animation: radar-ping var(--sweep) ease-out infinite;
+}
+.radar-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  transform: translate(-50%, -50%);
+}
+.radar-ring-2 { width: 66%; height: 66%; }
+.radar-ring-3 { width: 33%; height: 33%; }
+.radar-axis { position: absolute; background: rgba(34, 211, 238, 0.14); }
+.radar-axis-h { left: 0; right: 0; top: 50%; height: 1px; }
+.radar-axis-v { top: 0; bottom: 0; left: 50%; width: 1px; }
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  /* The bright leading edge sits at 12 o'clock and trails anticlockwise. */
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg,
+              rgba(34, 211, 238, 0.10) 300deg, rgba(34, 211, 238, 0.45) 355deg, rgba(103, 232, 249, 0.9) 360deg);
+  animation: radar-spin var(--sweep) linear infinite;
+}
+.radar-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan-light);
+  box-shadow: 0 0 12px var(--accent-cyan-light);
+  transform: translate(-50%, -50%);
+}
+/* Each blip lights up as the sweep passes its bearing, then fades. */
+.radar-blip {
+  --c: var(--accent-cyan-light);
+  position: absolute;
+  top: var(--y); left: var(--x);
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 10px var(--c);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation: radar-blip var(--sweep) linear infinite;
+  animation-delay: var(--d);
+}
+.radar-blip-emerald { --c: var(--accent-emerald-light); }
+.radar-blip-amber { --c: var(--accent-amber); }
+
+.boot-brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+}
+.boot-brand .brand-tld { color: var(--accent-cyan-light); font-weight: 600; }
+.boot-status {
+  min-height: 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: opacity 0.25s ease;
+}
+.boot-status.is-swapping { opacity: 0; }
+
+/* Entrance animations wait behind the radar, so the tiles still animate in
+   when it lifts instead of having finished unseen. */
+body.booting .main-content *,
+body.booting .main-content *::before,
+body.booting .main-content *::after { animation-play-state: paused !important; }
+
+@keyframes radar-spin { to { transform: rotate(360deg); } }
+@keyframes radar-ping {
+  0% { transform: scale(0.35); opacity: 0.55; }
+  100% { transform: scale(1); opacity: 0; }
+}
+@keyframes radar-blip {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); }
+  55% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep, .radar::after, .radar-blip { animation: none; }
+  .radar-blip { opacity: 0.8; }
+}

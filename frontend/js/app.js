@@ -45,15 +45,56 @@ const App = {
 
   async init() {
     console.log("Initializing Keenr.ai...");
-    this.loadAppConfig();
-    this.restoreDateRange();
-    this.setupEventListeners();
-    window.addEventListener('hashchange', () => this.router());
-    await this.loadTaxonomy();
-    this.loadFreshness();
-    await this.loadCompanies();   // BFSI by default; also backs the global search box
-    if (!location.hash) this.loadOverview();
-    this.router();   // honour a deep link like #/company/{id} on first load
+    this.startBootLoader();
+    try {
+      this.loadAppConfig();
+      this.restoreDateRange();
+      this.setupEventListeners();
+      window.addEventListener('hashchange', () => this.router());
+      await this.loadTaxonomy();
+      this.loadFreshness();
+      await this.loadCompanies();   // BFSI by default; also backs the global search box
+      // The first view: the Industry page, or a deep link like #/company/{id}.
+      const first = location.hash ? this.router() : this.loadOverview();
+      // Never hold the page hostage: lift the radar after 20s regardless.
+      await Promise.race([Promise.resolve(first).catch(() => {}), new Promise(r => setTimeout(r, 20000))]);
+    } finally {
+      this.hideBootLoader();
+    }
+  },
+
+  // ==========================================================
+  // First-load radar (markup in index.html, so it shows before any script)
+  // ==========================================================
+  BOOT_MESSAGES: ['Scanning BFSI signals…', 'Reading filings and news…', 'Ranking opportunities…',
+                  'Mapping decision makers…', 'Writing the briefing…'],
+
+  startBootLoader() {
+    const status = document.getElementById('bootStatus');
+    if (!status) return;
+    let i = 0;
+    this._bootTicker = setInterval(() => {
+      status.classList.add('is-swapping');
+      setTimeout(() => {
+        i = (i + 1) % this.BOOT_MESSAGES.length;
+        status.textContent = this.BOOT_MESSAGES[i];
+        status.classList.remove('is-swapping');
+      }, 250);
+    }, 1600);
+  },
+
+  hideBootLoader() {
+    const el = document.getElementById('bootLoader');
+    if (!el || el.classList.contains('is-done')) return;
+    // Keep it up for at least one sweep, so a fast (cached) load does not
+    // flash a radar for a split second.
+    const wait = Math.max(0, 900 - performance.now());
+    setTimeout(() => {
+      clearInterval(this._bootTicker);
+      el.classList.add('is-done');
+      document.body.classList.remove('booting');   // un-pauses the tile entrances
+      setTimeout(() => el.remove(), 500);
+    }, wait);
   },
 
   // ==========================================================
@@ -67,9 +108,10 @@ const App = {
     if (!hash) return;
     const [route, param] = hash.split('/');
     if (route === 'company' && param) {
-      this.showCompanyPage(param);
+      return this.showCompanyPage(param);
     } else if (['overview', 'opportunity', 'companies'].includes(route)) {
       this.switchView(route, { fromRouter: true });
+      return this._viewLoading;
     }
   },
 
@@ -1276,16 +1318,16 @@ const App = {
     document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
     if (viewName === 'opportunity') {
       document.getElementById('viewOpportunity')?.classList.add('active');
-      this.loadOpportunities();
+      this._viewLoading = this.loadOpportunities();
     }
     if (viewName === 'overview') {
       document.getElementById('viewOverview')?.classList.add('active');
-      this.loadOverview();
+      this._viewLoading = this.loadOverview();
     }
     if (viewName === 'feed') document.getElementById('viewSignalFeed')?.classList.add('active');
     if (viewName === 'companies') {
       document.getElementById('viewCompanies')?.classList.add('active');
-      this.loadGalaxy();
+      this._viewLoading = this.loadGalaxy();
     }
     if (viewName === 'jobs') {
       document.getElementById('viewJobs')?.classList.add('active');
