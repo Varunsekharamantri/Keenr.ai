@@ -2757,7 +2757,7 @@ body {
 /* The deployed copy is read-only: the daily refresh runs on GitHub Actions. */
 body.public-mode #btnRefreshNow { display: none; }
 
-/* ---- First-load radar ----------------------------------------------------
+/* ---- Radar loading screen (first load and date-range changes) ----------------------------------------------------
    Covers the dashboard while its first view loads. The page behind is blurred
    rather than hidden, so the layout is already there when the radar lifts.
    Colours, fonts and glow come from the same tokens as the rest of the app. */
@@ -2861,9 +2861,9 @@ body.public-mode #btnRefreshNow { display: none; }
 
 /* Entrance animations wait behind the radar, so the tiles still animate in
    when it lifts instead of having finished unseen. */
-body.booting .main-content *,
-body.booting .main-content *::before,
-body.booting .main-content *::after { animation-play-state: paused !important; }
+body.radar-open .main-content *,
+body.radar-open .main-content *::before,
+body.radar-open .main-content *::after { animation-play-state: paused !important; }
 
 @keyframes radar-spin { to { transform: rotate(360deg); } }
 @keyframes radar-ping {

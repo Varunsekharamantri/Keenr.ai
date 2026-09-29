@@ -17,9 +17,10 @@
 
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-<body class="dark-theme booting">
-  <!-- First-load radar: in the markup, not injected by script, so it covers the
-       page from the first paint. app.js removes it once the first view has data. -->
+<body class="dark-theme radar-open">
+  <!-- Radar loading screen: in the markup, not injected by script, so it covers
+       the page from the first paint. app.js lifts it once the first view has data,
+       and shows it again while a new date range loads. -->
   <div class="boot-loader" id="bootLoader" role="status" aria-live="polite">
     <div class="boot-card">
       <div class="radar" aria-hidden="true">

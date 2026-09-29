@@ -45,7 +45,7 @@ const App = {
 
   async init() {
     console.log("Initializing Keenr.ai...");
-    this.startBootLoader();
+    const radar = this.showRadar();
     try {
       this.loadAppConfig();
       this.restoreDateRange();
@@ -59,41 +59,56 @@ const App = {
       // Never hold the page hostage: lift the radar after 20s regardless.
       await Promise.race([Promise.resolve(first).catch(() => {}), new Promise(r => setTimeout(r, 20000))]);
     } finally {
-      this.hideBootLoader();
+      // At least one sweep, counted from the first paint, so a fast (cached)
+      // load does not flash the radar for a split second.
+      this.hideRadar(radar, Math.max(0, 900 - performance.now()));
     }
   },
 
   // ==========================================================
-  // First-load radar (markup in index.html, so it shows before any script)
+  // Radar loading screen (markup in index.html, so the first load is covered
+  // before any script runs). Shown for the first load and for every date-range
+  // change; the dashboard stays behind it, blurred.
   // ==========================================================
   BOOT_MESSAGES: ['Scanning BFSI signals…', 'Reading filings and news…', 'Ranking opportunities…',
                   'Mapping decision makers…', 'Writing the briefing…'],
 
-  startBootLoader() {
+  /** Show the radar; returns a token for hideRadar. `first` is the opening line. */
+  showRadar(first) {
+    const el = document.getElementById('bootLoader');
     const status = document.getElementById('bootStatus');
-    if (!status) return;
+    const token = this._radarToken = (this._radarToken || 0) + 1;
+    this._radarShownAt = performance.now();
+    if (!el) return token;
+    clearInterval(this._radarTicker);
+    const lines = first ? [first, ...this.BOOT_MESSAGES.slice(1)] : this.BOOT_MESSAGES;
+    if (status) { status.textContent = lines[0]; status.classList.remove('is-swapping'); }
+    el.classList.remove('is-done');
+    document.body.classList.add('radar-open');     // pauses tile entrances behind it
     let i = 0;
-    this._bootTicker = setInterval(() => {
+    this._radarTicker = setInterval(() => {
+      if (!status) return;
       status.classList.add('is-swapping');
       setTimeout(() => {
-        i = (i + 1) % this.BOOT_MESSAGES.length;
-        status.textContent = this.BOOT_MESSAGES[i];
+        i = (i + 1) % lines.length;
+        status.textContent = lines[i];
         status.classList.remove('is-swapping');
       }, 250);
     }, 1600);
+    return token;
   },
 
-  hideBootLoader() {
-    const el = document.getElementById('bootLoader');
-    if (!el || el.classList.contains('is-done')) return;
-    // Keep it up for at least one sweep, so a fast (cached) load does not
-    // flash a radar for a split second.
-    const wait = Math.max(0, 900 - performance.now());
+  /**
+   * Lift the radar - unless a newer load has shown it since (a second range
+   * click while the first was loading): that one lifts it when it finishes.
+   */
+  hideRadar(token, minVisible = 600) {
+    const wait = Math.max(0, minVisible - (performance.now() - (this._radarShownAt || 0)));
     setTimeout(() => {
-      clearInterval(this._bootTicker);
-      el.classList.add('is-done');
-      document.body.classList.remove('booting');   // un-pauses the tile entrances
-      setTimeout(() => el.remove(), 500);
+      if (token !== this._radarToken) return;
+      clearInterval(this._radarTicker);
+      document.getElementById('bootLoader')?.classList.add('is-done');
+      document.body.classList.remove('radar-open');   // tiles animate in now
     }, wait);
   },
 
@@ -868,23 +883,37 @@ const App = {
     this.refreshAll();
   },
 
-  /** Reload the headline stats plus whichever view is on screen. */
+  /**
+   * Reload the headline stats plus whichever view is on screen, under the
+   * radar: a new date range is a fresh set of queries for every tile.
+   */
   async refreshAll() {
-    this._jsonCache.clear();
-    await this.loadStats();
-    const view = this.state.activeView;
-    if (view === 'overview') { this.state.ovResults = null; this.loadOverview(); }
-    else if (view === 'opportunity') this.loadOpportunities();
-    // The company page is a view too: without this it kept showing the window
-    // it was first opened with, however the date range changed.
-    else if (view === 'company' && this.state.currentCompanyId) this.showCompanyPage(this.state.currentCompanyId);
-    else if (view === 'feed') this.loadEvents();
-    else if (view === 'signals') this.loadSignals();
-    else if (view === 'companies') this.loadGalaxy();
-    else if (view === 'watchlists') { this.loadWatchlists(); this.loadAlerts(); }
-    else if (view === 'jobs') this.loadJobs();
-    else if (view === 'analytics') this.loadAnalytics();
-    else if (view === 'tenders') this.loadTenders();
+    const r = this.state.dateRange || {};
+    const label = r.preset === 'custom'
+      ? (r.start && r.end ? `Loading ${r.start} to ${r.end}…` : 'Loading your date range…')
+      : `Loading the ${this.RANGE_LABELS[r.preset] || 'selected range'}…`;
+    const radar = this.showRadar(label);
+    try {
+      this._jsonCache.clear();
+      await this.loadStats();
+      const view = this.state.activeView;
+      let loading;
+      if (view === 'overview') { this.state.ovResults = null; loading = this.loadOverview(); }
+      else if (view === 'opportunity') loading = this.loadOpportunities();
+      // The company page is a view too: without this it kept showing the window
+      // it was first opened with, however the date range changed.
+      else if (view === 'company' && this.state.currentCompanyId) loading = this.showCompanyPage(this.state.currentCompanyId);
+      else if (view === 'feed') loading = this.loadEvents();
+      else if (view === 'signals') loading = this.loadSignals();
+      else if (view === 'companies') loading = this.loadGalaxy();
+      else if (view === 'watchlists') loading = Promise.all([this.loadWatchlists(), this.loadAlerts()]);
+      else if (view === 'jobs') loading = this.loadJobs();
+      else if (view === 'analytics') loading = this.loadAnalytics();
+      else if (view === 'tenders') loading = this.loadTenders();
+      await Promise.race([Promise.resolve(loading).catch(() => {}), new Promise(res => setTimeout(res, 20000))]);
+    } finally {
+      this.hideRadar(radar);
+    }
   },
 
   /**
