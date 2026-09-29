@@ -245,7 +245,15 @@ const Components = {
       : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
   },
 
-  insEmpty(msg) { return `<p class="ins-empty">${escapeHtml(msg)}</p>`; },
+  /**
+   * Every tile with nothing to show says the same thing, centred in the tile.
+   * `msg` is kept at call sites as documentation of the case, not shown.
+   */
+  EMPTY_TILE: 'Limited news found in this area',
+  insEmpty(msg) {
+    return `<div class="ins-empty-state" role="status" title="${escapeHtml(msg || '')}">
+      <i class="fa-solid fa-satellite-dish"></i><span>${this.EMPTY_TILE}</span></div>`;
+  },
 
   /** One entry per source document, newest first. */
   insUniqueDocs(events) {
@@ -693,7 +701,10 @@ const Components = {
     }
     // One scale for every group, so a long bar means the same thing in each.
     const max = Math.max(1, ...groups.flatMap(g => g.rows.map(r => r.intent_score || 0)));
-    return `<div class="opp-lb-chart">` + groups.map(g => `
+    // A fill list: it spans two rows beside People to Tap and Recommended
+    // Targets, so it shows as many groups as fit their height rather than
+    // setting it (8 groups used to stretch a 2-card Recommended Targets tile).
+    return `<div class="opp-lb-chart ins-fill" data-min="3">` + groups.map(g => `
       <div class="opp-lb">
         <div class="opp-lb-head">
           <span class="opp-lb-theme">${escapeHtml(g.theme)}</span>
@@ -977,6 +988,7 @@ const Components = {
 
   animateIn(el) {
     if (!el) return;
+    this.tidyEmpty(el);
     el.querySelectorAll(this.FX_ITEMS).forEach(node => {
       const i = Array.prototype.indexOf.call(node.parentNode.children, node);
       node.style.setProperty('--i', Math.min(i, 14));
@@ -1054,13 +1066,29 @@ const Components = {
   },
 
   /** Start every fillable list at its minimum, so an unfitted list never inflates its row. */
+  /**
+   * A tile whose only content is the empty message shows just that message -
+   * not a summary line saying the same thing ("No leadership moves...") above it.
+   */
+  tidyEmpty(scope) {
+    const root = scope || document;
+    const bodies = root.matches && root.matches('.ins-body') ? [root] : [...root.querySelectorAll('.ins-body')];
+    bodies.forEach(body => {
+      const kids = [...body.children];
+      if (!kids.some(k => k.classList.contains('ins-empty-state'))) return;
+      if (kids.every(k => k.classList.contains('ins-empty-state') || k.classList.contains('ins-insight')))
+        kids.filter(k => k.classList.contains('ins-insight')).forEach(k => k.remove());
+    });
+  },
+
   compactLists(scope) {
-    (scope || document).querySelectorAll('ul.ins-fill').forEach(list =>
+    this.tidyEmpty(scope);
+    (scope || document).querySelectorAll('.ins-fill').forEach(list =>
       [...list.children].slice(+list.dataset.min || 0).forEach(li => { li.hidden = true; }));
   },
 
   fillLists(scope) {
-    const lists = [...(scope || document).querySelectorAll('ul.ins-fill')].filter(l => l.offsetParent);
+    const lists = [...(scope || document).querySelectorAll('.ins-fill')].filter(l => l.offsetParent);
     this.compactLists(scope);
     lists.forEach(list => {
       const tile = list.closest('.ins-tile');
@@ -1073,6 +1101,8 @@ const Components = {
       }
       this.spreadList(list);
     });
+    (scope || document).querySelectorAll('.ins-body > .opp-targets')
+      .forEach(box => { box.style.rowGap = ''; this.spreadList(box); });
   },
 
   /**
@@ -1917,7 +1947,7 @@ const Components = {
           </div>
           <aside class="cp-key">
             <h4>Key signals <span>(last ${data.signal_days} days)</span></h4>
-            ${keySignals ? `<ul>${keySignals}</ul>` : `<p class="ins-empty">No activity in the last ${data.signal_days} days.</p>`}
+            ${keySignals ? `<ul>${keySignals}</ul>` : Components.insEmpty(`No activity in the last ${data.signal_days} days.`)}
             ${band ? `<div class="cp-topscore"><span class="score-badge ${band.cls}">${band.label}</span>
                 <span>strongest opportunity (${t.top_score} ${t.top_score === 1 ? 'point' : 'points'}) · ${t.signals} ${t.signals === 1 ? 'opportunity' : 'opportunities'}</span></div>` : ''}
           </aside>
@@ -2010,7 +2040,7 @@ const Components = {
   },
 
   cpPriorities(items) {
-    if (!items || !items.length) return `<p class="ins-empty">No ranked priorities in this window.</p>`;
+    if (!items || !items.length) return this.insEmpty('No ranked priorities in this window.');
     return `<ul class="cp-prio">` + items.map(p => `
       <li>
         <span class="cp-prio-icon" style="background:${this.insTheme(p.initiative_id).hue}22;color:${this.insTheme(p.initiative_id).hue}">
@@ -2028,7 +2058,7 @@ const Components = {
   },
 
   cpTechnology(tech) {
-    if (!tech || !tech.length) return `<p class="ins-empty">No technology initiatives in this window.</p>`;
+    if (!tech || !tech.length) return this.insEmpty('No technology initiatives in this window.');
     const total = tech.reduce((a, t) => a + t.mentions, 0);
     const tabs = tech.slice(0, 5).map((t, i) => `
       <button type="button" class="cp-tech-tab${i === 0 ? ' active' : ''}" data-tech="${escapeHtml(t.initiative_id)}">
@@ -2104,7 +2134,7 @@ const Components = {
   },
 
   cpWhy(items) {
-    if (!items || !items.length) return `<p class="ins-empty">Not enough activity to draw conclusions yet.</p>`;
+    if (!items || !items.length) return this.insEmpty('Not enough activity to draw conclusions yet.');
     return `<ul class="cp-why">` + items.map(w => `
       <li>
         <span class="cp-why-tag">${escapeHtml(w.tag)}</span>
@@ -2117,7 +2147,7 @@ const Components = {
     const items = [...(news || []), ...(regulatory || [])]
       .sort((a, b) => String(b.date).localeCompare(String(a.date)))
       .slice(0, 8);
-    if (!items.length) return `<p class="ins-empty">No news in this window.</p>`;
+    if (!items.length) return this.insEmpty('No news in this window.');
     return `<div class="cp-news">` + items.map(n => {
       const parts = splitHeadline(n.title);
       const th = this.insTheme(n.initiative_id);
