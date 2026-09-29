@@ -1229,7 +1229,24 @@ const App = {
     if (!this._fillBound) {
       this._fillBound = true;
       window.addEventListener('resize', () => this.scheduleFill());
+      // A tile can also change height with no window resize: a neighbour in
+      // its row loads later, an image or web font arrives. Re-fit then too, or
+      // the list keeps the length it was measured at. (Fitting never changes a
+      // tile's height, so this cannot loop.)
+      if (window.ResizeObserver) {
+        this._tileHeights = new WeakMap();
+        this._tileObserver = new ResizeObserver(entries => {
+          const moved = entries.some(e => {
+            const h = Math.round(e.contentRect.height);
+            const was = this._tileHeights.get(e.target);
+            this._tileHeights.set(e.target, h);
+            return was !== undefined && Math.abs(was - h) > 2;
+          });
+          if (moved) this.scheduleFill();
+        });
+      }
     }
+    if (this._tileObserver) document.querySelectorAll('.ins-tile').forEach(t => this._tileObserver.observe(t));
   },
 
   openDrawer(title) {

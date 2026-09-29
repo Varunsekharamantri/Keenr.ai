@@ -2413,9 +2413,12 @@ body {
    the tile's full height, its main list grows into it, and the list spreads
    its items evenly - so a shorter tile reads as spaced out, not unfinished. */
 .ins-tile > .ins-body { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: space-between; }
+/* Lists fill the tile's height but keep their rows together at the top;
+   spreadList() (components.js) widens the gaps a little when there is room,
+   capped, so a short list never ends up with rows far apart. */
 .ins-body > .ins-rows,
 .ins-body > .ins-lead,
-.ins-body > .ins-news,
+.ins-body > .ins-news { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: flex-start; }
 .ins-body > .opp-lb-chart { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: space-between; }
 .ins-body > .opp-table-wrap { flex: 1 0 auto; display: flex; }
 .ins-body > .opp-table-wrap > .opp-table { height: 100%; }

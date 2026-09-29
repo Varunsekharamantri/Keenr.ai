@@ -1065,12 +1065,31 @@ const Components = {
     lists.forEach(list => {
       const tile = list.closest('.ins-tile');
       if (!tile || tile.classList.contains('is-retracted')) return;
+      list.style.rowGap = '';
       const base = tile.getBoundingClientRect().height;
       for (const li of [...list.children].slice(+list.dataset.min || 0)) {
         li.hidden = false;
         if (tile.getBoundingClientRect().height > base + 0.5) { li.hidden = true; break; }
       }
+      this.spreadList(list);
     });
+  },
+
+  /**
+   * Share the room left under the last row among the gaps - up to a point.
+   * Lists used to be spread top to bottom (space-between), so a tile with few
+   * rows to show - or one stretched by a taller neighbour - pushed two or
+   * three rows hundreds of pixels apart. Now rows stay together: each gap
+   * grows by at most SPREAD_MAX px and any remaining room sits below the list.
+   */
+  SPREAD_MAX: 14,
+  spreadList(list) {
+    const rows = [...list.children].filter(li => !li.hidden && li.getBoundingClientRect().height > 0);
+    if (rows.length < 2) return;
+    const room = list.getBoundingClientRect().bottom - rows[rows.length - 1].getBoundingClientRect().bottom;
+    if (room <= 1) return;
+    const gap = parseFloat(getComputedStyle(list).rowGap) || 0;
+    list.style.rowGap = `${gap + Math.min(this.SPREAD_MAX, room / (rows.length - 1))}px`;
   },
 
   /** Cap a list at `n` rows and scroll the rest. Measured, since rows vary in height. */
