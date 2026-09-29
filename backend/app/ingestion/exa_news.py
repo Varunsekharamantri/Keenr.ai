@@ -3,6 +3,7 @@ import logging
 import httpx
 from typing import List, Optional
 from ..config import settings
+from .pub_date import floor_from, resolve as resolve_date
 from .base import BaseIngestionAdapter, IngestedDoc, is_relevant_to_company
 from .exa_budget import ExaBudgetTracker, with_date_floor as _with_date_floor
 
@@ -92,18 +93,23 @@ class ExaNewsAdapter(BaseIngestionAdapter):
                     return []
 
                 data = response.json()
+                floor = floor_from(start_published_date)
                 for result in data.get("results", []):
                     text = (result.get("text") or "").strip()
                     if len(text) < 50:
                         continue
 
-                    pub_dt = self._parse_date(result.get("publishedDate"))
                     title = result.get("title") or f"News for {company_name}"
                     url = result.get("url") or result.get("id") or ""
                     if not url:
                         continue
                     if not is_relevant_to_company(f"{title} {text}", company_name, ticker, aliases):
                         logger.info(f"Discarding Exa result not actually about {company_name}: {title[:80]}")
+                        continue
+                    # A result with no provable date is dropped, never stamped
+                    # with today's date (see pub_date.py).
+                    pub_dt = resolve_date(result.get("publishedDate"), url, text, title, floor)
+                    if pub_dt is None:
                         continue
 
                     docs.append(IngestedDoc(
@@ -125,11 +131,3 @@ class ExaNewsAdapter(BaseIngestionAdapter):
             logger.error(f"Error fetching Exa news for {company_name}: {e}")
 
         return docs
-
-    def _parse_date(self, date_str) -> datetime.datetime:
-        if date_str:
-            try:
-                return datetime.datetime.fromisoformat(date_str.replace("Z", "+00:00")).replace(tzinfo=None)
-            except Exception:
-                pass
-        return datetime.datetime.utcnow()

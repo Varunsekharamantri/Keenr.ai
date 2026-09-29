@@ -62,6 +62,10 @@ class Settings:
                               and os.getenv("PUBLIC_MODE", "false").lower() != "true")
     SCHEDULE_INTERVAL_HOURS: float = float(os.getenv("SCHEDULE_INTERVAL_HOURS", "24"))
     SCHEDULE_LIMIT_PER_COMPANY: int = int(os.getenv("SCHEDULE_LIMIT_PER_COMPANY", "2"))
+    # The daily refresh asks for news published in the last N days only, and
+    # drops anything older or undated. Without a window, search APIs return
+    # their best matches from any year, which then showed up as new.
+    NEWS_LOOKBACK_DAYS: int = int(os.getenv("NEWS_LOOKBACK_DAYS", "14"))
     SCHEDULE_RUN_ON_STARTUP: bool = os.getenv("SCHEDULE_RUN_ON_STARTUP", "false").lower() == "true"
     # Phase 1 scope is narrowed to BFSI (Americas + RoW). Set to empty/"all" to widen back out.
     _raw_sector_filter = os.getenv("SCHEDULE_SECTOR_FILTER", "BFSI")

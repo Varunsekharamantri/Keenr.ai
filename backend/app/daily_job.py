@@ -105,11 +105,16 @@ def run_daily(force: bool = False, limit_per_company: int = None) -> dict:
     db = SessionLocal()
     try:
         pipeline = IngestionPipeline()
+        # Only news from the last NEWS_LOOKBACK_DAYS: the searches are told the
+        # window, and results outside it (or with no date) are dropped.
+        news_floor = (day - datetime.timedelta(days=settings.NEWS_LOOKBACK_DAYS)).isoformat()
+        status["news_since"] = news_floor
         job = pipeline.run_batch_ingestion(
             db=db,
             limit_per_company=limit_per_company or settings.SCHEDULE_LIMIT_PER_COMPANY,
             sector_filter=settings.SCHEDULE_SECTOR_FILTER,
             sources=sources,
+            start_published_date=news_floor,
         )
         status["documents"] = job.items_ingested
         status["events"] = job.events_extracted

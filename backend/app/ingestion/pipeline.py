@@ -296,7 +296,7 @@ class IngestionPipeline:
             news_limit = limit + 3 if self.exa_adapter.quota_exhausted else limit
             account(self._run_source(db, company, "news_rss", lambda: self.news_adapter.fetch_documents(
                 ticker=company.ticker, cik=company.cik, company_name=company.name,
-                limit=news_limit, aliases=company.aliases
+                limit=news_limit, aliases=company.aliases, start_published_date=start_published_date
             ), source_stats))
 
         # 3. Exa neural search (full article text, richer signal than RSS).

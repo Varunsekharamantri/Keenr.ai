@@ -6,6 +6,7 @@ import httpx
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any, Optional
 from .base import BaseIngestionAdapter, IngestedDoc, is_relevant_to_company
+from .pub_date import floor_from
 
 logger = logging.getLogger(__name__)
 
@@ -28,14 +29,22 @@ class NewsRssAdapter(BaseIngestionAdapter):
         cik: str,
         company_name: str,
         limit: int = 5,
-        aliases: Optional[List[str]] = None
+        aliases: Optional[List[str]] = None,
+        start_published_date: Optional[str] = None,
     ) -> List[IngestedDoc]:
         docs: List[IngestedDoc] = []
+        floor = floor_from(start_published_date)
         
         # Build search query for technology / strategic disclosures
         # e.g., "JPMorgan" AND (cloud OR AI OR technology OR digital OR modernization OR partner)
         clean_name = company_name.replace("&", "and").replace(",", "").split(" Inc")[0].split(" Corp")[0].strip()
         query = f'"{clean_name}" AND (cloud OR "artificial intelligence" OR AI OR technology OR digital OR platform OR vendor OR cyber)'
+        # Google News ranks by relevance across all time unless told otherwise,
+        # so without a window a daily run mostly re-finds old stories.
+        # `when:Nd` restricts it to the last N days.
+        if floor is not None:
+            days = max(1, (datetime.datetime.utcnow() - floor).days + 1)
+            query += f" when:{days}d"
         encoded_query = urllib.parse.quote(query)
         rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=en-US&gl=US&ceid=US:en"
         
@@ -76,15 +85,16 @@ class NewsRssAdapter(BaseIngestionAdapter):
                         desc_raw = getattr(item, "description", "")
                         source_name = "News Feed"
                     
-                    # Parse publication date (e.g., 'Wed, 25 Feb 2026 14:30:00 GMT')
-                    pub_dt = datetime.datetime.utcnow()
-                    if pub_str:
-                        try:
-                            # Parse RFC-822 / GMT dates
-                            pub_clean = pub_str.strip()
-                            pub_dt = datetime.datetime.strptime(pub_clean[:25], "%a, %d %b %Y %H:%M:%S")
-                        except Exception:
-                            pub_dt = datetime.datetime.utcnow()
+                    # Publication date (e.g. 'Wed, 25 Feb 2026 14:30:00 GMT'). An
+                    # item without a readable one is dropped rather than dated
+                    # today, and so is one older than the requested window.
+                    try:
+                        pub_dt = datetime.datetime.strptime(pub_str.strip()[:25], "%a, %d %b %Y %H:%M:%S")
+                    except Exception:
+                        logger.info(f"Dropping undated News RSS item: {title[:80]}")
+                        continue
+                    if floor is not None and pub_dt < floor:
+                        continue
                     
                     desc_text = ""
                     if desc_raw:
