@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Market Signals Platform - Phase-Wise Development Architecture</title>
+  <title>Keenr.ai - Phase-Wise Architecture (as built)</title>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 960px; margin: 0 auto; padding: 2rem; color: #1a1a1a; background: #fff; }
@@ -23,297 +23,162 @@
   </style>
 </head>
 <body>
-<h1>Market Signals Platform — Phase-Wise Development Architecture</h1>
-<p>A system that turns <strong>public company disclosures</strong> (filings, press releases, earnings, hiring, patents, news) into <strong>actionable market signals</strong> for IT products and services vendors.</p>
+<h1>Keenr.ai — Phase-Wise Architecture (as built)</h1>
+<p>Keenr.ai turns <strong>public disclosures from banks and insurers</strong> — SEC filings, earnings decks, investor-relations releases, job postings and news — into <strong>ranked, evidence-backed opportunities</strong> for IT-services sales teams: which account is doing what, how strongly the evidence says so, who the relevant technology leaders are, and a short written briefing on every chart.</p>
+<p>This document started as a plan (August 2026) and has been rewritten to describe what was actually built. Each phase records <strong>what was planned, what was built, and why it changed</strong> — the changes are the interesting part.</p>
+<blockquote><p><strong>Live:</strong> public read-only demo on Render · data refreshed every morning at 08:00 IST by GitHub Actions into a Neon Postgres database.</p></blockquote>
 <hr>
-<h2>1. Vision & Core Concept</h2>
+<h2>1. What the product answers</h2>
+<table><thead><tr><th>Question a seller asks</th><th>Where Keenr.ai answers it</th></tr></thead><tbody><tr><td>What are banks and insurers investing in right now?</td><td><strong>Industry</strong> page — seven tiles (Tech Trends, Business Trends, Regulatory, Budgets &amp; Deals, Leadership, News, Results), each with a written summary and "View evidence"</td></tr><tr><td>Which accounts should I call, and why now?</td><td><strong>Opportunity</strong> page — Featured opportunities (with the documents behind each), Rising Fast, Competitive Pressure, People to Tap, Recommended plays</td></tr><tr><td>Who exactly should I talk to?</td><td><strong>People to Tap</strong> — verified senior technology leaders with LinkedIn links, matched to the opportunity</td></tr><tr><td>What is one company doing?</td><td><strong>Company page</strong> — its opportunities, evidence timeline, technology vendors, leaders</td></tr><tr><td>How is the market structured?</td><td><strong>Companies</strong> page — a solar-system map: verticals (stars) → sub-industries (planets) → companies (satellites)</td></tr></tbody></table>
+<p><strong>Example of an output (the "signal"):</strong></p>
+<blockquote><p><em>Voya Financial — AI &amp; Machine Learning — <strong>High</strong> (8 points = 2 filings (6) + 2 news stories (2)).</em> Click through to the four documents; the lead for AI at Voya is listed under People to Tap.</p></blockquote>
+<hr>
+<h2>2. Architecture overview</h2>
 <div class="mermaid">
 flowchart LR
-    subgraph Sources["Public Data Sources"]
-        SEC[SEC / EDGAR]
-        NEWS[News & PR]
-        JOBS[Job Postings]
-        PAT[Patents]
-        IR[Investor Relations]
+    subgraph Sources["Public sources (free / free-tier)"]
+        SEC[SEC EDGAR<br/>10-K · 10-Q · 8-K]
+        DECK[Earnings decks<br/>8-K exhibits]
+        IR[IR press releases<br/>Exa]
+        JOBS[Job postings<br/>Exa]
+        NEWS[News<br/>Google News RSS · Exa]
+        LI[LinkedIn profiles<br/>Exa people search]
+        TED[EU TED tenders]
     end
 
-    subgraph Platform["Signal Platform"]
-        ING[Ingestion]
-        NLP[Extraction & NLP]
-        ENT[Entity Resolution]
-        SIG[Signal Engine]
-        SCORE[Scoring & Ranking]
+    subgraph Pipeline["Daily pipeline (GitHub Actions, 08:00 IST)"]
+        CAD[Cadence planner<br/>which sources today]
+        ING[Adapters + budgets<br/>relevance + date checks]
+        EXT[Extraction<br/>rules first, LLM backstop]
+        SCORE[Signal engine<br/>points → High/Med/Low]
+        PPL[People to Tap refresh]
+        WARM[Summary warm-up<br/>grounded LLM narration]
     end
 
-    subgraph Output["For IT Vendors"]
-        DASH[Dashboard]
-        API[API / Alerts]
-        CRM[CRM Integrations]
+    DB[(Neon Postgres<br/>shared state)]
+
+    subgraph Serve["Serving (Render, read-only)"]
+        API[FastAPI<br/>windowed scoring per request]
+        UI[Vanilla JS dashboard]
     end
 
-    Sources --> ING --> NLP --> ENT --> SIG --> SCORE --> Output
+    Sources --> CAD --> ING --> EXT --> SCORE --> PPL --> WARM --> DB
+    DB --> API --> UI
 </div>
-<p><strong>Example signal:</strong></p>
-<blockquote><p><em>"Global bank disclosed $200M cloud modernization program + 40 Azure architect hires in Q2 → High intent for cloud migration services in BFSI."</em></p>
-</blockquote>
+<p><strong>Key architectural choices</strong></p>
+<table><thead><tr><th>Decision</th><th>Why</th></tr></thead><tbody><tr><td><strong>Monolith with clear modules</strong> (<code>ingestion/</code>, <code>extraction/</code>, <code>signals/</code>, <code>people/</code>, <code>ai/</code>, <code>api/</code>)</td><td>One developer, one deployable; module boundaries kept so parts can split later</td></tr><tr><td><strong>Batch pipeline + read-only web tier</strong></td><td>All fetching, extraction and LLM spend happens once a day in the pipeline; the public site only reads, so a visitor can never spend an API budget</td></tr><tr><td><strong>Shared state in the database, not files</strong></td><td>The GitHub Actions runner's disk is discarded after every run — budgets, last-run status and the AI-summary cache live in <code>app_state</code> / <code>ai_summaries</code> so the pipeline and the web app see the same values</td></tr><tr><td><strong>Scores computed per request for the chosen window</strong></td><td>Re-scoring every (company, initiative) group takes ~24 ms, so the dashboard shows scores built from exactly the selected date range instead of a precomputed 180-day number under a "last 30 days" label</td></tr><tr><td><strong>Explainable scoring over a clever formula</strong></td><td>A 0–100 weighted formula ranked sensibly but could not be explained to a seller; replaced by points per document (§5, Phase 3)</td></tr><tr><td><strong>LLM writes sentences, code owns facts</strong></td><td>Every number in a summary is computed; the model only phrases it, and a validator rejects any sentence with a number or name that was not supplied (§6)</td></tr></tbody></table>
 <hr>
-<h2>2. Signal Taxonomy (Define Early)</h2>
-<table><thead><tr><th>Category</th><th>Examples</th><th>IT Vendor Relevance</th></tr></thead><tbody>
-<tr><td><strong>Technology Initiatives</strong></td><td>Cloud migration, AI/ML, data platform, cybersecurity</td><td>Direct service/product fit</td></tr>
-<tr><td><strong>Strategic Priorities</strong></td><td>Digital transformation, cost optimization, ESG</td><td>Budget & timing signals</td></tr>
-<tr><td><strong>Organizational Change</strong></td><td>New CIO/CTO, restructuring, M&A</td><td>Decision-maker & entry point</td></tr>
-<tr><td><strong>Spending Signals</strong></td><td>CapEx, vendor RFPs, partnership announcements</td><td>Procurement window</td></tr>
-<tr><td><strong>Regulatory / Compliance</strong></td><td>GDPR, HIPAA, PCI, AI regulation</td><td>Compliance-driven IT spend</td></tr>
-<tr><td><strong>Hiring Patterns</strong></td><td>Roles, skills, geo expansion</td><td>Implementation readiness</td></tr>
-</tbody></table>
-<p>Lock this taxonomy in <strong>Phase 0</strong> — it drives scraping targets, NLP labels, and dashboard filters.</p>
+<h2>3. Signal taxonomy</h2>
+<p>Locked early and kept closed so that extraction labels, scoring and filters stay stable. Stored in <code>backend/data/taxonomy.yaml</code>, each initiative mapped to the IT offering a vendor would pitch.</p>
+<table><thead><tr><th>Category</th><th>Initiatives (15)</th></tr></thead><tbody><tr><td><strong>Technology Initiatives</strong></td><td>Cloud migration · AI / GenAI / ML · Data platform &amp; analytics · Cybersecurity &amp; zero trust · Core-system modernization · ERP / CRM / enterprise apps · DevSecOps &amp; platform engineering</td></tr><tr><td><strong>Strategic Priorities</strong></td><td>Digital transformation · Cost optimization · ESG &amp; sustainability tech</td></tr><tr><td><strong>Organizational Change</strong></td><td>Executive leadership change · M&amp;A integration</td></tr><tr><td><strong>Spending &amp; Procurement</strong></td><td>CapEx / IT budget · Vendor partnership / RFP</td></tr><tr><td><strong>Regulatory &amp; Compliance</strong></td><td>Regulatory compliance tech</td></tr></tbody></table>
+<p><code>executive_leadership_change</code> is tracked (it feeds the Leadership tile and triggers People to Tap refreshes) but <strong>is not an opportunity</strong> — a new CIO is an entry point, not a project — so it is excluded from Featured, Rising Fast and recommendations.</p>
+<p><strong>Known limitation:</strong> a closed taxonomy cannot notice a new theme (stablecoins, agentic AI) until someone adds it. An "Emerging themes" discovery tile is on the roadmap.</p>
+<p><strong>Company universe:</strong> 683 companies seeded; the product is scoped to <strong>199 BFSI companies</strong>, split <strong>98 Americas / 101 Rest of World</strong> (headquarters from SEC addresses plus a curated table), and mapped to <strong>4 verticals and 20 sub-industries</strong> for the Companies map (<code>bfsi_taxonomy.py</code>, a hand-curated table that refuses to apply if any line matches zero or several companies).</p>
 <hr>
-<h2>3. High-Level System Architecture</h2>
-<div class="mermaid">
-flowchart TB
-    subgraph Ingestion["Layer 1: Ingestion"]
-        Sched[Scheduler / Cron]
-        API_Adapters[API Adapters]
-        Scrapers[Scrapers + Rate Limiter]
-        Queue[Message Queue]
-    end
-
-    subgraph Storage["Layer 2: Storage"]
-        Raw[(Raw Documents)]
-        Meta[(Company Metadata)]
-        Events[(Structured Events)]
-        Signals[(Signals & Scores)]
-    end
-
-    subgraph Intelligence["Layer 3: Intelligence"]
-        Parse[PDF/HTML Parser]
-        NER[Entity Extraction]
-        Classify[Initiative Classifier]
-        Dedup[Deduplication]
-        Timeline[Event Timeline]
-    end
-
-    subgraph Delivery["Layer 4: Delivery"]
-        REST[REST/GraphQL API]
-        Web[Web Dashboard]
-        Notify[Email / Slack Alerts]
-    end
-
-    Sched --> API_Adapters & Scrapers
-    API_Adapters & Scrapers --> Queue
-    Queue --> Raw
-    Raw --> Parse --> NER --> Classify --> Events
-    Events --> Dedup --> Timeline --> Signals
-    Meta --> NER
-    Signals --> REST & Web & Notify
-</div>
+<h2>4. Data sources (as used)</h2>
+<table><thead><tr><th>Source</th><th>Access</th><th>What it contributes</th><th>Cadence</th><th>Budget control</th></tr></thead><tbody><tr><td><strong>SEC EDGAR</strong></td><td>Free API (<code>data.sec.gov</code>, User-Agent required)</td><td>10-K / 10-Q / 8-K text, company HQ addresses</td><td>Weekly; daily in results season</td><td>Rate-limit delay</td></tr><tr><td><strong>Earnings decks</strong></td><td>8-K exhibits (EX-99.x) from the EDGAR filing index; <code>pdfplumber</code> for PDFs</td><td>Stated strategic pillars, spend</td><td>Weekly; daily in results season</td><td>—</td></tr><tr><td><strong>IR press releases</strong></td><td>Exa search (news category)</td><td>Announcements before they reach filings</td><td>Mon/Thu; daily in results season</td><td>Own monthly Exa budget</td></tr><tr><td><strong>Job postings</strong></td><td>Exa search (no category, so job boards appear)</td><td>Hiring intent — "Head of GenAI"</td><td>Weekly</td><td>Own monthly Exa budget</td></tr><tr><td><strong>News (full text)</strong></td><td>Exa search</td><td>Partnerships, launches</td><td>Daily</td><td>Monthly budget, daily sub-budget, least-recently-fetched rotation</td></tr><tr><td><strong>News (headlines)</strong></td><td>Google News RSS</td><td>Breadth across all 199 companies</td><td>Daily</td><td>Free; <code>when:14d</code> window</td></tr><tr><td><strong>Leaders</strong></td><td>Exa "linkedin profile" category</td><td>People to Tap</td><td>On demand + leadership-change trigger</td><td>Own monthly budget, 15 searches/day</td></tr><tr><td><strong>Public tenders</strong></td><td>EU TED API</td><td>Public-sector IT RFPs (separate stream)</td><td>Daily</td><td>Free</td></tr></tbody></table>
+<p><strong>Results seasons</strong> (daily filings/IR polling): 10 Jan–31 Mar, 10 Apr–25 May, 10 Jul–25 Aug, 10 Oct–25 Nov (<code>ingestion/cadence.py</code>).</p>
+<p><strong>Every document must pass three checks before it is stored:</strong></p>
+<ol><li><strong>About the company</strong> — the company's name (or a verified alias) must appear; homonyms are rejected (a ticker like "DE" matching the Spanish word "de" is not Deere).</li><li><strong>Has a provable publication date</strong> — from the API, else the URL (<code>/2026/01/20/</code>), else the page's own publication metadata (JSON-LD <code>datePublished</code>, <code>article:published_time</code>), else the byline. <em>Modified/updated</em> timestamps are ignored. <strong>No date → dropped.</strong> (Before this rule, undated vendor case studies from 2021–2024 were stamped with the fetch date and made up three quarters of the "last 30 days" view.)</li><li><strong>Inside the news window</strong> — the daily run requests only the last 14 days (<code>NEWS_LOOKBACK_DAYS</code>) and drops anything older.</li></ol>
+<p><strong>Considered and not used:</strong> NewsAPI/GNews (Exa + RSS gave full text and breadth for free), USPTO patents (the API moved to a key-gated portal whose contract could not be verified; the adapter stays as a no-op), SAM.gov (key required), Apollo / Perplexity for people data (work-email signup, or unverifiable LLM recall of names and URLs).</p>
 <hr>
-<h2>4. Free Data Sources Matrix</h2>
-<table><thead><tr><th>Source</th><th>Method</th><th>Signal Type</th><th>Notes</th></tr></thead><tbody>
-<tr><td><strong>SEC EDGAR</strong></td><td>Free API</td><td>Strategy, risk, CapEx, M&A</td><td>10-K, 10-Q, 8-K — primary for US public cos</td></tr>
-<tr><td><strong>Company IR / RSS</strong></td><td>Scrape + RSS</td><td>Initiatives, guidance</td><td>Earnings decks, press releases</td></tr>
-<tr><td><strong>NewsAPI / GNews / Mediastack</strong></td><td>Free tier API</td><td>Announcements, partnerships</td><td>Rate limits; cache aggressively</td></tr>
-<tr><td><strong>USPTO / Google Patents</strong></td><td>Free API</td><td>R&D direction, tech focus</td><td>Lagging but strategic</td></tr>
-<tr><td><strong>Career pages / LinkedIn jobs</strong></td><td>Scrape (careful)</td><td>Hiring intent, stack</td><td>Prefer company career pages over LinkedIn</td></tr>
-<tr><td><strong>GitHub public orgs</strong></td><td>Free API</td><td>Open-source stack signals</td><td>Good for tech-native firms</td></tr>
-<tr><td><strong>Wikidata / OpenCorporates</strong></td><td>Free API</td><td>Company metadata, hierarchy</td><td>Entity resolution</td></tr>
-<tr><td><strong>EU / gov registers</strong></td><td>Scrape/API</td><td>Regulatory, tenders</td><td>EU TED for public procurement</td></tr>
-<tr><td><strong>Earnings transcripts</strong></td><td>Scrape (Seeking Alpha, etc.)</td><td>Stated priorities</td><td>Check ToS; prefer official IR PDFs first</td></tr>
-</tbody></table>
-<p><strong>Scraping rule:</strong> Use APIs first; scrape only when no API exists, with rate limits, robots.txt respect, and cached snapshots.</p>
-<hr>
-<h2>5. Phase-Wise Development Plan</h2>
-<h3>Phase 0 — Foundation (2–3 weeks)</h3>
-<p><strong>Goal:</strong> Scope, taxonomy, and a thin vertical slice.</p>
-<table><thead><tr><th>Deliverable</th><th>Details</th></tr></thead><tbody>
-<tr><td>Signal taxonomy v1</td><td>15–25 initiative types mapped to IT offerings</td></tr>
-<tr><td>Target industries v1</td><td>Start with 2: <strong>BFSI + Healthcare</strong> (rich public disclosure)</td></tr>
-<tr><td>Company universe</td><td>~500 companies (S&P 500 + mid-cap in target sectors)</td></tr>
-<tr><td>Legal review</td><td>robots.txt, SEC fair use, GDPR if EU data</td></tr>
-<tr><td>Tech choices</td><td>See Section 6</td></tr>
-</tbody></table>
-<p><strong>Architecture decisions:</strong></p>
-<li>Monolith-first (faster iteration) with clear module boundaries</li>
-<li>PostgreSQL + object storage (S3-compatible / MinIO)</li>
-<li>Redis for queue + cache</li>
-<p><strong>Exit criteria:</strong> One company → one filing → one extracted initiative → stored as event.</p>
-<hr>
-<h3>Phase 1 — MVP Ingestion Pipeline (4–6 weeks)</h3>
-<p><strong>Goal:</strong> Automated pipeline for SEC + news for 2 industries.</p>
+<h2>5. Phases — planned vs built</h2>
+<h3>Phase 0 — Foundation ✅</h3>
+<table><thead><tr><th>Planned</th><th>Built</th></tr></thead><tbody><tr><td>BFSI + Healthcare, ~500 companies</td><td><strong>BFSI only</strong>, 199 companies (683 seeded; others parked) — depth in one market beat breadth</td></tr><tr><td>Taxonomy v1, 15–25 initiatives</td><td>5 categories, 15 initiatives, each mapped to an IT offering</td></tr><tr><td>Postgres + MinIO + Redis</td><td>SQLite locally → <strong>Neon Postgres</strong>; no object store (raw text is a write-only archive and is skipped in the cloud); no Redis (no queue needed at this scale)</td></tr></tbody></table>
+<p><strong>Exit met:</strong> one company → one filing → one extracted initiative → stored event.</p>
+<h3>Phase 1 — MVP ingestion ✅</h3>
+<table><thead><tr><th>Planned</th><th>Built</th></tr></thead><tbody><tr><td>EDGAR poller + news API</td><td><code>SecEdgarAdapter</code> (10-K/10-Q/8-K, key sections) + Google News RSS + Exa news</td></tr><tr><td>Rules + small LLM extraction</td><td><strong>Rules first</strong> (<code>extraction/rules.py</code>: taxonomy keywords, spend and timing patterns, ~30 known technology vendors), <strong>LLM only as a backstop</strong> (see §6)</td></tr><tr><td>Celery + Redis workers</td><td>In-process APScheduler locally; <strong>GitHub Actions</strong> in production (Phase 7)</td></tr><tr><td>Simple dashboard</td><td>Replaced entirely by the Industry / Opportunity / Companies design (Phase 6)</td></tr></tbody></table>
+<h3>Phase 2 — Multi-source enrichment ✅ (patents deferred)</h3>
+<table><thead><tr><th>Planned</th><th>Built</th></tr></thead><tbody><tr><td>IR releases, career pages, patents, earnings decks</td><td>IR (Exa), careers (Exa, no category so job boards surface), earnings decks (EDGAR exhibits, PDF + HTML) — <strong>patents deferred</strong> (unverifiable API contract)</td></tr><tr><td>Entity resolution</td><td>Company aliases + a relevance guard on every document; vendor-name normalisation (Azure ↔ Microsoft Azure, AWS ↔ Amazon Web Services)</td></tr><tr><td>Deduplication</td><td>URL-level dedup at ingest; <strong>per-document counting</strong> in scoring (one article = one piece of proof, however many sentences mention the theme)</td></tr><tr><td>Separate budgets per Exa consumer</td><td>Yes — one tracker per purpose so news cannot starve IR, careers or people search</td></tr></tbody></table>
+<h3>Phase 3 — Signal engine &amp; scoring ✅ (redesigned)</h3>
+<p><strong>Planned:</strong> an intent score 0–100 from weighted evidence, corroboration, recency and spend, later an ML model.</p>
+<p><strong>Built, then deliberately replaced.</strong> The 0–100 formula (saturating evidence curve + corroboration + recency + spend) ranked accounts sensibly, but when asked <em>"what does 88 mean for Voya?"</em> the answer needed a formula and a table. Two findings sealed it:</p>
+<ul><li>It counted <strong>sentences</strong>, not documents — one Azure article about Voya produced 8 events, one AI job ad 7. The score measured how long-winded a source was.</li><li>Two of its four parts carried little signal: recency was a near-constant in a 30-day view, and "spend" read revenue figures as IT budgets.</li></ul>
+<p><strong>Current model — points per unique document:</strong></p>
+<table><thead><tr><th>Evidence</th><th>Points</th><th>Reasoning</th></tr></thead><tbody><tr><td>SEC filing · earnings deck · IR release</td><td><strong>3</strong></td><td>The company said it itself</td></tr><tr><td>Job posting</td><td><strong>2</strong></td><td>The company is hiring for it</td></tr><tr><td>News story</td><td><strong>1</strong></td><td>The press reported it</td></tr></tbody></table>
+<p><strong>Strength:</strong> <strong>High ≥ 6 points · Medium 3–5 · Low 1–2</strong>, shown with its working ("8 points = 2 filings (6) + 2 news stories (2)"). Anyone can check it by hand.</p>
+<p>Also built: timing window from source mix (disclosure + hiring → 0–3 months; disclosure only → 3–6; news only → 6–12), peer context (others in the same industry on the same initiative), watchlists and threshold alerts (in-app; Slack/email deferred), and <strong>windowed scoring</strong> — every score is recomputed for the selected date range on each request.</p>
+<h3>Phase 4 — Productization ✅ (scoped to a single-user tool, then a public demo)</h3>
+<table><thead><tr><th>Planned</th><th>Built / decided</th></tr></thead><tbody><tr><td>CSV exports, CRM webhook</td><td>Built (signals, leads, events CSV; generic JSON webhook, inert until configured)</td></tr><tr><td>Heatmaps, trends, timelines</td><td>Built, then folded into the Industry / Company pages</td></tr><tr><td>Source health &amp; freshness SLA</td><td>Built (<code>SourceRun</code> per source per run; 48 h freshness flag)</td></tr><tr><td>Auth, tenants, API keys, Elasticsearch, split workers</td><td><strong>Skipped</strong> — single-user analyst tool; the public demo is read-only instead of authenticated</td></tr></tbody></table>
+<h3>Phase 5 — Geography, coverage, tenders ✅</h3>
+<ul><li><strong>Region</strong> added to companies (first <code>ALTER TABLE</code> on a populated table, via an idempotent <code>ensure_columns</code>): SEC business address where available, curated HQ table otherwise. All 199 BFSI companies classified, 0 unknown; US institutions without a CIK (USAA, State Farm, Fannie Mae…) correctly land in Americas.</li><li><strong>Coverage backfill</strong> for companies with no events.</li><li><strong>EU TED tenders</strong> as a separate public-sector stream (their buyers are ministries and hospitals, not banks); strict buyer matching after "de" matched Deere.</li><li><strong>Vendor graph</strong>: which technology vendors each company names.</li></ul>
+<h3>Phase 6 — Seller-first UI and the AI layer ✅ (new)</h3>
+<p>Not in the original plan. The raw "signal feed" and ranked-signals views answered <em>what exists</em>; sellers needed <em>what to do</em>. Rebuilt as three pages:</p>
+<ul><li><strong>Industry</strong> — seven tiles, each with a grounded AI summary that describes exactly what its chart shows, and "View evidence" to the source documents.</li><li><strong>Opportunity</strong> — KPIs; <strong>Featured opportunities</strong> with the documents behind each row; <strong>Rising Fast</strong> (same company-initiative pair scored against the previous equal-length window); <strong>Competitive Pressure</strong> (bar chart of peers on the same initiative); <strong>People to Tap</strong>; <strong>Recommended plays</strong> (engage now, lead theme, momentum, peer pressure — assembled from the page's own figures, not model-written).</li><li><strong>Companies</strong> — solar-system map of the BFSI universe; a company page with masonry-packed tiles.</li><li>Regions switch instantly (client cache with 3-minute TTL, region prefetch, stale-response guards); every infographic animates in; a radar loading screen covers the first load and date-range changes.</li></ul>
+<h3>Phase 7 — Always-on deployment ✅ (new)</h3>
 <div class="mermaid">
 flowchart LR
-    EDGAR[EDGAR Poller] --> Store[Raw Store]
-    News[News API] --> Store
-    Store --> Extract[Rule + LLM Extract]
-    Extract --> Events[Events DB]
-    Events --> UI[Simple Dashboard]
+    GH[GitHub repo] -->|push| RENDER[Render web service<br/>PUBLIC_MODE=true]
+    GH -->|cron 02:30 UTC| GHA[GitHub Actions<br/>Daily refresh]
+    GHA -->|writes| NEON[(Neon Postgres<br/>Singapore)]
+    RENDER -->|reads| NEON
+    LAPTOP[Local copy<br/>full access] -->|reads/writes| NEON
 </div>
-<table><thead><tr><th>Component</th><th>Implementation</th></tr></thead><tbody>
-<tr><td><strong>EDGAR adapter</strong></td><td>Poll 8-K, 10-K; download filings; parse HTML sections (Item 1, 1A, 7)</td></tr>
-<tr><td><strong>News adapter</strong></td><td>NewsAPI/GNews by company name + ticker</td></tr>
-<tr><td><strong>Company master</strong></td><td>CIK, ticker, name aliases, industry NAICS</td></tr>
-<tr><td><strong>Extraction v1</strong></td><td>Keyword rules + small LLM (Ollama/local or free tier) for initiative sentences</td></tr>
-<tr><td><strong>Dashboard v0</strong></td><td>Company page: recent events, initiative tags, source links</td></tr>
-</tbody></table>
-<p><strong>Free stack:</strong> Python (FastAPI), Celery + Redis, PostgreSQL, MinIO.</p>
-<p><strong>Exit criteria:</strong> Daily refresh for 500 companies; <24h latency on new 8-K; dashboard shows last 30 days of signals.</p>
+<ul><li><strong>Neon Postgres</strong> replaces SQLite so the pipeline, the public site and the local copy share one database; migration script copies all 13 tables and verifies row counts.</li><li><strong>GitHub Actions</strong> runs the same <code>run_daily()</code> as the local scheduler; a once-per-day guard in the shared database prevents double ingestion; a <code>concurrency</code> group prevents overlapping runs; skips cleanly until secrets exist.</li><li><strong>Render</strong> serves the app in <strong>public read-only mode</strong>: one middleware refuses every POST/PUT/PATCH/DELETE under <code>/api</code>, missing summaries are never generated on a visitor's request, background people-search is off, and no LLM or search API keys are deployed to the web tier.</li><li><strong>LLM provider fallback</strong> so a spent Groq budget no longer blanks the summaries (§6).</li></ul>
+<p><strong>Portability issues met in the move to Postgres</strong> (worth knowing): SQLite ignores <code>VARCHAR(n)</code> so a 1,549-character scraped title went unnoticed until Postgres refused it (free-text columns are now <code>TEXT</code>); SQLAlchemy 2.1 changed the default driver for <code>postgresql://</code> URLs, so the driver is now named explicitly.</p>
 <hr>
-<h3>Phase 2 — Multi-Source Enrichment (6–8 weeks)</h3>
-<p><strong>Goal:</strong> Richer signals from jobs, IR, patents; better entity resolution.</p>
-<table><thead><tr><th>New sources</th><th>Purpose</th></tr></thead><tbody>
-<tr><td>IR RSS / press release scrape</td><td>Initiatives before filings</td></tr>
-<tr><td>Career page scraper</td><td>Role-based intent (e.g. "Head of GenAI")</td></tr>
-<tr><td>Patent API</td><td>Long-term tech bets</td></tr>
-<tr><td>Earnings presentation PDFs</td><td>Strategic pillars from slides</td></tr>
-</tbody></table>
-<table><thead><tr><th>Intelligence upgrades</th><th>Details</th></tr></thead><tbody>
-<tr><td><strong>Entity resolution</strong></td><td>Match "JPMorgan", "JPM", "Chase" → one company_id</td></tr>
-<tr><td><strong>Deduplication</strong></td><td>Same initiative from news + 8-K → one signal, multiple sources</td></tr>
-<tr><td><strong>Confidence score</strong></td><td>Source weight + recency + corroboration</td></tr>
-<tr><td><strong>Initiative classifier v2</strong></td><td>Fine-tuned or prompt-tuned taxonomy labels</td></tr>
-</tbody></table>
-<p><strong>Exit criteria:</strong> ≥3 sources per high-value signal; confidence score on every event; industry filter works.</p>
+<h2>6. The AI layer</h2>
+<table><thead><tr><th>Use</th><th>Model / method</th><th>Guardrail</th></tr></thead><tbody><tr><td><strong>Initiative extraction</strong></td><td>Keyword rules first; LLM (JSON mode, taxonomy in the prompt) only when rules found nothing or the document is a first-party disclosure</td><td>Output must parse as JSON and map to a taxonomy id; token budget with a reserve for summaries</td></tr><tr><td><strong>Tile summaries</strong></td><td>LLM rewrites statements the code composed ("29% of 297 technology signals are AI…")</td><td>Rejected if any number or named entity is not in the supplied facts, or if it is not plain prose of the right length → falls back to the computed sentence, labelled as such</td></tr><tr><td><strong>People to Tap</strong></td><td>Retrieval (Exa LinkedIn search) + deterministic verification — <strong>no LLM</strong></td><td>Headline must name the company (not a subsidiary), carry a senior title, and not describe a former role; URLs are never constructed</td></tr><tr><td><strong>Recommendations</strong></td><td>Assembled from the page's figures — <strong>no LLM</strong></td><td>Nothing inferred</td></tr></tbody></table>
+<p><strong>Provider chain:</strong> Groq (<code>openai/gpt-oss-120b</code>, benchmarked against the other models the key could reach) → OpenRouter (free Nemotron 120B, with Gemma and Qwen as backups) → Gemini (<code>gemini-3.8-flash</code>, with backups). The next provider is called only if the previous one is out of budget, rate-limited, errors, <strong>or returns a draft the validator rejects</strong>. Each fallback has a daily cap and a reserve that bulk extraction cannot spend.</p>
+<p><strong>Cost controls:</strong> summaries cached by a hash of their facts (a changed fact is a new key, so a cached summary is never stale); summaries written by the morning warm-up, never on the request path; Groq's 200k tokens/day tracked per IST day with a 45k reserve for summaries.</p>
 <hr>
-<h3>Phase 3 — Signal Engine & Scoring (6–8 weeks)</h3>
-<p><strong>Goal:</strong> Turn raw events into ranked, actionable market signals.</p>
-<div class="mermaid">
-flowchart TB
-    Events[Structured Events] --> Agg[Aggregate by Company + Theme]
-    Agg --> Rules[Business Rules]
-    Agg --> ML[Intent Scoring Model]
-    Rules --> Signal[Market Signal]
-    ML --> Signal
-    Signal --> Rank[Rank by Industry / Geo / IT Category]
-    Rank --> Alert[Alerts & Watchlists]
-</div>
-<table><thead><tr><th>Signal types</th><th>Logic example</th></tr></thead><tbody>
-<tr><td><strong>Intent score (0–100)</strong></td><td>Weight: filing mention + hiring + news volume</td></tr>
-<tr><td><strong>Timing</strong></td><td>"Announced Q1, hiring Q2 → likely RFP in Q3"</td></tr>
-<tr><td><strong>IT category mapping</strong></td><td>"Data lake + ML hires" → Analytics / AI services</td></tr>
-<tr><td><strong>Competitive context</strong></td><td>Peer companies in same industry with similar signals</td></tr>
-</tbody></table>
-<table><thead><tr><th>Features</th><th></th></tr></thead><tbody>
-<tr><td>Watchlists</td><td>IT vendor tracks 50 target accounts</td></tr>
-<tr><td>Alerts</td><td>Slack/email when score crosses threshold</td></tr>
-<tr><td>Signal explainability</td><td>"Why this signal?" with source citations</td></tr>
-</tbody></table>
-<p><strong>Exit criteria:</strong> IT vendor can define ICP (industry + initiative type) and get weekly ranked lead list with citations.</p>
+<h2>7. Tech stack (as built)</h2>
+<table><thead><tr><th>Layer</th><th>Choice</th><th>Instead of (planned)</th><th>Why</th></tr></thead><tbody><tr><td>Backend</td><td>Python 3.12 + FastAPI</td><td>—</td><td>Strong scraping/NLP ecosystem, typed routes, OpenAPI docs free</td></tr><tr><td>ORM / DB</td><td>SQLAlchemy 2 · SQLite (dev) → <strong>Neon Postgres</strong></td><td>Self-hosted Postgres</td><td>Serverless, free tier, shared by pipeline and web</td></tr><tr><td>Scheduling</td><td>APScheduler (local) · <strong>GitHub Actions cron</strong> (prod)</td><td>Celery + Redis</td><td>A once-a-day batch needs a cron, not a queue</td></tr><tr><td>Raw storage</td><td>Local text archive (dev only)</td><td>MinIO</td><td>Raw text is never read back; not worth a service</td></tr><tr><td>LLM</td><td>Groq → OpenRouter → Gemini</td><td>Ollama / local models</td><td>Free hosted inference, fast; fallback for quota limits</td></tr><tr><td>Search / news</td><td>Exa + Google News RSS</td><td>NewsAPI / GNews</td><td>Full text + breadth, both free-tier</td></tr><tr><td>PDF</td><td>pdfplumber</td><td>—</td><td>Earnings-deck exhibits</td></tr><tr><td>Frontend</td><td>Vanilla JS + hand-built SVG/CSS charts</td><td>Next.js + Tailwind</td><td>Served by FastAPI as static files; no build step</td></tr><tr><td>Hosting</td><td><strong>Render</strong> (web, read-only)</td><td>Railway / Fly.io</td><td>GitHub-connected deploys for a long-running Python server</td></tr></tbody></table>
 <hr>
-<h3>Phase 4 — Productization (8–10 weeks)</h3>
-<p><strong>Goal:</strong> API, multi-tenant SaaS shape, exports, basic analytics.</p>
-<table><thead><tr><th>Layer</th><th>Features</th></tr></thead><tbody>
-<tr><td><strong>API</strong></td><td>REST: companies, signals, search, filters; API keys</td></tr>
-<tr><td><strong>Dashboard</strong></td><td>Industry heatmaps, trend charts, company timelines</td></tr>
-<tr><td><strong>Exports</strong></td><td>CSV, webhook to CRM (HubSpot free tier / Salesforce later)</td></tr>
-<tr><td><strong>Auth & tenants</strong></td><td>Orgs, roles, saved searches</td></tr>
-<tr><td><strong>Admin</strong></td><td>Source health, scrape failures, data freshness SLA</td></tr>
-</tbody></table>
-<p><strong>Architecture shift (if needed):</strong></p>
-<li>Split ingestion workers from API service</li>
-<li>Add Elasticsearch/OpenSearch for full-text search (or PostgreSQL FTS first)</li>
-<p><strong>Exit criteria:</strong> 3 pilot IT vendor users on shared infra; API docs; 99% ingestion job success rate.</p>
-<hr>
-<h3>Phase 5 — Scale & Intelligence (ongoing)</h3>
-<p><strong>Goal:</strong> More industries, geographies, predictive layer.</p>
-<table><thead><tr><th>Expansion</th><th></th></tr></thead><tbody>
-<tr><td>Industries</td><td>Retail, manufacturing, energy, public sector</td></tr>
-<tr><td>Geographies</td><td>UK Companies House, EU filings, ASX</td></tr>
-<tr><td>Procurement</td><td>Tender scrapers (SAM.gov, TED)</td></tr>
-<tr><td>Predictive</td><td>"Likely to issue RFP in 90 days" from historical patterns</td></tr>
-<tr><td>Graph</td><td>Company ↔ initiative ↔ vendor ↔ peer relationships</td></tr>
-</tbody></table>
-<table><thead><tr><th>Ops</th><th></th></tr></thead><tbody>
-<tr><td>Observability</td><td>Prometheus, Grafana, source lag metrics</td></tr>
-<tr><td>Data quality</td><td>Human-in-the-loop review queue for low-confidence extractions</td></tr>
-<tr><td>Cost control</td><td>Scraping proxies only where needed; LLM batching</td></tr>
-</tbody></table>
-<hr>
-<h2>6. Recommended Tech Stack (Free / Low-Cost Friendly)</h2>
-<table><thead><tr><th>Layer</th><th>Choice</th><th>Rationale</th></tr></thead><tbody>
-<tr><td><strong>Backend</strong></td><td>Python 3.12 + FastAPI</td><td>Strong NLP/scraping ecosystem</td></tr>
-<tr><td><strong>Workers</strong></td><td>Celery or ARQ + Redis</td><td>Scheduled ingestion</td></tr>
-<tr><td><strong>DB</strong></td><td>PostgreSQL</td><td>JSONB for events, FTS for search</td></tr>
-<tr><td><strong>Object store</strong></td><td>MinIO (self-hosted)</td><td>Raw PDFs/HTML</td></tr>
-<tr><td><strong>Scraping</strong></td><td>Playwright + Scrapy</td><td>JS-heavy IR sites</td></tr>
-<tr><td><strong>NLP</strong></td><td>spaCy + Ollama (Llama/Mistral)</td><td>Free local extraction</td></tr>
-<tr><td><strong>Frontend</strong></td><td>Next.js or React + Tailwind</td><td>Dashboard</td></tr>
-<tr><td><strong>Infra</strong></td><td>Docker Compose → later Railway/Fly.io free tiers</td><td>Simple deploy</td></tr>
-</tbody></table>
-<hr>
-<h2>7. Data Model (Core Entities)</h2>
+<h2>8. Data model (core tables)</h2>
 <div class="mermaid">
 erDiagram
+    COMPANY ||--o{ RAW_DOCUMENT : has
     COMPANY ||--o{ EVENT : has
-    COMPANY ||--o{ SIGNAL : generates
-    EVENT }o--|| SOURCE : from
-    SIGNAL ||--o{ SIGNAL_SOURCE : cites
-    EVENT ||--o{ INITIATIVE_TAG : tagged
+    RAW_DOCUMENT ||--o{ EVENT : "extracted into"
+    COMPANY ||--o{ SIGNAL : "stored 180-day signal"
+    COMPANY ||--o{ LEADER : "People to Tap"
+    COMPANY ||--o{ LEADER_FETCH : "search history"
+    WATCHLIST ||--o{ ALERT : raises
 
     COMPANY {
         uuid id
         string name
         string ticker
         string cik
-        string industry
+        string sector
+        string region
+        string vertical
+        string sub_industry
     }
-
+    RAW_DOCUMENT {
+        uuid id
+        string source_type
+        text title
+        text url
+        datetime filing_date
+        json metadata_json
+    }
     EVENT {
         uuid id
+        string initiative_id
+        text quote_text
         datetime occurred_at
-        string raw_text
-        string source_type
-        float extraction_confidence
+        float confidence
+        string spend_amount
+        json key_entities
     }
-
     SIGNAL {
         uuid id
-        string initiative_type
+        string initiative_id
         int intent_score
-        string it_category
-        datetime valid_until
+        json score_breakdown
+        string timing_window
     }
 </div>
+<p>Also: <code>app_state</code> (budgets, last run, per-provider LLM usage), <code>ai_summaries</code> (fact-hash → text), <code>tenders</code>, <code>source_runs</code>, <code>ingestion_jobs</code>.</p>
+<p><strong>Volumes (29 Sep 2026):</strong> 683 companies (199 BFSI) · 2,838 documents · 4,571 events · 1,101 stored signals · 434 verified leaders · 295 cached summaries · 580 tenders.</p>
 <hr>
-<h2>8. Legal & Ethical Guardrails</h2>
-<li><strong>SEC data:</strong> Public domain; cite EDGAR links.</li>
-<li><strong>Scraping:</strong> Respect robots.txt; rate limit; store only public pages.</li>
-<li><strong>LinkedIn:</strong> Avoid aggressive scraping; prefer official career sites.</li>
-<li><strong>LLM outputs:</strong> Always link to source sentences; no fabricated initiatives.</li>
-<li><strong>Privacy:</strong> B2B public data only; no personal employee profiling beyond public job titles.</li>
+<h2>9. Guardrails</h2>
+<ul><li><strong>Evidence over assertion</strong> — every score, summary and recommendation links to the documents behind it.</li><li><strong>No invented facts</strong> — LLM output is validated against supplied facts; failures fall back to computed text, marked as such.</li><li><strong>No invented dates</strong> — undated documents are dropped rather than presented as new.</li><li><strong>No guessed people</strong> — names, titles and profile URLs come only from verified search results.</li><li><strong>Read-only public surface</strong> — writes and spend are impossible from the deployed site.</li><li><strong>Secrets</strong> — in <code>.env</code> (never committed) and GitHub/Render secrets; each commit is scanned for key patterns before push.</li></ul>
 <hr>
-<h2>9. Success Metrics by Phase</h2>
-<table><thead><tr><th>Phase</th><th>KPI</th></tr></thead><tbody>
-<tr><td>0</td><td>Taxonomy + 10 manual signal examples validated with 2 IT sales users</td></tr>
-<tr><td>1</td><td>500 cos, 1K+ events/month, extraction precision >70% on sample</td></tr>
-<tr><td>2</td><td>≥40% signals corroborated by 2+ sources</td></tr>
-<tr><td>3</td><td>Pilot users report ≥5 qualified conversations/month from signals</td></tr>
-<tr><td>4</td><td>API p95 <500ms; weekly active users on dashboard</td></tr>
-<tr><td>5</td><td>Coverage 5K+ companies, 3+ geographies</td></tr>
-</tbody></table>
-<hr>
-<h2>10. Suggested Build Order (First 90 Days)</h2>
-<pre><code class="language-text">Week 1–2   Phase 0: Taxonomy, company list, EDGAR spike
-Week 3–6   Phase 1: Ingestion + extraction + basic UI
-Week 7–10  Phase 2: News + IR + entity resolution
-Week 11–14 Phase 3: Scoring + watchlists + alerts
-Week 15+   Phase 4: API hardening + pilots
-</code></pre>
-<hr>
-<h2>Summary</h2>
-<table><thead><tr><th>Phase</th><th>Focus</th><th>Primary output</th></tr></thead><tbody>
-<tr><td><strong>0</strong></td><td>Definition</td><td>Taxonomy, company universe, legal bounds</td></tr>
-<tr><td><strong>1</strong></td><td>MVP</td><td>SEC + news → events → simple dashboard</td></tr>
-<tr><td><strong>2</strong></td><td>Depth</td><td>Jobs, IR, patents, dedup, confidence</td></tr>
-<tr><td><strong>3</strong></td><td>Intelligence</td><td>Scored signals, IT mapping, alerts</td></tr>
-<tr><td><strong>4</strong></td><td>Product</td><td>API, multi-tenant, CRM hooks</td></tr>
-<tr><td><strong>5</strong></td><td>Scale</td><td>More markets, tenders, prediction</td></tr>
-</tbody></table>
-<hr>
-<h2>Next Steps</h2>
-<p>1. <strong>Scaffold the repo</strong> (monorepo: `ingestion/`, `api/`, `web/`, `shared/`)</p>
-<p>2. <strong>Spike SEC EDGAR</strong> for one company (e.g. JPMorgan) end-to-end</p>
-<p>3. <strong>Draft the initiative taxonomy</strong> as a YAML config file IT vendors can customize</p>
-
-<script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+<h2>10. Status and next</h2>
+<table><thead><tr><th>Area</th><th>Status</th></tr></thead><tbody><tr><td>Phases 0–7</td><td>Built and live</td></tr><tr><td>Deferred</td><td>Patents (USPTO key), SAM.gov (key), Slack/email alerts, multi-tenant auth</td></tr><tr><td>Next (AI)</td><td><strong>Evaluation harness</strong> for extraction precision and summary faithfulness → <strong>cited RAG</strong> over the document store for free-form questions → an <strong>account-brief agent</strong> that assembles a one-page brief per company from the same grounded tools</td></tr><tr><td>Next (product)</td><td>Emerging-themes discovery (open-set), market-chatter filter for news, server-side page cache for Neon latency</td></tr></tbody></table>
+<script>mermaid.initialize({ startOnLoad: true, theme: "default" });</script>
 </body>
 </html>
