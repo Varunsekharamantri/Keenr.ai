@@ -1,1 +1,1 @@
-{"rewrites": [{"source": "/api/:path*", "destination": "https://keenr-ai.vercel.app/api/:path*"}, {"source": "/health", "destination": "https://keenr-ai.vercel.app/health"}]}
+{"rewrites": [{"source": "/static/:path*", "destination": "/:path*"}, {"source": "/api/:path*", "destination": "https://keenr-ai.vercel.app/api/:path*"}, {"source": "/health", "destination": "https://keenr-ai.vercel.app/health"}]}
