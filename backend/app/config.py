@@ -6,7 +6,9 @@ from dotenv import load_dotenv
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = BACKEND_DIR.parent
 DATA_DIR = BACKEND_DIR / "data"
-RAW_STORE_DIR = DATA_DIR / "raw_store"
+# Serverless hosts (Vercel/Lambda) have a read-only filesystem; only /tmp is writable.
+_IS_SERVERLESS = bool(os.getenv("VERCEL") or os.getenv("AWS_LAMBDA_FUNCTION_NAME"))
+RAW_STORE_DIR = Path(os.getenv("RAW_STORE_DIR") or ("/tmp/raw_store" if _IS_SERVERLESS else DATA_DIR / "raw_store"))
 RAW_STORE_DIR.mkdir(parents=True, exist_ok=True)
 
 # Load .env
